@@ -1,5 +1,3 @@
-const STORAGE_KEY = 'portfolio-academico-v1';
-
 const defaults = {
   intro: 'Aqui registro os projetos, aprendizados e desafios da minha trajetória na faculdade.',
   github: 'https://github.com/',
@@ -9,16 +7,48 @@ const defaults = {
   projects: [
     { title: 'Calculadora Python', description: 'Uma calculadora de terminal para colocar em prática condicionais, funções e tratamento de entradas.', tags: ['Python', 'Lógica'], link: '#', color: '#9e78f7' },
     { title: 'Lista de tarefas', description: 'Organização de tarefas com uma interface leve e foco em uma boa experiência de uso.', tags: ['HTML', 'CSS', 'JavaScript'], link: '#', color: '#d9f34b' },
-    { title: 'Em breve', description: 'O próximo capítulo da minha jornada na programação está sendo construída agora.', tags: ['Em aprendizado'], link: '#', color: '#c05de5' }
+    { title: 'Em breve', description: 'O próximo capítulo da minha jornada na programação está sendo construído agora.', tags: ['Em aprendizado'], link: '#', color: '#c05de5' }
   ]
 };
 
-let data = JSON.parse(localStorage.getItem(STORAGE_KEY)) || structuredClone(defaults);
+let data = structuredClone(defaults);
 let authenticated = false;
 const $ = (selector) => document.querySelector(selector);
 
 function escapeHTML(value) {
   return String(value).replace(/[&<>'"]/g, char => ({ '&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;' }[char]));
+}
+
+// Converte o formato do banco (linhas separadas: about_title, about_text...)
+// para o formato que o resto do código já usa (aboutTitle, aboutText...).
+function fromRow(row) {
+  return {
+    intro: row.intro,
+    github: row.github,
+    aboutTitle: row.about_title,
+    aboutText: row.about_text,
+    email: row.email,
+    projects: row.projects || []
+  };
+}
+
+async function loadData() {
+  const { data: rows, error } = await supabaseClient.from('portfolio').select('*').eq('id', 1).single();
+  if (error || !rows) { console.error('Não foi possível carregar os dados do Supabase, usando exemplo padrão.', error); data = structuredClone(defaults); return; }
+  data = fromRow(rows);
+}
+
+async function saveData() {
+  const { error } = await supabaseClient.from('portfolio').update({
+    intro: data.intro,
+    github: data.github,
+    about_title: data.aboutTitle,
+    about_text: data.aboutText,
+    email: data.email,
+    projects: data.projects
+  }).eq('id', 1);
+  if (error) { alert('Não foi possível salvar. Verifique se você está logado.'); console.error(error); return false; }
+  return true;
 }
 
 function render() {
@@ -54,12 +84,6 @@ function openAdmin() {
   $('#adminDialog').showModal();
 }
 
-// Ao carregar a página, verifica se já existe uma sessão válida no Supabase
-// (assim você não precisa logar toda vez que recarrega a página, dentro da validade da sessão).
-supabaseClient.auth.getSession().then(({ data: { session } }) => {
-  authenticated = !!session;
-});
-
 $('#adminButton').addEventListener('click', async () => {
   const { data: { session } } = await supabaseClient.auth.getSession();
   authenticated = !!session;
@@ -81,16 +105,26 @@ $('#loginForm').addEventListener('submit', async event => {
 });
 
 $('#addProject').addEventListener('click', () => addProjectEditor());
-$('#settingsForm').addEventListener('submit', event => {
+
+$('#settingsForm').addEventListener('submit', async event => {
   event.preventDefault();
   const form = event.currentTarget;
-  data = {
+  const newData = {
     intro: form.elements.intro.value.trim(), github: form.elements.github.value.trim(), aboutTitle: form.elements.aboutTitle.value.trim(), aboutText: form.elements.aboutText.value.trim(), email: form.elements.email.value.trim(),
     projects: [...$('#projectEditor').querySelectorAll('.project-editor-card')].map(card => ({
       title: card.querySelector('[data-field="title"]').value.trim(), description: card.querySelector('[data-field="description"]').value.trim(), tags: card.querySelector('[data-field="tags"]').value.split(',').map(tag => tag.trim()).filter(Boolean), link: card.querySelector('[data-field="link"]').value.trim(), color: card.querySelector('[data-field="color"]').value
     })).filter(project => project.title && project.description)
   };
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); render(); $('#adminDialog').close();
+  data = newData;
+  const saveButton = form.querySelector('.save-row .button-primary');
+  saveButton.textContent = 'Salvando...';
+  saveButton.disabled = true;
+  const ok = await saveData();
+  saveButton.textContent = 'Salvar alterações';
+  saveButton.disabled = false;
+  if (!ok) return;
+  render();
+  $('#adminDialog').close();
 });
 
 $('#logoutButton').addEventListener('click', async () => {
@@ -99,9 +133,11 @@ $('#logoutButton').addEventListener('click', async () => {
   $('#adminDialog').close();
 });
 
-$('#resetButton').addEventListener('click', () => {
-  if (!confirm('Restaurar o conteúdo de exemplo?')) return;
-  data = structuredClone(defaults); localStorage.removeItem(STORAGE_KEY); render();
+$('#resetButton').addEventListener('click', async () => {
+  if (!confirm('Restaurar o conteúdo de exemplo? Isso substitui o que está publicado para todo mundo.')) return;
+  data = structuredClone(defaults);
+  await saveData();
+  render();
   const form = $('#settingsForm');
   ['intro','github','aboutTitle','aboutText','email'].forEach(key => form.elements[key].value = data[key]);
   $('#projectEditor').innerHTML = ''; data.projects.forEach(addProjectEditor);
@@ -139,8 +175,6 @@ function setupScrollAnimations() {
   });
 }
 
-render();
-
 const scrollProgress = $('#scrollProgress');
 function updateScrollProgress() {
   const availableScroll = document.documentElement.scrollHeight - window.innerHeight;
@@ -149,7 +183,6 @@ function updateScrollProgress() {
 }
 window.addEventListener('scroll', updateScrollProgress, { passive: true });
 window.addEventListener('resize', updateScrollProgress);
-updateScrollProgress();
 
 // Movimento 3D leve nos cartões, sem interferir em telas touch.
 if (window.matchMedia('(pointer: fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -166,3 +199,10 @@ if (window.matchMedia('(pointer: fine)').matches && !window.matchMedia('(prefers
     if (card && !card.contains(event.relatedTarget)) card.style.transform = '';
   });
 }
+
+// Carrega os dados do banco antes de mostrar a página.
+(async () => {
+  await loadData();
+  render();
+  updateScrollProgress();
+})();
