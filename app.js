@@ -82,14 +82,14 @@ function render() {
   $('#aboutText').textContent = data.aboutText;
   $('#githubHero').href = data.github || 'https://github.com/';
   $('#emailLink').href = `mailto:${data.email}`;
-  $('#emailLink').textContent = data.email === defaults.email ? 'Vamos conversar ↗' : `${data.email} ↗`;
+  $('#emailLink').textContent = data.email === defaults.email ? 'Vamos conversar ↗︎' : `${data.email} ↗︎`;
   const technologies = new Set(data.projects.flatMap(project => project.tags));
   animateNumber($('#projectCount'), data.projects.length);
   animateNumber($('#techCount'), technologies.size);
   $('#projectLabel').textContent = `${String(data.projects.length).padStart(2, '0')} projetos`;
   $('#projectGrid').innerHTML = data.projects.map((project, index) => {
     const link = project.link && project.link !== '#' ? project.link : '#projetos';
-    return `<a class="project-card" href="${escapeHTML(link)}" ${link !== '#projetos' ? 'target="_blank" rel="noreferrer"' : ''} style="background:${escapeHTML(project.color)}"><div class="card-top"><span class="number">${String(index + 1).padStart(2, '0')} / PROJETO</span><span class="arrow">↗</span></div><div><h3>${escapeHTML(project.title)}</h3><p>${escapeHTML(project.description)}</p><div class="tags">${project.tags.map(tag => `<span>${escapeHTML(tag)}</span>`).join('')}</div></div></a>`;
+    return `<a class="project-card" href="${escapeHTML(link)}" ${link !== '#projetos' ? 'target="_blank" rel="noreferrer"' : ''} style="background:${escapeHTML(project.color)}"><div class="card-top"><span class="number">${String(index + 1).padStart(2, '0')} / PROJETO</span><span class="arrow">↗︎</span></div><div><h3>${escapeHTML(project.title)}</h3><p>${escapeHTML(project.description)}</p><div class="tags">${project.tags.map(tag => `<span>${escapeHTML(tag)}</span>`).join('')}</div></div></a>`;
   }).join('');
   setupScrollAnimations();
 }
