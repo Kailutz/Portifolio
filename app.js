@@ -207,6 +207,60 @@ function updateScrollProgress() {
 window.addEventListener('scroll', updateScrollProgress, { passive: true });
 window.addEventListener('resize', updateScrollProgress);
 
+// Entrada cinematográfica e faixa contínua, criadas pelo JavaScript para manter o HTML intacto.
+const introWipe = document.createElement('div');
+introWipe.className = 'intro-wipe';
+introWipe.setAttribute('aria-hidden', 'true');
+introWipe.innerHTML = '<span>KP/</span>';
+document.body.prepend(introWipe);
+requestAnimationFrame(() => introWipe.classList.add('play'));
+introWipe.addEventListener('animationend', () => introWipe.remove());
+
+const marquee = document.createElement('div');
+marquee.className = 'marquee';
+marquee.setAttribute('aria-hidden', 'true');
+const marqueeText = 'PROJETOS • APRENDIZADO • CÓDIGO • CRIATIVIDADE • ';
+marquee.innerHTML = `<div class="marquee-track"><span>${marqueeText.repeat(4)}</span><span>${marqueeText.repeat(4)}</span></div>`;
+$('#projetos').before(marquee);
+
+// Cursor editorial e movimento sutil de profundidade para dispositivos com mouse.
+if (window.matchMedia('(pointer: fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const cursor = document.createElement('div');
+  cursor.className = 'cursor-orbit';
+  document.body.append(cursor);
+  let cursorX = 0, cursorY = 0, currentX = 0, currentY = 0;
+  document.addEventListener('pointermove', event => {
+    cursorX = event.clientX;
+    cursorY = event.clientY;
+    cursor.style.opacity = '1';
+    cursor.classList.toggle('active', !!event.target.closest('a, button, .project-card'));
+  }, { passive: true });
+  function moveCursor() {
+    currentX += (cursorX - currentX) * .16;
+    currentY += (cursorY - currentY) * .16;
+    cursor.style.transform = `translate3d(${currentX - cursor.offsetWidth / 2}px, ${currentY - cursor.offsetHeight / 2}px, 0)`;
+    requestAnimationFrame(moveCursor);
+  }
+  moveCursor();
+
+  const heroTitle = $('.hero h1');
+  document.addEventListener('pointermove', event => {
+    if (window.scrollY > window.innerHeight) return;
+    const x = (event.clientX / window.innerWidth - .5) * 12;
+    const y = (event.clientY / window.innerHeight - .5) * 8;
+    heroTitle.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+  }, { passive: true });
+}
+
+// Pequeno efeito de velocidade no título durante a rolagem.
+const heroTitle = $('.hero h1');
+function updateHeroMotion() {
+  const amount = Math.min(window.scrollY, window.innerHeight);
+  heroTitle.style.opacity = String(Math.max(.16, 1 - amount / window.innerHeight));
+  if (!window.matchMedia('(pointer: fine)').matches) heroTitle.style.transform = `translateY(${amount * .12}px)`;
+}
+window.addEventListener('scroll', updateHeroMotion, { passive: true });
+
 // Movimento 3D leve nos cartões e botões "magnéticos" — só no computador,
 // sem interferir em telas touch.
 if (window.matchMedia('(pointer: fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
