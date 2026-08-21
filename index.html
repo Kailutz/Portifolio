@@ -3,524 +3,119 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <meta
-      name="description"
-      content="Portfólio acadêmico de Kaiqui"
-    />
-
-    <!-- Banner para WhatsApp e redes sociais -->
+    <meta name="description" content="Portfólio acadêmico de Kaiqui" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="pt_BR" />
-
-    <meta
-      property="og:url"
-      content="https://kailutz.github.io/Portifolio/"
-    />
-
-    <meta
-      property="og:title"
-      content="Portfólio acadêmico — Kaiqui"
-    />
-
-    <meta
-      property="og:description"
-      content="Projetos, aprendizados e desafios da minha trajetória na programação."
-    />
-
-    <meta
-      property="og:image"
-      content="https://kailutz.github.io/Portifolio/og-image.png"
-    />
-
+    <meta property="og:url" content="https://kailutz.github.io/Portifolio/" />
+    <meta property="og:title" content="Portfólio acadêmico — Kaiqui" />
+    <meta property="og:description" content="Projetos, aprendizados e desafios da minha trajetória na programação." />
+    <meta property="og:image" content="https://kailutz.github.io/Portifolio/og-image.png" />
     <meta property="og:image:width" content="1730" />
     <meta property="og:image:height" content="909" />
-
-    <meta
-      property="og:image:alt"
-      content="KP/ — Portfólio acadêmico de Kaiqui"
-    />
-
-    <!-- Banner para X/Twitter -->
+    <meta property="og:image:alt" content="KP/ — Portfólio acadêmico de Kaiqui" />
     <meta name="twitter:card" content="summary_large_image" />
-
-    <meta
-      name="twitter:title"
-      content="Portfólio acadêmico — Kaiqui"
-    />
-
-    <meta
-      name="twitter:description"
-      content="Projetos, aprendizados e desafios da minha trajetória na programação."
-    />
-
-    <meta
-      name="twitter:image"
-      content="https://kailutz.github.io/Portifolio/og-image.png"
-    />
-
+    <meta name="twitter:title" content="Portfólio acadêmico — Kaiqui" />
+    <meta name="twitter:description" content="Projetos, aprendizados e desafios da minha trajetória na programação." />
+    <meta name="twitter:image" content="https://kailutz.github.io/Portifolio/og-image.png" />
     <title>Meu portfólio acadêmico</title>
-
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="favicon.svg"
-    />
-
-    <link
-      rel="preconnect"
-      href="https://fonts.googleapis.com"
-    />
-
-    <link
-      rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin
-    />
-
-    <link
-      href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
   </head>
-
   <body>
     <header class="topbar">
-      <a
-        class="brand"
-        href="#inicio"
-        aria-label="Página inicial"
-      >
-        KP<span>/</span>
-      </a>
-
+      <a class="brand" href="#inicio" aria-label="Página inicial">KP<span>/</span></a>
       <nav aria-label="Navegação principal">
         <a href="#projetos">Projetos</a>
         <a href="#sobre">Jornada</a>
         <a href="#contato">Contato</a>
       </nav>
-
-      <button
-        id="adminButton"
-        class="admin-link"
-        type="button"
-      >
-        Área do dono
-      </button>
+      <button id="adminButton" class="admin-link" type="button">Área do dono</button>
     </header>
-
-    <div
-      class="scroll-progress"
-      aria-hidden="true"
-    >
-      <span id="scrollProgress"></span>
-    </div>
+    <div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
 
     <main id="inicio">
       <section class="hero wrap">
-        <div
-          class="hero-rail"
-          aria-hidden="true"
-        >
-          <span>PORTFÓLIO ACADÊMICO</span>
-          <i></i>
-          <span>2026</span>
-        </div>
-
+        <div class="hero-rail" aria-hidden="true"><span>PORTFÓLIO ACADÊMICO</span><i></i><span>2026</span></div>
         <div class="hero-content">
-          <p class="eyebrow">
-            EM CONSTRUÇÃO DESDE O PRIMEIRO SEMESTRE
-          </p>
-
-          <h1>
-            <span>IDEIAS</span>
-            <span class="outline">EM</span>
-            <span><em>CÓDIGO.</em></span>
-          </h1>
-
-          <p
-            id="intro"
-            class="hero-copy"
-          >
-            Aqui registro os projetos, aprendizados e desafios
-            da minha trajetória na faculdade.
-          </p>
-
+          <p class="eyebrow">EM CONSTRUÇÃO DESDE O PRIMEIRO SEMESTRE</p>
+          <h1><span>IDEIAS</span><span class="outline">EM</span><span><em>CÓDIGO.</em></span></h1>
+          <p id="intro" class="hero-copy">Aqui registro os projetos, aprendizados e desafios da minha trajetória na faculdade.</p>
           <div class="hero-actions">
-            <a
-              class="button button-primary"
-              href="#projetos"
-            >
-              Explorar projetos <span>↓</span>
-            </a>
-
-            <a
-              id="githubHero"
-              class="button button-ghost"
-              href="https://github.com/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              GitHub ↗︎
-            </a>
+            <a class="button button-primary" href="#projetos">Explorar projetos <span>↓</span></a>
+            <a id="githubHero" class="button button-ghost" href="https://github.com/" target="_blank" rel="noreferrer">GitHub ↗︎</a>
           </div>
         </div>
-
-        <aside
-          class="hero-marker"
-          aria-label="Resumo do portfólio"
-        >
-          <span>STATUS</span>
-
-          <strong>
-            APRENDENDO<br />
-            SEM PARAR
-          </strong>
-
-          <div class="marker-pulse"></div>
-        </aside>
-
-        <div
-          class="stats"
-          aria-label="Resumo do portfólio"
-        >
-          <div>
-            <strong id="projectCount">0</strong>
-            <span>projetos lançados</span>
-          </div>
-
-          <div>
-            <strong id="techCount">0</strong>
-            <span>tecnologias</span>
-          </div>
-
-          <div>
-            <strong>∞</strong>
-            <span>próximas ideias</span>
-          </div>
+        <aside class="hero-marker" aria-label="Resumo do portfólio"><span>STATUS</span><strong>APRENDENDO<br />SEM PARAR</strong><div class="marker-pulse"></div></aside>
+        <div class="stats" aria-label="Resumo do portfólio">
+          <div><strong id="projectCount">0</strong><span>projetos lançados</span></div>
+          <div><strong id="techCount">0</strong><span>tecnologias</span></div>
+          <div><strong>∞</strong><span>próximas ideias</span></div>
         </div>
-
-        <a
-          class="scroll-cue"
-          href="#projetos"
-        >
-          <span>ROLE PARA ACELERAR</span>
-          <b>↓</b>
-        </a>
+        <a class="scroll-cue" href="#projetos"><span>ROLE PARA ACELERAR</span><b>↓</b></a>
       </section>
 
-      <section
-        id="projetos"
-        class="projects wrap"
-      >
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">
-              01 / O QUE ESTOU CRIANDO
-            </p>
-
-            <h2>
-              Projetos em<br />
-              destaque.
-            </h2>
-          </div>
-
-          <span id="projectLabel">
-            00 projetos
-          </span>
-        </div>
-
-        <div
-          id="projectGrid"
-          class="project-grid"
-        ></div>
+      <section id="projetos" class="projects wrap">
+        <div class="section-heading"><div><p class="eyebrow">01 / O QUE ESTOU CRIANDO</p><h2>Projetos em<br />destaque.</h2></div><span id="projectLabel">00 projetos</span></div>
+        <div id="projectGrid" class="project-grid"></div>
       </section>
 
-      <section
-        id="sobre"
-        class="about wrap"
-      >
-        <p class="eyebrow">
-          02 / SOBRE MIM
-        </p>
+      <section id="sobre" class="about wrap">
+        <p class="eyebrow">02 / SOBRE MIM</p>
+        <div><h2 id="aboutTitle">Um estudante curioso,<br />sempre em movimento.</h2><p id="aboutText">Este espaço é meu diário de construção. Cada projeto representa uma nova habilidade, uma ideia explorada ou um problema que aprendi a resolver.</p></div>
+      </section>
 
-        <div>
-          <h2 id="aboutTitle">
-            Um estudante curioso,<br />
-            sempre em movimento.
-          </h2>
-
-          <p id="aboutText">
-            Este espaço é meu diário de construção. Cada projeto
-            representa uma nova habilidade, uma ideia explorada
-            ou um problema que aprendi a resolver.
-          </p>
+      <section id="laboratorio" class="code-lab" aria-labelledby="labTitle">
+        <div class="lab-background-type" aria-hidden="true"><span>BUILD</span><span>LEARN</span><span>REPEAT</span></div>
+        <div class="lab-heading wrap">
+          <p class="eyebrow">03 / MEU AMBIENTE</p>
+          <h2 id="labTitle">Onde ideias<br />viram código.</h2>
         </div>
+
+        <div class="laptop-stage" id="laptopStage">
+          <div class="laptop-tilt" id="laptopTilt">
+            <div class="laptop-float">
+              <div class="laptop" aria-label="Notebook exibindo um terminal de programação animado">
+                <div class="laptop-screen">
+                  <div class="terminal-bar" aria-hidden="true">
+                    <span class="terminal-dots"><i></i><i></i><i></i></span>
+                    <span>kaiqui@portfolio:~</span>
+                    <b>KP/</b>
+                  </div>
+                  <div class="terminal" aria-hidden="true">
+                    <p class="terminal-line line-1"><span class="terminal-prompt">$</span> npm run build-future</p>
+                    <p class="terminal-line line-2"><span class="terminal-muted">›</span> carregando ideias...</p>
+                    <p class="terminal-line line-3"><span class="terminal-muted">›</span> transformando curiosidade em código</p>
+                    <p class="terminal-line line-4"><span class="terminal-success">✓</span> portfólio pronto para evoluir</p>
+                    <p class="terminal-line line-5"><span class="terminal-prompt">$</span> <span class="terminal-cursor"></span></p>
+                  </div>
+                </div>
+                <div class="laptop-base"><span></span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="lab-caption">DESIGN / CÓDIGO / MOVIMENTO <span>↗︎</span></p>
       </section>
     </main>
 
-    <footer
-      id="contato"
-      class="footer wrap"
-    >
-      <p>
-        Feito durante a faculdade, um commit de cada vez.
-      </p>
+    <footer id="contato" class="footer wrap"><p>Feito durante a faculdade, um commit de cada vez.</p><a id="emailLink" href="mailto:seuemail@exemplo.com">Vamos conversar ↗︎</a></footer>
 
-      <a
-        id="emailLink"
-        href="mailto:seuemail@exemplo.com"
-      >
-        Vamos conversar ↗︎
-      </a>
-    </footer>
-
-    <dialog
-      id="loginDialog"
-      class="dialog"
-    >
-      <form
-        id="loginForm"
-        method="dialog"
-      >
-        <button
-          class="close"
-          value="cancel"
-          aria-label="Fechar"
-        >
-          ×
-        </button>
-
-        <p class="eyebrow">
-          ACESSO RESTRITO
-        </p>
-
-        <h2>
-          Área de edição
-        </h2>
-
-        <p>
-          Digite seu email e senha para atualizar o seu
-          portfólio.
-        </p>
-
-        <label>
-          Email
-
-          <input
-            id="emailInput"
-            type="email"
-            autocomplete="username"
-            required
-          />
-        </label>
-
-        <label>
-          Senha
-
-          <input
-            id="passwordInput"
-            type="password"
-            autocomplete="current-password"
-            required
-          />
-        </label>
-
-        <small id="loginError"></small>
-
-        <button
-          class="button button-primary"
-          value="default"
-        >
-          Entrar
-        </button>
-      </form>
+    <dialog id="loginDialog" class="dialog">
+      <form id="loginForm" method="dialog"><button class="close" value="cancel" aria-label="Fechar">×</button><p class="eyebrow">ACESSO RESTRITO</p><h2>Área de edição</h2><p>Digite seu email e senha para atualizar o seu portfólio.</p><label>Email<input id="emailInput" type="email" autocomplete="username" required /></label><label>Senha<input id="passwordInput" type="password" autocomplete="current-password" required /></label><small id="loginError"></small><button class="button button-primary" value="default">Entrar</button></form>
     </dialog>
 
-    <dialog
-      id="adminDialog"
-      class="dialog admin-dialog"
-    >
-      <form
-        id="settingsForm"
-        method="dialog"
-      >
-        <button
-          id="closeAdmin"
-          class="close"
-          value="cancel"
-          aria-label="Fechar"
-        >
-          ×
-        </button>
-
-        <div class="admin-head">
-          <div>
-            <p class="eyebrow">
-              PAINEL PESSOAL
-            </p>
-
-            <h2>
-              Editar portfólio
-            </h2>
-          </div>
-
-          <button
-            id="logoutButton"
-            class="text-button"
-            type="button"
-          >
-            Sair
-          </button>
-        </div>
-
-        <div class="form-grid">
-          <label>
-            Texto de apresentação
-
-            <textarea
-              name="intro"
-              rows="3"
-            ></textarea>
-          </label>
-
-          <label>
-            Link do GitHub
-
-            <input
-              name="github"
-              type="url"
-            />
-          </label>
-
-          <label>
-            Título sobre você
-
-            <input
-              name="aboutTitle"
-              type="text"
-            />
-          </label>
-
-          <label>
-            Texto sobre você
-
-            <textarea
-              name="aboutText"
-              rows="4"
-            ></textarea>
-          </label>
-
-          <label>
-            E-mail de contato
-
-            <input
-              name="email"
-              type="email"
-            />
-          </label>
-        </div>
-
-        <div class="admin-projects">
-          <div class="admin-project-header">
-            <h3>
-              Projetos
-            </h3>
-
-            <button
-              id="addProject"
-              type="button"
-              class="text-button"
-            >
-              + Adicionar projeto
-            </button>
-          </div>
-
-          <div id="projectEditor"></div>
-        </div>
-
-        <div class="save-row">
-          <button
-            id="resetButton"
-            type="button"
-            class="text-button"
-          >
-            Restaurar exemplo
-          </button>
-
-          <button
-            class="button button-primary"
-            value="default"
-          >
-            Salvar alterações
-          </button>
-        </div>
+    <dialog id="adminDialog" class="dialog admin-dialog">
+      <form id="settingsForm" method="dialog"><button id="closeAdmin" class="close" value="cancel" aria-label="Fechar">×</button><div class="admin-head"><div><p class="eyebrow">PAINEL PESSOAL</p><h2>Editar portfólio</h2></div><button id="logoutButton" class="text-button" type="button">Sair</button></div>
+        <div class="form-grid"><label>Texto de apresentação<textarea name="intro" rows="3"></textarea></label><label>Link do GitHub<input name="github" type="url" /></label><label>Título sobre você<input name="aboutTitle" type="text" /></label><label>Texto sobre você<textarea name="aboutText" rows="4"></textarea></label><label>E-mail de contato<input name="email" type="email" /></label></div>
+        <div class="admin-projects"><div class="admin-project-header"><h3>Projetos</h3><button id="addProject" type="button" class="text-button">+ Adicionar projeto</button></div><div id="projectEditor"></div></div>
+        <div class="save-row"><button id="resetButton" type="button" class="text-button">Restaurar exemplo</button><button class="button button-primary" value="default">Salvar alterações</button></div>
       </form>
     </dialog>
-
-    <template id="projectTemplate">
-      <article class="project-editor-card">
-        <button
-          class="remove-project"
-          type="button"
-          aria-label="Excluir projeto"
-        >
-          ×
-        </button>
-
-        <label>
-          Nome
-
-          <input
-            data-field="title"
-            type="text"
-            required
-          />
-        </label>
-
-        <label>
-          Descrição
-
-          <textarea
-            data-field="description"
-            rows="2"
-            required
-          ></textarea>
-        </label>
-
-        <div class="form-grid compact">
-          <label>
-            Tecnologias (separe por vírgula)
-
-            <input
-              data-field="tags"
-              type="text"
-            />
-          </label>
-
-          <label>
-            Link do projeto
-
-            <input
-              data-field="link"
-              type="url"
-            />
-          </label>
-
-          <label>
-            Cor do cartão
-
-            <input
-              data-field="color"
-              type="color"
-            />
-          </label>
-        </div>
-      </article>
-    </template>
-
+    <template id="projectTemplate"><article class="project-editor-card"><button class="remove-project" type="button" aria-label="Excluir projeto">×</button><label>Nome<input data-field="title" type="text" required /></label><label>Descrição<textarea data-field="description" rows="2" required></textarea></label><div class="form-grid compact"><label>Tecnologias (separe por vírgula)<input data-field="tags" type="text" /></label><label>Link do projeto<input data-field="link" type="url" /></label><label>Cor do cartão<input data-field="color" type="color" /></label></div></article></template>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="supabase-config.js"></script>
     <script src="app.js"></script>
