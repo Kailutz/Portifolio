@@ -67,29 +67,6 @@ function animateNumber(el, target) {
   requestAnimationFrame(tick);
 }
 
-// Revela o título principal letra por letra, uma vez, ao carregar a página.
-function typewriterTitle() {
-  const h1 = document.querySelector('.hero h1');
-  if (!h1 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const lines = h1.querySelectorAll(':scope > span');
-  let cumulativeDelay = 0;
-  lines.forEach(line => {
-    const host = line.querySelector('em') || line;
-    const text = host.textContent;
-    host.textContent = '';
-    [...text].forEach((char, i) => {
-      const charSpan = document.createElement('span');
-      charSpan.textContent = char === ' ' ? '\u00A0' : char;
-      charSpan.style.display = 'inline-block';
-      charSpan.style.opacity = '0';
-      charSpan.style.animation = 'charIn .35s ease forwards';
-      charSpan.style.animationDelay = `${cumulativeDelay + i * 28}ms`;
-      host.appendChild(charSpan);
-    });
-    cumulativeDelay += text.length * 28 + 120;
-  });
-}
-
 function render() {
   $('#intro').textContent = data.intro;
   $('#aboutTitle').innerHTML = escapeHTML(data.aboutTitle).replace(/\n/g, '<br>');
@@ -184,7 +161,9 @@ $('#resetButton').addEventListener('click', async () => {
 
 let scrollObserver;
 function setupScrollAnimations() {
-  const targets = [...document.querySelectorAll('.section-heading, .project-card, .about, .footer')];
+  // O rodapé fica sempre visível, sem animação — como ele é o último elemento
+  // da página, o efeito de revelar "perto do centro" podia nunca disparar.
+  const targets = [...document.querySelectorAll('.section-heading, .project-card, .about')];
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   targets.forEach((element, index) => {
@@ -205,7 +184,7 @@ function setupScrollAnimations() {
     // de revelar — assim o efeito fica visível também no computador, em vez
     // de disparar tudo de uma vez já no carregamento da página.
     const isWideScreen = window.matchMedia('(min-width: 900px)').matches;
-    const rootMargin = isWideScreen ? '0px 0px -22%' : '0px 0px -45px';
+    const rootMargin = isWideScreen ? '0px 0px -12%' : '0px 0px -45px';
     scrollObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
@@ -228,8 +207,8 @@ function updateScrollProgress() {
 window.addEventListener('scroll', updateScrollProgress, { passive: true });
 window.addEventListener('resize', updateScrollProgress);
 
-// Movimento 3D leve nos cartões, brilho que segue o mouse e botões
-// "magnéticos" — tudo só no computador, sem interferir em telas touch.
+// Movimento 3D leve nos cartões e botões "magnéticos" — só no computador,
+// sem interferir em telas touch.
 if (window.matchMedia('(pointer: fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   document.addEventListener('pointermove', event => {
     const card = event.target.closest('.project-card');
@@ -242,13 +221,6 @@ if (window.matchMedia('(pointer: fine)').matches && !window.matchMedia('(prefers
   document.addEventListener('pointerout', event => {
     const card = event.target.closest('.project-card');
     if (card && !card.contains(event.relatedTarget)) card.style.transform = '';
-  });
-
-  const glow = document.createElement('div');
-  glow.className = 'cursor-glow';
-  document.body.appendChild(glow);
-  window.addEventListener('pointermove', event => {
-    glow.style.transform = `translate(${event.clientX}px, ${event.clientY}px)`;
   });
 
   document.querySelectorAll('.button').forEach(button => {
@@ -266,6 +238,5 @@ if (window.matchMedia('(pointer: fine)').matches && !window.matchMedia('(prefers
 (async () => {
   await loadData();
   render();
-  typewriterTitle();
   updateScrollProgress();
 })();
