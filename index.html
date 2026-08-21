@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Portfólio acadêmico de Kaiqui" />
+    <meta
+      name="description"
+      content="Portfólio de Kaiqui Micheluti, estudante de Sistemas de Informação criando experiências entre design e tecnologia."
+    />
 
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="pt_BR" />
@@ -35,7 +38,7 @@
       content="https://kailutz.github.io/Portifolio/og-image.png"
     />
 
-    <title>Meu portfólio acadêmico</title>
+    <title>Kaiqui Micheluti — Portfólio</title>
 
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -46,7 +49,7 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="style.css?v=20260821-social1" />
+    <link rel="stylesheet" href="style.css?v=20260821-hero2" />
   </head>
 
   <body>
@@ -72,21 +75,28 @@
 
     <main id="inicio">
       <section class="hero wrap">
+        <div class="hero-visual" aria-hidden="true">
+          <span class="hero-ring hero-ring-one"></span>
+          <span class="hero-ring hero-ring-two"></span>
+          <span class="hero-crosshair"></span>
+          <span class="hero-visual-label">CREATIVE SYSTEM / 001</span>
+        </div>
+
         <div class="hero-rail" aria-hidden="true">
-          <span>PORTFÓLIO ACADÊMICO</span>
+          <span>KAIQUI MICHELUTI</span>
           <i></i>
-          <span>2026</span>
+          <span>PORTFÓLIO / 2026</span>
         </div>
 
         <div class="hero-content">
-          <p class="eyebrow">
-            EM CONSTRUÇÃO DESDE O PRIMEIRO SEMESTRE
+          <p class="eyebrow hero-identity">
+            ESTUDANTE DE SISTEMAS DE INFORMAÇÃO
           </p>
 
-          <h1>
-            <span>IDEIAS</span>
-            <span class="outline">EM</span>
-            <span><em>CÓDIGO.</em></span>
+          <h1 aria-label="Ideias viram código">
+            <span class="hero-line hero-line-one">IDEIAS</span>
+            <span class="hero-line hero-line-two outline">VIRAM</span>
+            <span class="hero-line hero-line-three"><em>CÓDIGO.</em></span>
           </h1>
 
           <p id="intro" class="hero-copy">
@@ -96,19 +106,26 @@
 
           <div class="hero-actions">
             <a class="button button-primary" href="#projetos">
-              Explorar projetos <span>↓</span>
+              Ver projetos <span>↓</span>
             </a>
 
             <a
-              id="githubHero"
               class="button button-ghost"
-              href="https://github.com/"
-              target="_blank"
-              rel="noreferrer"
+              href="#sobre"
             >
-              GitHub ↗︎
+              Sobre mim <span>↘</span>
             </a>
           </div>
+
+          <a
+            id="githubHero"
+            class="hero-github"
+            href="https://github.com/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GITHUB / ACOMPANHE MINHA EVOLUÇÃO <span>↗</span>
+          </a>
         </div>
 
         <aside class="hero-marker" aria-label="Resumo do portfólio">
@@ -851,6 +868,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="supabase-config.js"></script>
-    <script src="app.js?v=20260821-social1"></script>
+    <script src="app.js?v=20260821-hero2"></script>
   </body>
 </html>
