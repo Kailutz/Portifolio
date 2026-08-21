@@ -270,6 +270,61 @@ function updateHeroMotion() {
 }
 window.addEventListener('scroll', updateHeroMotion, { passive: true });
 
+// Notebook 3D: tilt pelo mouse no desktop e perspectiva guiada pelo scroll no mobile.
+const codeLab = $('#laboratorio');
+const laptopTilt = $('#laptopTilt');
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const mobileLaptop = window.matchMedia('(max-width: 760px), (pointer: coarse)');
+
+if (codeLab && laptopTilt) {
+  codeLab.classList.add('terminal-ready');
+
+  if ('IntersectionObserver' in window && !reduceMotion.matches) {
+    const terminalObserver = new IntersectionObserver(entries => {
+      if (!entries[0].isIntersecting) return;
+      codeLab.classList.add('terminal-run');
+      terminalObserver.disconnect();
+    }, { threshold: .32 });
+    terminalObserver.observe(codeLab);
+  } else {
+    codeLab.classList.add('terminal-run');
+  }
+
+  let laptopFrame = 0;
+  function setLaptopTransform(rx, ry, lift = 0) {
+    cancelAnimationFrame(laptopFrame);
+    laptopFrame = requestAnimationFrame(() => {
+      laptopTilt.style.setProperty('--rx', `${rx.toFixed(2)}deg`);
+      laptopTilt.style.setProperty('--ry', `${ry.toFixed(2)}deg`);
+      laptopTilt.style.setProperty('--lift', `${lift.toFixed(1)}px`);
+    });
+  }
+
+  function updateLaptopFromScroll() {
+    if (!mobileLaptop.matches || reduceMotion.matches) return;
+    const bounds = codeLab.getBoundingClientRect();
+    const range = window.innerHeight + bounds.height;
+    const progress = Math.min(1, Math.max(0, (window.innerHeight - bounds.top) / range));
+    setLaptopTransform(-9 + progress * 15, (progress - .5) * 8, (progress - .5) * -22);
+  }
+
+  codeLab.addEventListener('pointermove', event => {
+    if (mobileLaptop.matches || reduceMotion.matches) return;
+    const bounds = codeLab.getBoundingClientRect();
+    const x = (event.clientX - bounds.left) / bounds.width - .5;
+    const y = (event.clientY - bounds.top) / bounds.height - .5;
+    setLaptopTransform(-5 - y * 8, x * 12);
+  }, { passive: true });
+
+  codeLab.addEventListener('pointerleave', () => {
+    if (!mobileLaptop.matches && !reduceMotion.matches) setLaptopTransform(-5, 0);
+  });
+
+  window.addEventListener('scroll', updateLaptopFromScroll, { passive: true });
+  window.addEventListener('resize', updateLaptopFromScroll, { passive: true });
+  updateLaptopFromScroll();
+}
+
 // Movimento 3D leve nos cartões e botões "magnéticos" — só no computador,
 // sem interferir em telas touch.
 if (window.matchMedia('(pointer: fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
