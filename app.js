@@ -305,7 +305,7 @@ if (codeLab && laptopTilt) {
     const bounds = codeLab.getBoundingClientRect();
     const range = window.innerHeight + bounds.height;
     const progress = Math.min(1, Math.max(0, (window.innerHeight - bounds.top) / range));
-    setLaptopTransform(.5 + progress * 2, 10 + (progress - .5) * 4, (progress - .5) * -14);
+    setLaptopTransform(0 + progress * 1.5, 6 + (progress - .5) * 3, (progress - .5) * -12);
   }
 
   codeLab.addEventListener('pointermove', event => {
@@ -313,11 +313,11 @@ if (codeLab && laptopTilt) {
     const bounds = codeLab.getBoundingClientRect();
     const x = (event.clientX - bounds.left) / bounds.width - .5;
     const y = (event.clientY - bounds.top) / bounds.height - .5;
-    setLaptopTransform(1 - y * 2.5, 14 + x * 5);
+    setLaptopTransform(.5 - y * 2, 9 + x * 4);
   }, { passive: true });
 
   codeLab.addEventListener('pointerleave', () => {
-    if (!mobileLaptop.matches && !reduceMotion.matches) setLaptopTransform(1, 14);
+    if (!mobileLaptop.matches && !reduceMotion.matches) setLaptopTransform(.5, 9);
   });
 
   window.addEventListener('scroll', updateLaptopFromScroll, { passive: true });
