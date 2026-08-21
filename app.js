@@ -81,8 +81,15 @@ function render() {
   $('#aboutTitle').innerHTML = escapeHTML(data.aboutTitle).replace(/\n/g, '<br>');
   $('#aboutText').textContent = data.aboutText;
   $('#githubHero').href = data.github || 'https://github.com/';
-  $('#emailLink').href = `mailto:${data.email}`;
-  $('#emailLink').textContent = data.email === defaults.email ? 'Vamos conversar ↗︎' : `${data.email} ↗︎`;
+  const emailLink = $('#emailLink');
+  if (emailLink) {
+    emailLink.href = `mailto:${data.email}`;
+    emailLink.textContent = emailLink.dataset.fixedLabel ? 'VAMOS CONVERSAR ↗' : (data.email === defaults.email ? 'Vamos conversar ↗︎' : `${data.email} ↗︎`);
+  }
+  const copyEmailButton = $('#copyEmailButton');
+  if (copyEmailButton) copyEmailButton.dataset.email = data.email;
+  const contactGithub = $('#contactGithub');
+  if (contactGithub) contactGithub.href = data.github || 'https://github.com/';
   const technologies = new Set(data.projects.flatMap(project => project.tags));
   animateNumber($('#projectCount'), data.projects.length);
   animateNumber($('#techCount'), technologies.size);
@@ -623,6 +630,78 @@ window.addEventListener('resize', () => {
   if (techUniverseVisible) drawTechUniverse(performance.now());
 }, { passive: true });
 
+// Encerramento cinematográfico: cor e tipografia respondem ao scroll.
+const cinematicContact = $('#contato');
+let cinematicContactFrame = 0;
+
+function clampContact(value) {
+  return Math.min(1, Math.max(0, value));
+}
+
+function mixContactColor(start, end, progress) {
+  return start.map((value, index) => Math.round(value + (end[index] - value) * progress)).join(',');
+}
+
+function updateCinematicContact() {
+  if (!cinematicContact || reduceMotion.matches) return;
+  cancelAnimationFrame(cinematicContactFrame);
+  cinematicContactFrame = requestAnimationFrame(() => {
+    const bounds = cinematicContact.getBoundingClientRect();
+    const range = Math.max(1, cinematicContact.offsetHeight - window.innerHeight);
+    const progress = clampContact(-bounds.top / range);
+    const colorProgress = clampContact(progress / .78);
+    const reveal = clampContact((progress - .06) / .48);
+    const easedReveal = 1 - Math.pow(1 - reveal, 3);
+    const titleOpacity = clampContact((progress - .03) / .2);
+    const actionsOpacity = clampContact((progress - .48) / .24);
+
+    cinematicContact.style.setProperty('--contact-bg', mixContactColor([13, 17, 12], [199, 255, 0], colorProgress));
+    cinematicContact.style.setProperty('--contact-ink', mixContactColor([245, 244, 237], [32, 37, 27], colorProgress));
+    cinematicContact.style.setProperty('--contact-left', `${(1 - easedReveal) * -34}vw`);
+    cinematicContact.style.setProperty('--contact-right', `${(1 - easedReveal) * 34}vw`);
+    cinematicContact.style.setProperty('--contact-y-one', `${(1 - easedReveal) * 80}px`);
+    cinematicContact.style.setProperty('--contact-y-two', `${(1 - easedReveal) * 110}px`);
+    cinematicContact.style.setProperty('--contact-title-opacity', titleOpacity.toFixed(3));
+    cinematicContact.style.setProperty('--contact-actions-opacity', actionsOpacity.toFixed(3));
+    cinematicContact.style.setProperty('--contact-actions-y', `${(1 - actionsOpacity) * 28}px`);
+  });
+}
+
+window.addEventListener('scroll', updateCinematicContact, { passive: true });
+window.addEventListener('resize', updateCinematicContact, { passive: true });
+
+const copyEmailButton = $('#copyEmailButton');
+const copyEmailStatus = $('#copyEmailStatus');
+let copyEmailTimer = 0;
+
+async function copyPortfolioEmail() {
+  const email = copyEmailButton?.dataset.email || data.email;
+  try {
+    await navigator.clipboard.writeText(email);
+  } catch {
+    const helper = document.createElement('textarea');
+    helper.value = email;
+    helper.setAttribute('readonly', '');
+    helper.style.position = 'fixed';
+    helper.style.opacity = '0';
+    document.body.append(helper);
+    helper.select();
+    document.execCommand('copy');
+    helper.remove();
+  }
+
+  if (!copyEmailStatus || !copyEmailButton) return;
+  clearTimeout(copyEmailTimer);
+  copyEmailStatus.classList.add('is-visible');
+  copyEmailButton.textContent = 'COPIADO ✓';
+  copyEmailTimer = setTimeout(() => {
+    copyEmailStatus.classList.remove('is-visible');
+    copyEmailButton.textContent = 'COPIAR E-MAIL';
+  }, 2400);
+}
+
+copyEmailButton?.addEventListener('click', copyPortfolioEmail);
+
 // Carrega os dados do banco antes de mostrar a página.
 (async () => {
   await loadData();
@@ -632,4 +711,5 @@ window.addEventListener('resize', () => {
   updateMobileCards();
   updateCodeStory();
   updateTechUniverseFromScroll();
+  updateCinematicContact();
 })();
