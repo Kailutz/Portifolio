@@ -15,6 +15,15 @@ let data = structuredClone(defaults);
 let authenticated = false;
 const $ = (selector) => document.querySelector(selector);
 
+// Fecha as janelas pelo botão “X”. Como os botões ficam dentro de formulários,
+// impedimos o envio antes de fechar o dialog correspondente.
+document.querySelectorAll('.dialog .close').forEach(button => {
+  button.addEventListener('click', event => {
+    event.preventDefault();
+    button.closest('dialog')?.close();
+  });
+});
+
 function escapeHTML(value) {
   return String(value).replace(/[&<>'"]/g, char => ({ '&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;' }[char]));
 }
