@@ -22,7 +22,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css?v=20260821-laptop3" />
   </head>
   <body>
     <header class="topbar">
@@ -81,18 +81,29 @@
                 <div class="laptop-screen">
                   <div class="terminal-bar" aria-hidden="true">
                     <span class="terminal-dots"><i></i><i></i><i></i></span>
-                    <span>kaiqui@portfolio:~</span>
+                    <span>main.py — kaiqui@portfolio</span>
                     <b>KP/</b>
                   </div>
                   <div class="terminal" aria-hidden="true">
-                    <p class="terminal-line line-1"><span class="terminal-prompt">$</span> npm run build-future</p>
-                    <p class="terminal-line line-2"><span class="terminal-muted">›</span> carregando ideias...</p>
-                    <p class="terminal-line line-3"><span class="terminal-muted">›</span> transformando curiosidade em código</p>
-                    <p class="terminal-line line-4"><span class="terminal-success">✓</span> portfólio pronto para evoluir</p>
-                    <p class="terminal-line line-5"><span class="terminal-prompt">$</span> <span class="terminal-cursor"></span></p>
+                    <p class="terminal-line line-1"><span class="py-keyword">from</span> portfolio <span class="py-keyword">import</span> Project</p>
+                    <p class="terminal-line line-2">app = Project(owner=<span class="py-string">"Kaiqui"</span>)</p>
+                    <p class="terminal-line line-3">app.add(skill=<span class="py-string">"Python"</span>, level=<span class="py-number">1</span>)</p>
+                    <p class="terminal-line line-4"><span class="py-comment"># transformando ideias em código</span></p>
+                    <p class="terminal-line line-5">app.build(mode=<span class="py-string">"always_learning"</span>) <span class="terminal-cursor"></span></p>
                   </div>
                 </div>
-                <div class="laptop-base"><span></span></div>
+                <div class="laptop-hinge" aria-hidden="true"></div>
+                <div class="laptop-deck" aria-hidden="true">
+                  <div class="keyboard">
+                    <span data-key="esc"></span><span data-key="1"></span><span data-key="2"></span><span data-key="3"></span><span data-key="4"></span><span data-key="5"></span><span data-key="6"></span><span data-key="7"></span><span data-key="8"></span><span data-key="9"></span><span data-key="0"></span><span data-key="⌫"></span>
+                    <span data-key="tab"></span><span data-key="Q"></span><span data-key="W"></span><span data-key="E"></span><span data-key="R"></span><span data-key="T"></span><span data-key="Y"></span><span data-key="U"></span><span data-key="I"></span><span data-key="O"></span><span data-key="P"></span><span data-key="["></span>
+                    <span data-key="caps"></span><span data-key="A"></span><span data-key="S"></span><span data-key="D"></span><span data-key="F"></span><span data-key="G"></span><span data-key="H"></span><span data-key="J"></span><span data-key="K"></span><span data-key="L"></span><span data-key=";"></span><span data-key="enter"></span>
+                    <span data-key="shift"></span><span data-key="Z"></span><span data-key="X"></span><span data-key="C"></span><span data-key="V"></span><span data-key="B"></span><span data-key="N"></span><span data-key="M"></span><span data-key=", "></span><span data-key="."></span><span data-key="/"></span><span data-key="shift"></span>
+                    <span data-key="ctrl"></span><span data-key="fn"></span><span data-key="alt"></span><span data-key="cmd"></span><span class="space-key"></span><span data-key="cmd"></span><span data-key="alt"></span><span data-key="←"></span><span data-key="→"></span>
+                  </div>
+                  <div class="trackpad"></div>
+                  <div class="deck-mark">KP/</div>
+                </div>
               </div>
             </div>
           </div>
@@ -118,6 +129,6 @@
     <template id="projectTemplate"><article class="project-editor-card"><button class="remove-project" type="button" aria-label="Excluir projeto">×</button><label>Nome<input data-field="title" type="text" required /></label><label>Descrição<textarea data-field="description" rows="2" required></textarea></label><div class="form-grid compact"><label>Tecnologias (separe por vírgula)<input data-field="tags" type="text" /></label><label>Link do projeto<input data-field="link" type="url" /></label><label>Cor do cartão<input data-field="color" type="color" /></label></div></article></template>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="supabase-config.js"></script>
-    <script src="app.js"></script>
+    <script src="app.js?v=20260821-laptop3"></script>
   </body>
 </html>
