@@ -436,6 +436,47 @@ function updateMobileCards() {
 window.addEventListener('scroll', updateMobileCards, { passive: true });
 window.addEventListener('resize', updateMobileCards, { passive: true });
 
+// Sequência de telas presa à viewport: o scroll troca o código, não a posição.
+const codeStory = $('#codeStory');
+const codeScenes = codeStory ? [...codeStory.querySelectorAll('.code-scene')] : [];
+const codeStoryDots = codeStory ? [...codeStory.querySelectorAll('.code-story-dots i')] : [];
+const codeStoryCurrent = $('#codeStoryCurrent');
+let codeStoryFrame = 0;
+
+function updateCodeStory() {
+  if (!codeStory || !codeScenes.length || reduceMotion.matches) return;
+  cancelAnimationFrame(codeStoryFrame);
+  codeStoryFrame = requestAnimationFrame(() => {
+    const bounds = codeStory.getBoundingClientRect();
+    const range = Math.max(1, codeStory.offsetHeight - window.innerHeight);
+    const progress = Math.min(1, Math.max(0, -bounds.top / range));
+    const position = progress * (codeScenes.length - 1);
+    const activeIndex = Math.round(position);
+    const compact = window.matchMedia('(max-width: 760px)').matches;
+
+    codeStory.style.setProperty('--story-progress', progress.toFixed(3));
+    codeStory.style.setProperty('--story-x', `${24 + progress * 45}%`);
+    codeScenes.forEach((scene, index) => {
+      const relative = index - position;
+      const distance = Math.abs(relative);
+      const opacity = Math.max(0, 1 - distance);
+      const x = relative * (compact ? 34 : 92);
+      const y = relative * (compact ? 28 : 48);
+      const scale = Math.max(.86, 1 - distance * .075);
+      scene.style.opacity = opacity.toFixed(3);
+      scene.style.zIndex = String(10 - Math.round(distance * 2));
+      scene.style.transform = `translate3d(${x}px, ${y}px, ${-distance * 100}px) rotateY(${-relative * 5}deg) rotateZ(${relative * 1.2}deg) scale(${scale})`;
+      scene.setAttribute('aria-hidden', String(index !== activeIndex));
+    });
+
+    codeStoryDots.forEach((dot, index) => dot.classList.toggle('is-active', index === activeIndex));
+    if (codeStoryCurrent) codeStoryCurrent.textContent = String(activeIndex + 1).padStart(2, '0');
+  });
+}
+
+window.addEventListener('scroll', updateCodeStory, { passive: true });
+window.addEventListener('resize', updateCodeStory, { passive: true });
+
 // Carrega os dados do banco antes de mostrar a página.
 (async () => {
   await loadData();
@@ -443,4 +484,5 @@ window.addEventListener('resize', updateMobileCards, { passive: true });
   updateScrollProgress();
   updateActiveNavigation();
   updateMobileCards();
+  updateCodeStory();
 })();
