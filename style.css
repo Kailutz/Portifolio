@@ -112,3 +112,33 @@ body:before{opacity:.28;background-image:radial-gradient(ellipse at 10% 20%,tran
 .laptop-stage:after{transform:translateX(-43%) skewX(-14deg);width:72%;filter:blur(20px)}
 @media(max-width:760px){.laptop-stage{perspective:900px;perspective-origin:44% 38%}.laptop-tilt{--rx:3deg;--ry:18deg;width:98vw}.laptop-deck{transform:rotateX(56deg) translateZ(18px)}.laptop-screen:after{opacity:.4}}
 @media(prefers-reduced-motion:reduce){.laptop-tilt{transform:rotateX(3.5deg) rotateY(24deg)!important}}
+
+/* Notebook 3D v3: tela aberta e base projetada em direção ao observador */
+.code-lab{min-height:clamp(900px,108svh,1160px)}
+.laptop-stage{height:clamp(680px,66vw,800px);perspective:1250px;perspective-origin:48% 43%}
+.laptop-tilt{--rx:1deg;--ry:14deg;width:min(870px,83vw)}
+.laptop-float{transform-style:flat}
+.laptop{transform:rotateZ(-.8deg);transform-style:flat;filter:drop-shadow(-34px 55px 34px #000c) drop-shadow(18px 10px 32px #c7ff0010)}
+.laptop-screen{z-index:3;width:82%;aspect-ratio:16/10;border:9px solid #282e28;border-right-color:#171b17;border-bottom:14px solid #171b17;border-radius:16px 16px 7px 7px;transform:none;background:#060806;box-shadow:inset 0 0 0 1px #ffffff26,inset 12px 0 22px #ffffff08,0 0 0 1px #c7ff0035,18px 16px 54px #fe3d7a16,-14px -8px 45px #c7ff0012}
+.laptop-screen:before{top:4px;width:5px;height:5px;background:radial-gradient(circle at 35% 30%,#aab2a8,#2c322c 50%,#080a08 72%);box-shadow:0 0 0 2px #111510,0 0 7px #c7ff0022}
+.laptop-screen:after{z-index:5;background:linear-gradient(112deg,#ffffff1b 0%,transparent 16% 64%,#ffffff09 66%,transparent 75%);opacity:.5}
+.terminal{height:calc(100% - 42px);padding:clamp(24px,3.1vw,38px);font-size:clamp(10px,1.25vw,15px);line-height:1.92;background:radial-gradient(circle at 70% 65%,#4b17382b,transparent 42%),linear-gradient(116deg,#070a08f2,#0d120deb 58%,#170c17eb)}
+.terminal:before{display:none}
+.py-keyword{color:#d78bff}.py-string{color:#c7ff00}.py-number{color:#74d9ff}.py-comment{color:#778174;font-style:italic}
+.laptop-hinge{z-index:7;width:84%;height:13px;margin:-6px auto 0;transform:none;border:1px solid #0a0d0a;background:linear-gradient(90deg,#0d100d 0 8%,#798278 17%,#272c27 47%,#747d72 83%,#0c0f0c 92%);box-shadow:0 5px 9px #000b,inset 0 1px #ffffff41}
+.laptop-deck{z-index:8;width:108%;height:265px;margin:-1px -4% 0;padding:24px 6.5% 19px;border:1px solid #9ba399;border-bottom:9px solid #141814;border-radius:7px 7px 30px 30px;transform-origin:50% 0;transform:perspective(760px) rotateX(58deg);transform-style:flat;background:linear-gradient(145deg,#8b9389 0%,#555d54 25%,#30362f 62%,#171b17 100%);box-shadow:inset 0 2px #ffffff8a,inset 10px 0 18px #ffffff0d,inset -12px 0 20px #080a0870,inset 0 -13px 18px #080a08c9,0 34px 30px #000b}
+.laptop-deck:before{inset:8px 5% auto;height:1px;background:linear-gradient(90deg,transparent,#ffffff75 24%,#c7ff0075 52%,#ffffff38 76%,transparent);opacity:.78}
+.laptop-deck:after{bottom:-9px;height:10px;background:linear-gradient(#262b25,#0d100d);box-shadow:inset 0 1px #ffffff24}
+.keyboard{grid-template-columns:repeat(12,1fr);grid-template-rows:repeat(5,1fr);gap:6px;width:100%;height:137px;transform:none}
+.keyboard span{display:grid;place-items:center;min-width:0;border:1px solid #080a08;border-radius:4px;background:linear-gradient(145deg,#303630 0%,#151915 48%,#080a08 100%);color:#b8c0b5;font:500 7px/1 var(--mono);text-transform:uppercase;text-shadow:0 0 7px currentColor;box-shadow:inset 0 1px #ffffff2d,inset 1px 0 #ffffff0d,0 4px 0 #050705,0 5px 8px #000a}
+.keyboard span:after{content:attr(data-key);position:static;width:auto;height:auto;background:none;box-shadow:none}
+.keyboard .space-key{grid-column:span 4}
+.keyboard span:nth-child(4n+1){color:#c7ff00;box-shadow:inset 0 1px #ffffff26,0 4px 0 #050705,0 0 8px #c7ff0038}.keyboard span:nth-child(4n+2){color:#9c8cff;box-shadow:inset 0 1px #ffffff26,0 4px 0 #050705,0 0 8px #7150ff38}.keyboard span:nth-child(4n+3){color:#ff7ca4;box-shadow:inset 0 1px #ffffff26,0 4px 0 #050705,0 0 8px #ff477e35}.keyboard span:nth-child(4n){color:#73d7ff;box-shadow:inset 0 1px #ffffff26,0 4px 0 #050705,0 0 8px #4fcfff32}
+.keyboard:after{filter:blur(7px);opacity:.7}
+.trackpad{width:36%;height:68px;margin:15px auto 0;border:1px solid #aab2a8;border-radius:7px;transform:none;background:linear-gradient(135deg,#626a61aa,#2c322cdc);box-shadow:inset 1px 1px #ffffff31,inset -1px -1px #101410aa,0 8px 14px #0004}
+.deck-mark{right:4.5%;bottom:24px;transform:none;text-shadow:0 0 10px #c7ff0066}
+.laptop-stage:before{bottom:4%;height:38%;transform:translateX(-50%) perspective(850px) rotateX(68deg)}
+.laptop-stage:after{bottom:7%;width:72%;transform:translateX(-43%) skewX(-12deg);filter:blur(21px)}
+.lab-caption{margin-top:-38px}
+@media(max-width:760px){.code-lab{min-height:780px}.laptop-stage{height:510px;perspective:850px;perspective-origin:45% 40%}.laptop-tilt{--rx:1deg;--ry:10deg;width:96vw}.laptop{transform:rotateZ(-.5deg)}.laptop-screen{width:84%;border-width:6px;border-bottom-width:10px}.terminal{height:calc(100% - 34px);padding:18px 14px;font-size:clamp(7px,2.25vw,10px);line-height:1.9}.laptop-hinge{height:9px;margin-top:-5px}.laptop-deck{width:105%;height:166px;margin-left:-2.5%;padding:14px 5.5% 10px;border-bottom-width:6px;border-radius:5px 5px 20px 20px;transform:perspective(520px) rotateX(55deg)}.keyboard{height:82px;gap:3px}.keyboard span{border-radius:2px;font-size:4px;box-shadow:inset 0 1px #ffffff20,0 2px 0 #050705,0 3px 4px #0008!important}.trackpad{height:40px;margin-top:8px}.deck-mark{right:4%;bottom:13px;font-size:8px}.lab-caption{margin-top:-30px}}
+@media(prefers-reduced-motion:reduce){.laptop-tilt{transform:rotateX(1deg) rotateY(14deg)!important}}
