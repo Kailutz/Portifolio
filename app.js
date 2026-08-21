@@ -1,6 +1,8 @@
 const defaults = {
   intro: 'Aqui registro os projetos, aprendizados e desafios da minha trajetória na faculdade.',
   github: 'https://github.com/',
+  linkedin: '',
+  instagram: '',
   aboutTitle: 'Um estudante curioso,\nsempre em movimento.',
   aboutText: 'Este espaço é meu diário de construção. Cada projeto representa uma nova habilidade, uma ideia explorada ou um problema que aprendi a resolver.',
   email: 'seuemail@exemplo.com',
@@ -31,13 +33,27 @@ function escapeHTML(value) {
 // Converte o formato do banco (linhas separadas: about_title, about_text...)
 // para o formato que o resto do código já usa (aboutTitle, aboutText...).
 function fromRow(row) {
+  const storedProjects = Array.isArray(row.projects) ? row.projects : [];
+  let storedSocials = {};
+  const projects = [];
+
+  storedProjects.forEach(project => {
+    if (!project || typeof project !== 'object') return;
+    if (project._portfolioSocials) storedSocials = { ...storedSocials, ...project._portfolioSocials };
+    if (project.__portfolioMetadata) return;
+    const { _portfolioSocials, ...cleanProject } = project;
+    projects.push(cleanProject);
+  });
+
   return {
-    intro: row.intro,
-    github: row.github,
-    aboutTitle: row.about_title,
-    aboutText: row.about_text,
-    email: row.email,
-    projects: row.projects || []
+    intro: row.intro || defaults.intro,
+    github: row.github || defaults.github,
+    linkedin: row.linkedin || storedSocials.linkedin || defaults.linkedin,
+    instagram: row.instagram || storedSocials.instagram || defaults.instagram,
+    aboutTitle: row.about_title || defaults.aboutTitle,
+    aboutText: row.about_text || defaults.aboutText,
+    email: row.email || defaults.email,
+    projects
   };
 }
 
@@ -48,13 +64,18 @@ async function loadData() {
 }
 
 async function saveData() {
+  const socialData = { linkedin: data.linkedin || '', instagram: data.instagram || '' };
+  const projectsForStorage = data.projects.length
+    ? data.projects.map((project, index) => index === 0 ? { ...project, _portfolioSocials: socialData } : project)
+    : [{ __portfolioMetadata: true, _portfolioSocials: socialData }];
+
   const { error } = await supabaseClient.from('portfolio').update({
     intro: data.intro,
     github: data.github,
     about_title: data.aboutTitle,
     about_text: data.aboutText,
     email: data.email,
-    projects: data.projects
+    projects: projectsForStorage
   }).eq('id', 1);
   if (error) { alert('Não foi possível salvar. Verifique se você está logado.'); console.error(error); return false; }
   return true;
@@ -84,12 +105,20 @@ function render() {
   const emailLink = $('#emailLink');
   if (emailLink) {
     emailLink.href = `mailto:${data.email}`;
-    emailLink.textContent = emailLink.dataset.fixedLabel ? 'VAMOS CONVERSAR ↗' : (data.email === defaults.email ? 'Vamos conversar ↗︎' : `${data.email} ↗︎`);
+    if (!emailLink.dataset.fixedLabel) emailLink.textContent = data.email === defaults.email ? 'Vamos conversar' : data.email;
   }
   const copyEmailButton = $('#copyEmailButton');
   if (copyEmailButton) copyEmailButton.dataset.email = data.email;
   const contactGithub = $('#contactGithub');
   if (contactGithub) contactGithub.href = data.github || 'https://github.com/';
+  const setSocialLink = (selector, value) => {
+    const link = $(selector);
+    if (!link) return;
+    link.hidden = !value;
+    if (value) link.href = value;
+  };
+  setSocialLink('#contactLinkedin', data.linkedin);
+  setSocialLink('#contactInstagram', data.instagram);
   const technologies = new Set(data.projects.flatMap(project => project.tags));
   animateNumber($('#projectCount'), data.projects.length);
   animateNumber($('#techCount'), technologies.size);
@@ -111,7 +140,7 @@ function addProjectEditor(project = { title: '', description: '', tags: [], link
 
 function openAdmin() {
   const form = $('#settingsForm');
-  ['intro','github','aboutTitle','aboutText','email'].forEach(key => form.elements[key].value = data[key]);
+  ['intro','github','linkedin','instagram','aboutTitle','aboutText','email'].forEach(key => form.elements[key].value = data[key] || '');
   $('#projectEditor').innerHTML = '';
   data.projects.forEach(addProjectEditor);
   $('#adminDialog').showModal();
@@ -143,7 +172,7 @@ $('#settingsForm').addEventListener('submit', async event => {
   event.preventDefault();
   const form = event.currentTarget;
   const newData = {
-    intro: form.elements.intro.value.trim(), github: form.elements.github.value.trim(), aboutTitle: form.elements.aboutTitle.value.trim(), aboutText: form.elements.aboutText.value.trim(), email: form.elements.email.value.trim(),
+    intro: form.elements.intro.value.trim(), github: form.elements.github.value.trim(), linkedin: form.elements.linkedin.value.trim(), instagram: form.elements.instagram.value.trim(), aboutTitle: form.elements.aboutTitle.value.trim(), aboutText: form.elements.aboutText.value.trim(), email: form.elements.email.value.trim(),
     projects: [...$('#projectEditor').querySelectorAll('.project-editor-card')].map(card => ({
       title: card.querySelector('[data-field="title"]').value.trim(), description: card.querySelector('[data-field="description"]').value.trim(), tags: card.querySelector('[data-field="tags"]').value.split(',').map(tag => tag.trim()).filter(Boolean), link: card.querySelector('[data-field="link"]').value.trim(), color: card.querySelector('[data-field="color"]').value
     })).filter(project => project.title && project.description)
@@ -172,7 +201,7 @@ $('#resetButton').addEventListener('click', async () => {
   await saveData();
   render();
   const form = $('#settingsForm');
-  ['intro','github','aboutTitle','aboutText','email'].forEach(key => form.elements[key].value = data[key]);
+  ['intro','github','linkedin','instagram','aboutTitle','aboutText','email'].forEach(key => form.elements[key].value = data[key] || '');
   $('#projectEditor').innerHTML = ''; data.projects.forEach(addProjectEditor);
 });
 
