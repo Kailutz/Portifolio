@@ -173,7 +173,7 @@ let scrollObserver;
 let titleObserver;
 
 function setupKineticTitles() {
-  const titles = [...document.querySelectorAll('.section-heading h2, .about h2, .lab-heading h2')];
+  const titles = [...document.querySelectorAll('.section-heading h2, .about h2, .lab-heading h2, .tech-universe-heading h2')];
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   titles.forEach(title => {
@@ -477,6 +477,152 @@ function updateCodeStory() {
 window.addEventListener('scroll', updateCodeStory, { passive: true });
 window.addEventListener('resize', updateCodeStory, { passive: true });
 
+// Universo de tecnologias: conexões, partículas e detalhes interativos.
+const techUniverse = $('#universo');
+const techSpace = $('#techSpace');
+const techCanvas = $('#techCanvas');
+const techCore = $('#techCore');
+const techNodes = techSpace ? [...techSpace.querySelectorAll('.tech-node')] : [];
+const techInfoNumber = $('#techInfoNumber');
+const techInfoName = $('#techInfoName');
+const techInfoCopy = $('#techInfoCopy');
+let techContext = techCanvas?.getContext('2d');
+let techParticles = [];
+let techUniverseFrame = 0;
+let techUniverseVisible = false;
+
+function selectTechnology(node) {
+  const index = techNodes.indexOf(node);
+  techNodes.forEach(item => item.classList.toggle('is-active', item === node));
+  if (techInfoNumber) techInfoNumber.textContent = String(index + 1).padStart(2, '0');
+  if (techInfoName) techInfoName.textContent = node.dataset.name || '';
+  if (techInfoCopy) techInfoCopy.textContent = node.dataset.copy || '';
+}
+
+techNodes.forEach(node => {
+  node.addEventListener('pointerenter', () => selectTechnology(node));
+  node.addEventListener('focus', () => selectTechnology(node));
+  node.addEventListener('click', () => selectTechnology(node));
+});
+
+function resizeTechCanvas() {
+  if (!techCanvas || !techSpace || !techContext) return;
+  const ratio = Math.min(2, window.devicePixelRatio || 1);
+  const width = techSpace.clientWidth;
+  const height = techSpace.clientHeight;
+  techCanvas.width = Math.round(width * ratio);
+  techCanvas.height = Math.round(height * ratio);
+  techCanvas.style.width = `${width}px`;
+  techCanvas.style.height = `${height}px`;
+  techContext.setTransform(ratio, 0, 0, ratio, 0, 0);
+  if (!techParticles.length) {
+    techParticles = Array.from({ length: width < 700 ? 28 : 48 }, (_, index) => ({
+      x: (index * 47 % 101) / 101,
+      y: (index * 73 % 97) / 97,
+      speed: .000035 + (index % 5) * .000012,
+      size: .7 + (index % 4) * .38,
+      tone: index % 3
+    }));
+  }
+}
+
+function drawTechUniverse(time = 0) {
+  if (!techContext || !techCanvas || !techSpace || !techCore) return;
+  const width = techSpace.clientWidth;
+  const height = techSpace.clientHeight;
+  techContext.clearRect(0, 0, width, height);
+
+  techParticles.forEach(particle => {
+    if (!reduceMotion.matches) particle.y = (particle.y + particle.speed * 16) % 1;
+    const colors = ['#c7ff00', '#8b6dff', '#ff668f'];
+    techContext.globalAlpha = .22;
+    techContext.fillStyle = colors[particle.tone];
+    techContext.beginPath();
+    techContext.arc(particle.x * width, particle.y * height, particle.size, 0, Math.PI * 2);
+    techContext.fill();
+  });
+
+  const centerX = techCore.offsetLeft;
+  const centerY = techCore.offsetTop;
+  techNodes.forEach((node, index) => {
+    const nodeX = node.offsetLeft;
+    const nodeY = node.offsetTop;
+    const active = node.classList.contains('is-active');
+    const gradient = techContext.createLinearGradient(centerX, centerY, nodeX, nodeY);
+    gradient.addColorStop(0, active ? '#c7ff0090' : '#c7ff0038');
+    gradient.addColorStop(1, active ? '#c7ff00d0' : '#ffffff22');
+    techContext.globalAlpha = 1;
+    techContext.strokeStyle = gradient;
+    techContext.lineWidth = active ? 1.5 : .75;
+    techContext.setLineDash(active ? [7, 7] : [3, 9]);
+    techContext.lineDashOffset = -time * (active ? .018 : .008);
+    techContext.beginPath();
+    techContext.moveTo(centerX, centerY);
+    techContext.lineTo(nodeX, nodeY);
+    techContext.stroke();
+
+    const travel = ((time / 1900) + index / techNodes.length) % 1;
+    const pulseX = centerX + (nodeX - centerX) * travel;
+    const pulseY = centerY + (nodeY - centerY) * travel;
+    techContext.setLineDash([]);
+    techContext.fillStyle = active ? '#c7ff00' : '#f5f4ed';
+    techContext.shadowColor = active ? '#c7ff00' : '#8b6dff';
+    techContext.shadowBlur = active ? 13 : 7;
+    techContext.beginPath();
+    techContext.arc(pulseX, pulseY, active ? 2.8 : 1.6, 0, Math.PI * 2);
+    techContext.fill();
+    techContext.shadowBlur = 0;
+  });
+
+  techContext.globalAlpha = 1;
+  techContext.setLineDash([]);
+}
+
+function runTechUniverse(time = 0) {
+  if (!techUniverseVisible) return;
+  drawTechUniverse(time);
+  if (!reduceMotion.matches) techUniverseFrame = requestAnimationFrame(runTechUniverse);
+}
+
+if (techUniverse && techSpace) {
+  resizeTechCanvas();
+  const universeObserver = new IntersectionObserver(entries => {
+    techUniverseVisible = entries[0].isIntersecting;
+    cancelAnimationFrame(techUniverseFrame);
+    if (techUniverseVisible) techUniverseFrame = requestAnimationFrame(runTechUniverse);
+  }, { threshold: .06 });
+  universeObserver.observe(techUniverse);
+
+  techUniverse.addEventListener('pointermove', event => {
+    if (mobileLaptop.matches || reduceMotion.matches) return;
+    const bounds = techUniverse.getBoundingClientRect();
+    const x = (event.clientX - bounds.left) / bounds.width - .5;
+    const y = (event.clientY - bounds.top) / bounds.height - .5;
+    techSpace.style.setProperty('--space-rx', `${-y * 2.8}deg`);
+    techSpace.style.setProperty('--space-ry', `${x * 4}deg`);
+  }, { passive: true });
+  techUniverse.addEventListener('pointerleave', () => {
+    techSpace.style.setProperty('--space-rx', '0deg');
+    techSpace.style.setProperty('--space-ry', '0deg');
+  });
+}
+
+function updateTechUniverseFromScroll() {
+  if (!techUniverse || !techSpace || !mobileLaptop.matches || reduceMotion.matches) return;
+  const bounds = techUniverse.getBoundingClientRect();
+  const progress = Math.min(1, Math.max(0, (window.innerHeight - bounds.top) / (window.innerHeight + bounds.height)));
+  techSpace.style.setProperty('--space-rx', `${(progress - .5) * 2.2}deg`);
+  techSpace.style.setProperty('--space-ry', `${(progress - .5) * -3}deg`);
+  techSpace.style.setProperty('--space-lift', `${(progress - .5) * -12}px`);
+}
+
+window.addEventListener('scroll', updateTechUniverseFromScroll, { passive: true });
+window.addEventListener('resize', () => {
+  resizeTechCanvas();
+  updateTechUniverseFromScroll();
+  if (techUniverseVisible) drawTechUniverse(performance.now());
+}, { passive: true });
+
 // Carrega os dados do banco antes de mostrar a página.
 (async () => {
   await loadData();
@@ -485,4 +631,5 @@ window.addEventListener('resize', updateCodeStory, { passive: true });
   updateActiveNavigation();
   updateMobileCards();
   updateCodeStory();
+  updateTechUniverseFromScroll();
 })();
