@@ -46,7 +46,7 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="style.css?v=20260821-alive2" />
+    <link rel="stylesheet" href="style.css?v=20260821-story1" />
   </head>
 
   <body>
@@ -148,9 +148,7 @@
       <section id="projetos" class="projects wrap">
         <div class="section-heading">
           <div>
-            <p class="eyebrow">
-              01 / O QUE ESTOU CRIANDO
-            </p>
+            <p class="eyebrow">01 / O QUE ESTOU CRIANDO</p>
 
             <h2>
               Projetos em<br />
@@ -330,6 +328,136 @@
           <span>↗︎</span>
         </p>
       </section>
+
+      <section
+        id="codeStory"
+        class="code-story"
+        aria-labelledby="codeStoryTitle"
+      >
+        <div class="code-story-sticky">
+          <div class="code-story-heading">
+            <p class="eyebrow">
+              04 / POR TRÁS DOS PROJETOS
+            </p>
+
+            <h2 id="codeStoryTitle">
+              Código em<br />
+              movimento.
+            </h2>
+          </div>
+
+          <div class="code-story-stage">
+            <article class="code-scene scene-python">
+              <div class="code-window-bar">
+                <span>
+                  <i></i>
+                  <i></i>
+                  <i></i>
+                </span>
+
+                <b>portfolio_engine.py</b>
+                <em>PYTHON</em>
+              </div>
+
+              <pre><code><span class="code-row"><i>01</i><span><b class="tok-key">class</b> <b class="tok-fn">Portfolio</b>:</span></span>
+<span class="code-row"><i>02</i><span>    <b class="tok-key">def</b> <b class="tok-fn">__init__</b>(self, owner):</span></span>
+<span class="code-row"><i>03</i><span>        self.owner = owner</span></span>
+<span class="code-row"><i>04</i><span>        self.ideas = []</span></span>
+<span class="code-row"><i>05</i><span></span></span>
+<span class="code-row"><i>06</i><span>    <b class="tok-key">def</b> <b class="tok-fn">build</b>(self, idea):</span></span>
+<span class="code-row"><i>07</i><span>        self.ideas.append(idea)</span></span>
+<span class="code-row"><i>08</i><span>        <b class="tok-key">return</b> <b class="tok-str">"pronto para evoluir"</b></span></span></code></pre>
+            </article>
+
+            <article class="code-scene scene-javascript">
+              <div class="code-window-bar">
+                <span>
+                  <i></i>
+                  <i></i>
+                  <i></i>
+                </span>
+
+                <b>motion.js</b>
+                <em>JAVASCRIPT</em>
+              </div>
+
+              <pre><code><span class="code-row"><i>01</i><span><b class="tok-key">const</b> sections = document.<b class="tok-fn">querySelectorAll</b>(<b class="tok-str">'section'</b>);</span></span>
+<span class="code-row"><i>02</i><span></span></span>
+<span class="code-row"><i>03</i><span><b class="tok-key">const</b> observer = <b class="tok-key">new</b> <b class="tok-fn">IntersectionObserver</b>(entries =&gt; {</span></span>
+<span class="code-row"><i>04</i><span>  entries.<b class="tok-fn">forEach</b>(entry =&gt; {</span></span>
+<span class="code-row"><i>05</i><span>    entry.target.classList.<b class="tok-fn">toggle</b>(</span></span>
+<span class="code-row"><i>06</i><span>      <b class="tok-str">'is-alive'</b>, entry.isIntersecting</span></span>
+<span class="code-row"><i>07</i><span>    );</span></span>
+<span class="code-row"><i>08</i><span>  });</span></span>
+<span class="code-row"><i>09</i><span>});</span></span></code></pre>
+            </article>
+
+            <article class="code-scene scene-sql">
+              <div class="code-window-bar">
+                <span>
+                  <i></i>
+                  <i></i>
+                  <i></i>
+                </span>
+
+                <b>projects.sql</b>
+                <em>DATABASE</em>
+              </div>
+
+              <pre><code><span class="code-row"><i>01</i><span><b class="tok-key">SELECT</b></span></span>
+<span class="code-row"><i>02</i><span>  title,</span></span>
+<span class="code-row"><i>03</i><span>  technologies,</span></span>
+<span class="code-row"><i>04</i><span>  lessons_learned</span></span>
+<span class="code-row"><i>05</i><span><b class="tok-key">FROM</b> projects</span></span>
+<span class="code-row"><i>06</i><span><b class="tok-key">WHERE</b> status = <b class="tok-str">'building'</b></span></span>
+<span class="code-row"><i>07</i><span><b class="tok-key">ORDER BY</b> curiosity <b class="tok-key">DESC</b>;</span></span>
+<span class="code-row"><i>08</i><span></span></span>
+<span class="code-row"><i>09</i><span><b class="tok-com">-- um commit de cada vez</b></span></span></code></pre>
+            </article>
+
+            <article class="code-scene scene-css">
+              <div class="code-window-bar">
+                <span>
+                  <i></i>
+                  <i></i>
+                  <i></i>
+                </span>
+
+                <b>identity.css</b>
+                <em>CSS</em>
+              </div>
+
+              <pre><code><span class="code-row"><i>01</i><span><b class="tok-fn">:root</b> {</span></span>
+<span class="code-row"><i>02</i><span>  --energy: <b class="tok-str">#c7ff00</b>;</span></span>
+<span class="code-row"><i>03</i><span>  --focus: <b class="tok-str">curiosity</b>;</span></span>
+<span class="code-row"><i>04</i><span>  --future: <b class="tok-str">infinite</b>;</span></span>
+<span class="code-row"><i>05</i><span>}</span></span>
+<span class="code-row"><i>06</i><span></span></span>
+<span class="code-row"><i>07</i><span><b class="tok-fn">.idea</b> {</span></span>
+<span class="code-row"><i>08</i><span>  transform: <b class="tok-fn">translate</b>(thought, code);</span></span>
+<span class="code-row"><i>09</i><span>  transition: <b class="tok-str">always learning</b>;</span></span>
+<span class="code-row"><i>10</i><span>}</span></span></code></pre>
+            </article>
+          </div>
+
+          <div class="code-story-status" aria-hidden="true">
+            <span>
+              <b id="codeStoryCurrent">01</b> / 04
+            </span>
+
+            <div class="code-story-dots">
+              <i class="is-active"></i>
+              <i></i>
+              <i></i>
+              <i></i>
+            </div>
+
+            <small>
+              ROLE PARA TROCAR A TELA
+            </small>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer id="contato" class="footer wrap">
@@ -493,7 +621,11 @@
 
         <label>
           Nome
-          <input data-field="title" type="text" required />
+          <input
+            data-field="title"
+            type="text"
+            required
+          />
         </label>
 
         <label>
@@ -526,6 +658,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="supabase-config.js"></script>
-    <script src="app.js?v=20260821-alive2"></script>
+    <script src="app.js?v=20260821-story1"></script>
   </body>
 </html>
