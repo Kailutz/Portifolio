@@ -1,856 +1,744 @@
-<!doctype html>
-<html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Portfólio acadêmico de Kaiqui" />
-
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="pt_BR" />
-    <meta property="og:url" content="https://kailutz.github.io/Portifolio/" />
-    <meta property="og:title" content="Portfólio acadêmico — Kaiqui" />
-    <meta
-      property="og:description"
-      content="Projetos, aprendizados e desafios da minha trajetória na programação."
-    />
-    <meta
-      property="og:image"
-      content="https://kailutz.github.io/Portifolio/og-image.png"
-    />
-    <meta property="og:image:width" content="1730" />
-    <meta property="og:image:height" content="909" />
-    <meta
-      property="og:image:alt"
-      content="KP/ — Portfólio acadêmico de Kaiqui"
-    />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Portfólio acadêmico — Kaiqui" />
-    <meta
-      name="twitter:description"
-      content="Projetos, aprendizados e desafios da minha trajetória na programação."
-    />
-    <meta
-      name="twitter:image"
-      content="https://kailutz.github.io/Portifolio/og-image.png"
-    />
-
-    <title>Meu portfólio acadêmico</title>
-
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-    <link
-      href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-
-    <link rel="stylesheet" href="style.css?v=20260821-social1" />
-  </head>
-
-  <body>
-    <header class="topbar">
-      <a class="brand" href="#inicio" aria-label="Página inicial">
-        KP<span>/</span>
-      </a>
-
-      <nav aria-label="Navegação principal">
-        <a href="#projetos">Projetos</a>
-        <a href="#sobre">Jornada</a>
-        <a href="#contato">Contato</a>
-      </nav>
-
-      <button id="adminButton" class="admin-link" type="button">
-        Área do dono
-      </button>
-    </header>
-
-    <div class="scroll-progress" aria-hidden="true">
-      <span id="scrollProgress"></span>
-    </div>
-
-    <main id="inicio">
-      <section class="hero wrap">
-        <div class="hero-rail" aria-hidden="true">
-          <span>PORTFÓLIO ACADÊMICO</span>
-          <i></i>
-          <span>2026</span>
-        </div>
-
-        <div class="hero-content">
-          <p class="eyebrow">
-            EM CONSTRUÇÃO DESDE O PRIMEIRO SEMESTRE
-          </p>
-
-          <h1>
-            <span>IDEIAS</span>
-            <span class="outline">EM</span>
-            <span><em>CÓDIGO.</em></span>
-          </h1>
-
-          <p id="intro" class="hero-copy">
-            Aqui registro os projetos, aprendizados e desafios da minha
-            trajetória na faculdade.
-          </p>
-
-          <div class="hero-actions">
-            <a class="button button-primary" href="#projetos">
-              Explorar projetos <span>↓</span>
-            </a>
-
-            <a
-              id="githubHero"
-              class="button button-ghost"
-              href="https://github.com/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              GitHub ↗︎
-            </a>
-          </div>
-        </div>
-
-        <aside class="hero-marker" aria-label="Resumo do portfólio">
-          <span>STATUS</span>
-
-          <strong>
-            APRENDENDO
-            <br />
-            SEM PARAR
-          </strong>
-
-          <div class="marker-pulse"></div>
-        </aside>
-
-        <div class="stats" aria-label="Resumo do portfólio">
-          <div>
-            <strong id="projectCount">0</strong>
-            <span>projetos lançados</span>
-          </div>
-
-          <div>
-            <strong id="techCount">0</strong>
-            <span>tecnologias</span>
-          </div>
-
-          <div>
-            <strong>∞</strong>
-            <span>próximas ideias</span>
-          </div>
-        </div>
-
-        <a class="scroll-cue" href="#projetos">
-          <span>ROLE PARA ACELERAR</span>
-          <b>↓</b>
-        </a>
-      </section>
-
-      <section id="projetos" class="projects wrap">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">01 / O QUE ESTOU CRIANDO</p>
-
-            <h2>
-              Projetos em
-              <br />
-              destaque.
-            </h2>
-          </div>
-
-          <span id="projectLabel">00 projetos</span>
-        </div>
-
-        <div id="projectGrid" class="project-grid"></div>
-      </section>
-
-      <section id="sobre" class="about wrap">
-        <p class="eyebrow">02 / SOBRE MIM</p>
-
-        <div>
-          <h2 id="aboutTitle">
-            Um estudante curioso,
-            <br />
-            sempre em movimento.
-          </h2>
-
-          <p id="aboutText">
-            Este espaço é meu diário de construção. Cada projeto representa
-            uma nova habilidade, uma ideia explorada ou um problema que
-            aprendi a resolver.
-          </p>
-        </div>
-      </section>
-
-      <section
-        id="laboratorio"
-        class="code-lab"
-        aria-labelledby="labTitle"
-      >
-        <div class="lab-background-type" aria-hidden="true">
-          <span>BUILD</span>
-          <span>LEARN</span>
-          <span>REPEAT</span>
-        </div>
-
-        <div class="lab-heading wrap">
-          <p class="eyebrow">03 / MEU AMBIENTE</p>
-
-          <h2 id="labTitle">
-            Onde ideias
-            <br />
-            viram código.
-          </h2>
-        </div>
-
-        <div class="laptop-stage" id="laptopStage">
-          <div class="laptop-tilt" id="laptopTilt">
-            <div class="laptop-float">
-              <div
-                class="laptop"
-                aria-label="Notebook exibindo um terminal de programação animado"
-              >
-                <div class="laptop-screen">
-                  <div class="terminal-bar" aria-hidden="true">
-                    <span class="terminal-dots">
-                      <i></i>
-                      <i></i>
-                      <i></i>
-                    </span>
-
-                    <span>main.py — kaiqui@portfolio</span>
-                    <b>KP/</b>
-                  </div>
-
-                  <div class="terminal" aria-hidden="true">
-                    <p class="terminal-line line-1">
-                      <span class="py-keyword">from</span>
-                      portfolio
-                      <span class="py-keyword">import</span>
-                      Project
-                    </p>
-
-                    <p class="terminal-line line-2">
-                      app = Project(owner=<span class="py-string">"Kaiqui"</span>)
-                    </p>
-
-                    <p class="terminal-line line-3">
-                      app.add(skill=<span class="py-string">"Python"</span>,
-                      level=<span class="py-number">1</span>)
-                    </p>
-
-                    <p class="terminal-line line-4">
-                      <span class="py-comment">
-                        # transformando ideias em código
-                      </span>
-                    </p>
-
-                    <p class="terminal-line line-5">
-                      app.build(mode=<span class="py-string">"always_learning"</span>)
-                      <span class="terminal-cursor"></span>
-                    </p>
-                  </div>
-                </div>
-
-                <div class="laptop-hinge" aria-hidden="true"></div>
-
-                <div class="laptop-deck" aria-hidden="true">
-                  <div class="keyboard">
-                    <span data-key="esc"></span>
-                    <span data-key="1"></span>
-                    <span data-key="2"></span>
-                    <span data-key="3"></span>
-                    <span data-key="4"></span>
-                    <span data-key="5"></span>
-                    <span data-key="6"></span>
-                    <span data-key="7"></span>
-                    <span data-key="8"></span>
-                    <span data-key="9"></span>
-                    <span data-key="0"></span>
-                    <span data-key="⌫"></span>
-
-                    <span data-key="tab"></span>
-                    <span data-key="Q"></span>
-                    <span data-key="W"></span>
-                    <span data-key="E"></span>
-                    <span data-key="R"></span>
-                    <span data-key="T"></span>
-                    <span data-key="Y"></span>
-                    <span data-key="U"></span>
-                    <span data-key="I"></span>
-                    <span data-key="O"></span>
-                    <span data-key="P"></span>
-                    <span data-key="["></span>
-
-                    <span data-key="caps"></span>
-                    <span data-key="A"></span>
-                    <span data-key="S"></span>
-                    <span data-key="D"></span>
-                    <span data-key="F"></span>
-                    <span data-key="G"></span>
-                    <span data-key="H"></span>
-                    <span data-key="J"></span>
-                    <span data-key="K"></span>
-                    <span data-key="L"></span>
-                    <span data-key=";"></span>
-                    <span data-key="enter"></span>
-
-                    <span data-key="shift"></span>
-                    <span data-key="Z"></span>
-                    <span data-key="X"></span>
-                    <span data-key="C"></span>
-                    <span data-key="V"></span>
-                    <span data-key="B"></span>
-                    <span data-key="N"></span>
-                    <span data-key="M"></span>
-                    <span data-key=", "></span>
-                    <span data-key="."></span>
-                    <span data-key="/"></span>
-                    <span data-key="shift"></span>
-
-                    <span data-key="ctrl"></span>
-                    <span data-key="fn"></span>
-                    <span data-key="alt"></span>
-                    <span data-key="cmd"></span>
-                    <span class="space-key"></span>
-                    <span data-key="cmd"></span>
-                    <span data-key="alt"></span>
-                    <span data-key="←"></span>
-                    <span data-key="→"></span>
-                  </div>
-
-                  <div class="trackpad"></div>
-                  <div class="deck-mark">KP/</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <p class="lab-caption">
-          DESIGN / CÓDIGO / MOVIMENTO <span>↗︎</span>
-        </p>
-      </section>
-
-      <section
-        id="codeStory"
-        class="code-story"
-        aria-labelledby="codeStoryTitle"
-      >
-        <div class="code-story-sticky">
-          <div class="code-story-heading">
-            <p class="eyebrow">04 / POR TRÁS DOS PROJETOS</p>
-
-            <h2 id="codeStoryTitle">
-              Código em
-              <br />
-              movimento.
-            </h2>
-          </div>
-
-          <div class="code-story-stage">
-            <article class="code-scene scene-python">
-              <div class="code-window-bar">
-                <span><i></i><i></i><i></i></span>
-                <b>portfolio_engine.py</b>
-                <em>PYTHON</em>
-              </div>
-
-              <pre><code><span class="code-row"><i>01</i><span><b class="tok-key">class</b> <b class="tok-fn">Portfolio</b>:</span></span>
-<span class="code-row"><i>02</i><span>    <b class="tok-key">def</b> <b class="tok-fn">__init__</b>(self, owner):</span></span>
-<span class="code-row"><i>03</i><span>        self.owner = owner</span></span>
-<span class="code-row"><i>04</i><span>        self.ideas = []</span></span>
-<span class="code-row"><i>05</i><span></span></span>
-<span class="code-row"><i>06</i><span>    <b class="tok-key">def</b> <b class="tok-fn">build</b>(self, idea):</span></span>
-<span class="code-row"><i>07</i><span>        self.ideas.append(idea)</span></span>
-<span class="code-row"><i>08</i><span>        <b class="tok-key">return</b> <b class="tok-str">"pronto para evoluir"</b></span></span></code></pre>
-            </article>
-
-            <article class="code-scene scene-javascript">
-              <div class="code-window-bar">
-                <span><i></i><i></i><i></i></span>
-                <b>motion.js</b>
-                <em>JAVASCRIPT</em>
-              </div>
-
-              <pre><code><span class="code-row"><i>01</i><span><b class="tok-key">const</b> sections = document.<b class="tok-fn">querySelectorAll</b>(<b class="tok-str">'section'</b>);</span></span>
-<span class="code-row"><i>02</i><span></span></span>
-<span class="code-row"><i>03</i><span><b class="tok-key">const</b> observer = <b class="tok-key">new</b> <b class="tok-fn">IntersectionObserver</b>(entries =&gt; {</span></span>
-<span class="code-row"><i>04</i><span>  entries.<b class="tok-fn">forEach</b>(entry =&gt; {</span></span>
-<span class="code-row"><i>05</i><span>    entry.target.classList.<b class="tok-fn">toggle</b>(</span></span>
-<span class="code-row"><i>06</i><span>      <b class="tok-str">'is-alive'</b>, entry.isIntersecting</span></span>
-<span class="code-row"><i>07</i><span>    );</span></span>
-<span class="code-row"><i>08</i><span>  });</span></span>
-<span class="code-row"><i>09</i><span>});</span></span></code></pre>
-            </article>
-
-            <article class="code-scene scene-sql">
-              <div class="code-window-bar">
-                <span><i></i><i></i><i></i></span>
-                <b>projects.sql</b>
-                <em>DATABASE</em>
-              </div>
-
-              <pre><code><span class="code-row"><i>01</i><span><b class="tok-key">SELECT</b></span></span>
-<span class="code-row"><i>02</i><span>  title,</span></span>
-<span class="code-row"><i>03</i><span>  technologies,</span></span>
-<span class="code-row"><i>04</i><span>  lessons_learned</span></span>
-<span class="code-row"><i>05</i><span><b class="tok-key">FROM</b> projects</span></span>
-<span class="code-row"><i>06</i><span><b class="tok-key">WHERE</b> status = <b class="tok-str">'building'</b></span></span>
-<span class="code-row"><i>07</i><span><b class="tok-key">ORDER BY</b> curiosity <b class="tok-key">DESC</b>;</span></span>
-<span class="code-row"><i>08</i><span></span></span>
-<span class="code-row"><i>09</i><span><b class="tok-com">-- um commit de cada vez</b></span></span></code></pre>
-            </article>
-
-            <article class="code-scene scene-css">
-              <div class="code-window-bar">
-                <span><i></i><i></i><i></i></span>
-                <b>identity.css</b>
-                <em>CSS</em>
-              </div>
-
-              <pre><code><span class="code-row"><i>01</i><span><b class="tok-fn">:root</b> {</span></span>
-<span class="code-row"><i>02</i><span>  --energy: <b class="tok-str">#c7ff00</b>;</span></span>
-<span class="code-row"><i>03</i><span>  --focus: <b class="tok-str">curiosity</b>;</span></span>
-<span class="code-row"><i>04</i><span>  --future: <b class="tok-str">infinite</b>;</span></span>
-<span class="code-row"><i>05</i><span>}</span></span>
-<span class="code-row"><i>06</i><span></span></span>
-<span class="code-row"><i>07</i><span><b class="tok-fn">.idea</b> {</span></span>
-<span class="code-row"><i>08</i><span>  transform: <b class="tok-fn">translate</b>(thought, code);</span></span>
-<span class="code-row"><i>09</i><span>  transition: <b class="tok-str">always learning</b>;</span></span>
-<span class="code-row"><i>10</i><span>}</span></span></code></pre>
-            </article>
-          </div>
-
-          <div class="code-story-status" aria-hidden="true">
-            <span><b id="codeStoryCurrent">01</b> / 04</span>
-
-            <div class="code-story-dots">
-              <i class="is-active"></i>
-              <i></i>
-              <i></i>
-              <i></i>
-            </div>
-
-            <small>ROLE PARA TROCAR A TELA</small>
-          </div>
-        </div>
-      </section>
-
-      <section
-        id="universo"
-        class="tech-universe"
-        aria-labelledby="universeTitle"
-      >
-        <div class="tech-universe-heading">
-          <p class="eyebrow">05 / UNIVERSO DE TECNOLOGIAS</p>
-
-          <h2 id="universeTitle">
-            Tudo se
-            <br />
-            conecta.
-          </h2>
-
-          <p>
-            Cada tecnologia é uma peça do que estou construindo. Passe o mouse
-            ou toque para explorar.
-          </p>
-        </div>
-
-        <div id="techSpace" class="tech-space">
-          <canvas id="techCanvas" aria-hidden="true"></canvas>
-
-          <div class="tech-orbit orbit-one" aria-hidden="true"></div>
-          <div class="tech-orbit orbit-two" aria-hidden="true"></div>
-
-          <div
-            id="techCore"
-            class="tech-core"
-            aria-label="Núcleo do universo de tecnologias"
-          >
-            <span>KP<em>/</em></span>
-            <small>EM EVOLUÇÃO</small>
-          </div>
-
-          <button
-            class="tech-node is-active"
-            type="button"
-            style="--x: 18%; --y: 25%; --delay: -1s"
-            data-name="Python"
-            data-copy="Lógica, automação e construção de soluções que transformam ideias em projetos funcionais."
-          >
-            <span>PY</span>
-            <b>Python</b>
-            <small>Lógica</small>
-          </button>
-
-          <button
-            class="tech-node"
-            type="button"
-            style="--x: 80%; --y: 23%; --delay: -3.2s"
-            data-name="HTML"
-            data-copy="Estruturas claras, acessíveis e preparadas para funcionar bem em diferentes telas."
-          >
-            <span>&lt;/&gt;</span>
-            <b>HTML</b>
-            <small>Estrutura</small>
-          </button>
-
-          <button
-            class="tech-node"
-            type="button"
-            style="--x: 89%; --y: 55%; --delay: -5.1s"
-            data-name="CSS"
-            data-copy="Identidade visual, responsividade, animações e experiências que dão personalidade à interface."
-          >
-            <span>CSS</span>
-            <b>CSS</b>
-            <small>Visual</small>
-          </button>
-
-          <button
-            class="tech-node"
-            type="button"
-            style="--x: 72%; --y: 81%; --delay: -2.3s"
-            data-name="JavaScript"
-            data-copy="Interações, comportamento e movimento para transformar páginas estáticas em experiências vivas."
-          >
-            <span>JS</span>
-            <b>JavaScript</b>
-            <small>Interação</small>
-          </button>
-
-          <button
-            class="tech-node"
-            type="button"
-            style="--x: 29%; --y: 83%; --delay: -4.4s"
-            data-name="Banco de dados"
-            data-copy="Organização e persistência das informações que mantêm os projetos conectados aos dados."
-          >
-            <span>DB</span>
-            <b>Database</b>
-            <small>Dados</small>
-          </button>
-
-          <button
-            class="tech-node"
-            type="button"
-            style="--x: 10%; --y: 57%; --delay: -6.2s"
-            data-name="Git e GitHub"
-            data-copy="Versionamento, evolução constante e um histórico real de cada etapa da minha jornada."
-          >
-            <span>GIT</span>
-            <b>GitHub</b>
-            <small>Versões</small>
-          </button>
-        </div>
-
-        <aside class="tech-info" aria-live="polite">
-          <span>
-            <b id="techInfoNumber">01</b> / 06
-          </span>
-
-          <div>
-            <p id="techInfoName">Python</p>
-
-            <small id="techInfoCopy">
-              Lógica, automação e construção de soluções que transformam
-              ideias em projetos funcionais.
-            </small>
-          </div>
-
-          <i>SELECIONADO</i>
-        </aside>
-      </section>
-
-      <section
-        id="contato"
-        class="cinematic-contact"
-        aria-labelledby="contactTitle"
-      >
-        <div class="contact-sticky">
-          <div class="contact-grid" aria-hidden="true"></div>
-          <div class="contact-logo" aria-hidden="true">KP/</div>
-
-          <span class="contact-tech tech-left" aria-hidden="true">
-            END_SEQUENCE / 06
-          </span>
-
-          <span class="contact-tech tech-right" aria-hidden="true">
-            STATUS: READY_TO_CONNECT
-          </span>
-
-          <div class="contact-content">
-            <p class="contact-intro">
-              CHEGAMOS AO FINAL. MAS PODE SER O COMEÇO DE ALGO NOVO.
-            </p>
-
-            <h2 id="contactTitle" class="contact-title">
-              <span class="contact-line-one">O PRÓXIMO PROJETO</span>
-              <span class="contact-line-two">PODE SER O SEU.</span>
-            </h2>
-
-            <div class="contact-actions">
-              <a
-                id="emailLink"
-                class="button contact-main-button"
-                data-fixed-label="true"
-                href="mailto:seuemail@exemplo.com"
-              >
-                VAMOS CONVERSAR
-                <span class="external-arrow" aria-hidden="true"></span>
-              </a>
-
-              <div class="contact-links">
-                <button
-                  id="copyEmailButton"
-                  type="button"
-                  data-email="seuemail@exemplo.com"
-                >
-                  COPIAR E-MAIL
-                </button>
-
-                <a
-                  id="contactGithub"
-                  href="https://github.com/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  GITHUB
-                  <span class="external-arrow" aria-hidden="true"></span>
-                </a>
-
-                <a
-                  id="contactLinkedin"
-                  href="https://www.linkedin.com/"
-                  target="_blank"
-                  rel="noreferrer"
-                  hidden
-                >
-                  LINKEDIN
-                  <span class="external-arrow" aria-hidden="true"></span>
-                </a>
-
-                <a
-                  id="contactInstagram"
-                  href="https://www.instagram.com/"
-                  target="_blank"
-                  rel="noreferrer"
-                  hidden
-                >
-                  INSTAGRAM
-                  <span class="external-arrow" aria-hidden="true"></span>
-                </a>
-              </div>
-
-              <p
-                id="copyEmailStatus"
-                class="copy-email-status"
-                role="status"
-                aria-live="polite"
-              >
-                E-MAIL COPIADO ✓
-              </p>
-            </div>
-          </div>
-
-          <div class="contact-footer">
-            <p>DESENVOLVIDO POR KAIQUI <span>•</span> 2026</p>
-            <p>DESIGN / CÓDIGO / MOVIMENTO</p>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <dialog id="loginDialog" class="dialog">
-      <form id="loginForm" method="dialog">
-        <button class="close" value="cancel" aria-label="Fechar">×</button>
-
-        <p class="eyebrow">ACESSO RESTRITO</p>
-        <h2>Área de edição</h2>
-
-        <p>
-          Digite seu email e senha para atualizar o seu portfólio.
-        </p>
-
-        <label>
-          Email
-          <input
-            id="emailInput"
-            type="email"
-            autocomplete="username"
-            required
-          />
-        </label>
-
-        <label>
-          Senha
-          <input
-            id="passwordInput"
-            type="password"
-            autocomplete="current-password"
-            required
-          />
-        </label>
-
-        <small id="loginError"></small>
-
-        <button class="button button-primary" value="default">
-          Entrar
-        </button>
-      </form>
-    </dialog>
-
-    <dialog id="adminDialog" class="dialog admin-dialog">
-      <form id="settingsForm" method="dialog">
-        <button
-          id="closeAdmin"
-          class="close"
-          value="cancel"
-          aria-label="Fechar"
-        >
-          ×
-        </button>
-
-        <div class="admin-head">
-          <div>
-            <p class="eyebrow">PAINEL PESSOAL</p>
-            <h2>Editar portfólio</h2>
-          </div>
-
-          <button id="logoutButton" class="text-button" type="button">
-            Sair
-          </button>
-        </div>
-
-        <div class="form-grid">
-          <label class="field-wide">
-            Texto de apresentação
-            <textarea name="intro" rows="3"></textarea>
-          </label>
-
-          <label class="field-wide">
-            Título sobre você
-            <input name="aboutTitle" type="text" />
-          </label>
-
-          <label class="field-wide">
-            Texto sobre você
-            <textarea name="aboutText" rows="4"></textarea>
-          </label>
-
-          <p class="admin-form-title">LINKS E CONTATO</p>
-
-          <label>
-            Link do GitHub
-            <input
-              name="github"
-              type="url"
-              placeholder="https://github.com/seuusuario"
-            />
-          </label>
-
-          <label>
-            Link do LinkedIn
-            <input
-              name="linkedin"
-              type="url"
-              placeholder="https://linkedin.com/in/seuusuario"
-            />
-          </label>
-
-          <label>
-            Link do Instagram
-            <input
-              name="instagram"
-              type="url"
-              placeholder="https://instagram.com/seuusuario"
-            />
-          </label>
-
-          <label>
-            E-mail de contato
-            <input
-              name="email"
-              type="email"
-              placeholder="seuemail@exemplo.com"
-            />
-          </label>
-        </div>
-
-        <div class="admin-projects">
-          <div class="admin-project-header">
-            <h3>Projetos</h3>
-
-            <button
-              id="addProject"
-              type="button"
-              class="text-button"
-            >
-              + Adicionar projeto
-            </button>
-          </div>
-
-          <div id="projectEditor"></div>
-        </div>
-
-        <div class="save-row">
-          <button id="resetButton" type="button" class="text-button">
-            Restaurar exemplo
-          </button>
-
-          <button class="button button-primary" value="default">
-            Salvar alterações
-          </button>
-        </div>
-      </form>
-    </dialog>
-
-    <template id="projectTemplate">
-      <article class="project-editor-card">
-        <button
-          class="remove-project"
-          type="button"
-          aria-label="Excluir projeto"
-        >
-          ×
-        </button>
-
-        <label>
-          Nome
-          <input data-field="title" type="text" required />
-        </label>
-
-        <label>
-          Descrição
-          <textarea
-            data-field="description"
-            rows="2"
-            required
-          ></textarea>
-        </label>
-
-        <div class="form-grid compact">
-          <label>
-            Tecnologias (separe por vírgula)
-            <input data-field="tags" type="text" />
-          </label>
-
-          <label>
-            Link do projeto
-            <input data-field="link" type="url" />
-          </label>
-
-          <label>
-            Cor do cartão
-            <input data-field="color" type="color" />
-          </label>
-        </div>
-      </article>
-    </template>
-
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="supabase-config.js"></script>
-    <script src="app.js?v=20260821-social1"></script>
-  </body>
-</html>
+const defaults = {
+  intro: 'Aqui registro os projetos, aprendizados e desafios da minha trajetória na faculdade.',
+  github: 'https://github.com/',
+  linkedin: '',
+  instagram: '',
+  aboutTitle: 'Um estudante curioso,\nsempre em movimento.',
+  aboutText: 'Este espaço é meu diário de construção. Cada projeto representa uma nova habilidade, uma ideia explorada ou um problema que aprendi a resolver.',
+  email: 'seuemail@exemplo.com',
+  projects: [
+    { title: 'Calculadora Python', description: 'Uma calculadora de terminal para colocar em prática condicionais, funções e tratamento de entradas.', tags: ['Python', 'Lógica'], link: '#', color: '#9e78f7' },
+    { title: 'Lista de tarefas', description: 'Organização de tarefas com uma interface leve e foco em uma boa experiência de uso.', tags: ['HTML', 'CSS', 'JavaScript'], link: '#', color: '#d9f34b' },
+    { title: 'Em breve', description: 'O próximo capítulo da minha jornada na programação está sendo construído agora.', tags: ['Em aprendizado'], link: '#', color: '#c05de5' }
+  ]
+};
+
+let data = structuredClone(defaults);
+let authenticated = false;
+const $ = (selector) => document.querySelector(selector);
+
+// Fecha as janelas pelo botão “X”. Como os botões ficam dentro de formulários,
+// impedimos o envio antes de fechar o dialog correspondente.
+document.querySelectorAll('.dialog .close').forEach(button => {
+  button.addEventListener('click', event => {
+    event.preventDefault();
+    button.closest('dialog')?.close();
+  });
+});
+
+function escapeHTML(value) {
+  return String(value).replace(/[&<>'"]/g, char => ({ '&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;' }[char]));
+}
+
+// Converte o formato do banco (linhas separadas: about_title, about_text...)
+// para o formato que o resto do código já usa (aboutTitle, aboutText...).
+function fromRow(row) {
+  const storedProjects = Array.isArray(row.projects) ? row.projects : [];
+  let storedSocials = {};
+  const projects = [];
+
+  storedProjects.forEach(project => {
+    if (!project || typeof project !== 'object') return;
+    if (project._portfolioSocials) storedSocials = { ...storedSocials, ...project._portfolioSocials };
+    if (project.__portfolioMetadata) return;
+    const { _portfolioSocials, ...cleanProject } = project;
+    projects.push(cleanProject);
+  });
+
+  return {
+    intro: row.intro || defaults.intro,
+    github: row.github || defaults.github,
+    linkedin: row.linkedin || storedSocials.linkedin || defaults.linkedin,
+    instagram: row.instagram || storedSocials.instagram || defaults.instagram,
+    aboutTitle: row.about_title || defaults.aboutTitle,
+    aboutText: row.about_text || defaults.aboutText,
+    email: row.email || defaults.email,
+    projects
+  };
+}
+
+async function loadData() {
+  const { data: rows, error } = await supabaseClient.from('portfolio').select('*').eq('id', 1).single();
+  if (error || !rows) { console.error('Não foi possível carregar os dados do Supabase, usando exemplo padrão.', error); data = structuredClone(defaults); return; }
+  data = fromRow(rows);
+}
+
+async function saveData() {
+  const socialData = { linkedin: data.linkedin || '', instagram: data.instagram || '' };
+  const projectsForStorage = data.projects.length
+    ? data.projects.map((project, index) => index === 0 ? { ...project, _portfolioSocials: socialData } : project)
+    : [{ __portfolioMetadata: true, _portfolioSocials: socialData }];
+
+  const { error } = await supabaseClient.from('portfolio').update({
+    intro: data.intro,
+    github: data.github,
+    about_title: data.aboutTitle,
+    about_text: data.aboutText,
+    email: data.email,
+    projects: projectsForStorage
+  }).eq('id', 1);
+  if (error) { alert('Não foi possível salvar. Verifique se você está logado.'); console.error(error); return false; }
+  return true;
+}
+
+// Anima um número subindo de 0 até o valor final (contador nas estatísticas).
+function animateNumber(el, target) {
+  if (!el) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { el.textContent = target; return; }
+  const start = performance.now();
+  const duration = 900;
+  function tick(now) {
+    const progress = Math.min(1, (now - start) / duration);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.round(eased * target);
+    if (progress < 1) requestAnimationFrame(tick);
+    else el.textContent = target;
+  }
+  requestAnimationFrame(tick);
+}
+
+function render() {
+  $('#intro').textContent = data.intro;
+  $('#aboutTitle').innerHTML = escapeHTML(data.aboutTitle).replace(/\n/g, '<br>');
+  $('#aboutText').textContent = data.aboutText;
+  $('#githubHero').href = data.github || 'https://github.com/';
+  const emailLink = $('#emailLink');
+  if (emailLink) {
+    emailLink.href = `mailto:${data.email}`;
+    if (!emailLink.dataset.fixedLabel) emailLink.textContent = data.email === defaults.email ? 'Vamos conversar' : data.email;
+  }
+  const copyEmailButton = $('#copyEmailButton');
+  if (copyEmailButton) copyEmailButton.dataset.email = data.email;
+  const contactGithub = $('#contactGithub');
+  if (contactGithub) contactGithub.href = data.github || 'https://github.com/';
+  const setSocialLink = (selector, value) => {
+    const link = $(selector);
+    if (!link) return;
+    link.hidden = !value;
+    if (value) link.href = value;
+  };
+  setSocialLink('#contactLinkedin', data.linkedin);
+  setSocialLink('#contactInstagram', data.instagram);
+  const technologies = new Set(data.projects.flatMap(project => project.tags));
+  animateNumber($('#projectCount'), data.projects.length);
+  animateNumber($('#techCount'), technologies.size);
+  $('#projectLabel').textContent = `${String(data.projects.length).padStart(2, '0')} projetos`;
+  $('#projectGrid').innerHTML = data.projects.map((project, index) => {
+    const link = project.link && project.link !== '#' ? project.link : '#projetos';
+    return `<a class="project-card" href="${escapeHTML(link)}" ${link !== '#projetos' ? 'target="_blank" rel="noreferrer"' : ''} style="background:${escapeHTML(project.color)}"><div class="card-top"><span class="number">${String(index + 1).padStart(2, '0')} / PROJETO</span><span class="arrow">↗︎</span></div><div><h3>${escapeHTML(project.title)}</h3><p>${escapeHTML(project.description)}</p><div class="tags">${project.tags.map(tag => `<span>${escapeHTML(tag)}</span>`).join('')}</div></div></a>`;
+  }).join('');
+  setupKineticTitles();
+  setupScrollAnimations();
+}
+
+function addProjectEditor(project = { title: '', description: '', tags: [], link: '', color: '#c8ed58' }) {
+  const card = $('#projectTemplate').content.firstElementChild.cloneNode(true);
+  for (const field of card.querySelectorAll('[data-field]')) field.value = field.dataset.field === 'tags' ? project.tags.join(', ') : project[field.dataset.field] || '';
+  card.querySelector('.remove-project').addEventListener('click', () => card.remove());
+  $('#projectEditor').append(card);
+}
+
+function openAdmin() {
+  const form = $('#settingsForm');
+  ['intro','github','linkedin','instagram','aboutTitle','aboutText','email'].forEach(key => form.elements[key].value = data[key] || '');
+  $('#projectEditor').innerHTML = '';
+  data.projects.forEach(addProjectEditor);
+  $('#adminDialog').showModal();
+}
+
+$('#adminButton').addEventListener('click', async () => {
+  const { data: { session } } = await supabaseClient.auth.getSession();
+  authenticated = !!session;
+  authenticated ? openAdmin() : $('#loginDialog').showModal();
+});
+
+$('#loginForm').addEventListener('submit', async event => {
+  event.preventDefault();
+  const email = $('#emailInput').value.trim();
+  const password = $('#passwordInput').value;
+  const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
+  if (error) { $('#loginError').textContent = 'Email ou senha incorretos.'; return; }
+  authenticated = true;
+  $('#emailInput').value = '';
+  $('#passwordInput').value = '';
+  $('#loginError').textContent = '';
+  $('#loginDialog').close();
+  openAdmin();
+});
+
+$('#addProject').addEventListener('click', () => addProjectEditor());
+
+$('#settingsForm').addEventListener('submit', async event => {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const newData = {
+    intro: form.elements.intro.value.trim(), github: form.elements.github.value.trim(), linkedin: form.elements.linkedin.value.trim(), instagram: form.elements.instagram.value.trim(), aboutTitle: form.elements.aboutTitle.value.trim(), aboutText: form.elements.aboutText.value.trim(), email: form.elements.email.value.trim(),
+    projects: [...$('#projectEditor').querySelectorAll('.project-editor-card')].map(card => ({
+      title: card.querySelector('[data-field="title"]').value.trim(), description: card.querySelector('[data-field="description"]').value.trim(), tags: card.querySelector('[data-field="tags"]').value.split(',').map(tag => tag.trim()).filter(Boolean), link: card.querySelector('[data-field="link"]').value.trim(), color: card.querySelector('[data-field="color"]').value
+    })).filter(project => project.title && project.description)
+  };
+  data = newData;
+  const saveButton = form.querySelector('.save-row .button-primary');
+  saveButton.textContent = 'Salvando...';
+  saveButton.disabled = true;
+  const ok = await saveData();
+  saveButton.textContent = 'Salvar alterações';
+  saveButton.disabled = false;
+  if (!ok) return;
+  render();
+  $('#adminDialog').close();
+});
+
+$('#logoutButton').addEventListener('click', async () => {
+  await supabaseClient.auth.signOut();
+  authenticated = false;
+  $('#adminDialog').close();
+});
+
+$('#resetButton').addEventListener('click', async () => {
+  if (!confirm('Restaurar o conteúdo de exemplo? Isso substitui o que está publicado para todo mundo.')) return;
+  data = structuredClone(defaults);
+  await saveData();
+  render();
+  const form = $('#settingsForm');
+  ['intro','github','linkedin','instagram','aboutTitle','aboutText','email'].forEach(key => form.elements[key].value = data[key] || '');
+  $('#projectEditor').innerHTML = ''; data.projects.forEach(addProjectEditor);
+});
+
+let scrollObserver;
+let titleObserver;
+
+function setupKineticTitles() {
+  const titles = [...document.querySelectorAll('.section-heading h2, .about h2, .lab-heading h2, .tech-universe-heading h2')];
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  titles.forEach(title => {
+    if (!title.querySelector('.title-line')) {
+      const lines = title.innerHTML.split(/<br\s*\/?\s*>/i);
+      title.innerHTML = lines.map(line => `<span class="title-line"><span>${line}</span></span>`).join('');
+      title.classList.add('kinetic-title');
+    }
+
+    if (reducedMotion || !('IntersectionObserver' in window)) {
+      title.classList.add('title-visible');
+      return;
+    }
+
+    if (!titleObserver) {
+      titleObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          entry.target.classList.toggle('title-visible', entry.isIntersecting);
+        });
+      }, { threshold: .28, rootMargin: '0px 0px -8%' });
+    }
+
+    titleObserver.observe(title);
+  });
+}
+
+function setupScrollAnimations() {
+  // O rodapé fica sempre visível, sem animação — como ele é o último elemento
+  // da página, o efeito de revelar "perto do centro" podia nunca disparar.
+  const targets = [...document.querySelectorAll('.section-heading, .project-card, .about')];
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  targets.forEach((element, index) => {
+    if (element.dataset.scrollAnimation) return;
+    element.dataset.scrollAnimation = 'true';
+    element.classList.add('scroll-reveal');
+    const delay = element.classList.contains('project-card') ? (index % 3) * 130 : 0;
+    element.style.setProperty('--reveal-delay', `${delay}ms`);
+  });
+
+  if (reducedMotion || !('IntersectionObserver' in window)) {
+    targets.forEach(element => element.classList.add('is-visible'));
+    return;
+  }
+
+  if (!scrollObserver) {
+    // Em telas grandes, espera o elemento chegar mais perto do centro antes
+    // de revelar — assim o efeito fica visível também no computador, em vez
+    // de disparar tudo de uma vez já no carregamento da página.
+    const isWideScreen = window.matchMedia('(min-width: 900px)').matches;
+    const rootMargin = isWideScreen ? '0px 0px -12%' : '0px 0px -45px';
+    scrollObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        entry.target.classList.toggle('is-visible', entry.isIntersecting);
+      });
+    }, { threshold: .14, rootMargin });
+  }
+  targets.forEach(element => {
+    if (!element.classList.contains('is-visible')) scrollObserver.observe(element);
+  });
+}
+
+const scrollProgress = $('#scrollProgress');
+function updateScrollProgress() {
+  const availableScroll = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = availableScroll > 0 ? window.scrollY / availableScroll : 0;
+  scrollProgress.style.transform = `scaleX(${Math.min(1, Math.max(0, progress))})`;
+}
+window.addEventListener('scroll', updateScrollProgress, { passive: true });
+window.addEventListener('resize', updateScrollProgress);
+
+// Entrada cinematográfica e faixa contínua, criadas pelo JavaScript para manter o HTML intacto.
+const introWipe = document.createElement('div');
+introWipe.className = 'intro-wipe';
+introWipe.setAttribute('aria-hidden', 'true');
+introWipe.innerHTML = '<span>KP/</span>';
+document.body.prepend(introWipe);
+requestAnimationFrame(() => introWipe.classList.add('play'));
+introWipe.addEventListener('animationend', () => introWipe.remove());
+
+const marquee = document.createElement('div');
+marquee.className = 'marquee';
+marquee.setAttribute('aria-hidden', 'true');
+const marqueeText = 'PROJETOS • APRENDIZADO • CÓDIGO • CRIATIVIDADE • ';
+marquee.innerHTML = `<div class="marquee-track"><span>${marqueeText.repeat(4)}</span><span>${marqueeText.repeat(4)}</span></div>`;
+$('#projetos').before(marquee);
+
+// Luz ambiente discreta que atravessa as seções e acompanha a navegação.
+const ambientGlow = document.createElement('div');
+ambientGlow.className = 'ambient-glow';
+ambientGlow.setAttribute('aria-hidden', 'true');
+document.body.append(ambientGlow);
+
+// O menu mostra em qual parte do portfólio a pessoa está.
+const sectionLinks = [...document.querySelectorAll('.topbar nav a[href^="#"]')];
+const sectionTargets = sectionLinks
+  .map(link => ({ link, section: document.querySelector(link.getAttribute('href')) }))
+  .filter(item => item.section);
+
+function updateActiveNavigation() {
+  document.querySelector('.topbar')?.classList.toggle('is-scrolled', window.scrollY > 40);
+  const marker = window.scrollY + window.innerHeight * .38;
+  let active = null;
+  sectionTargets.forEach(item => {
+    if (item.section.offsetTop <= marker) active = item;
+  });
+  sectionLinks.forEach(link => {
+    const selected = active?.link === link;
+    link.classList.toggle('is-active', selected);
+    if (selected) link.setAttribute('aria-current', 'page');
+    else link.removeAttribute('aria-current');
+  });
+}
+
+window.addEventListener('scroll', updateActiveNavigation, { passive: true });
+window.addEventListener('resize', updateActiveNavigation, { passive: true });
+updateActiveNavigation();
+
+// Cursor editorial e movimento sutil de profundidade para dispositivos com mouse.
+if (window.matchMedia('(pointer: fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const cursor = document.createElement('div');
+  cursor.className = 'cursor-orbit';
+  document.body.append(cursor);
+  let cursorX = 0, cursorY = 0, currentX = 0, currentY = 0;
+  document.addEventListener('pointermove', event => {
+    cursorX = event.clientX;
+    cursorY = event.clientY;
+    cursor.style.opacity = '1';
+    cursor.classList.toggle('active', !!event.target.closest('a, button, .project-card'));
+    document.documentElement.style.setProperty('--ambient-x', `${event.clientX}px`);
+    document.documentElement.style.setProperty('--ambient-y', `${event.clientY}px`);
+  }, { passive: true });
+  function moveCursor() {
+    currentX += (cursorX - currentX) * .16;
+    currentY += (cursorY - currentY) * .16;
+    cursor.style.transform = `translate3d(${currentX - cursor.offsetWidth / 2}px, ${currentY - cursor.offsetHeight / 2}px, 0)`;
+    requestAnimationFrame(moveCursor);
+  }
+  moveCursor();
+
+  const heroTitle = $('.hero h1');
+  document.addEventListener('pointermove', event => {
+    if (window.scrollY > window.innerHeight) return;
+    const x = (event.clientX / window.innerWidth - .5) * 12;
+    const y = (event.clientY / window.innerHeight - .5) * 8;
+    heroTitle.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+  }, { passive: true });
+}
+
+// Pequeno efeito de velocidade no título durante a rolagem.
+const heroTitle = $('.hero h1');
+function updateHeroMotion() {
+  const amount = Math.min(window.scrollY, window.innerHeight);
+  heroTitle.style.opacity = String(Math.max(.16, 1 - amount / window.innerHeight));
+  if (!window.matchMedia('(pointer: fine)').matches) heroTitle.style.transform = `translateY(${amount * .12}px)`;
+}
+window.addEventListener('scroll', updateHeroMotion, { passive: true });
+
+// Notebook 3D: tilt pelo mouse no desktop e perspectiva guiada pelo scroll no mobile.
+const codeLab = $('#laboratorio');
+const laptopTilt = $('#laptopTilt');
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const mobileLaptop = window.matchMedia('(max-width: 760px), (pointer: coarse)');
+
+if (codeLab && laptopTilt) {
+  codeLab.classList.add('terminal-ready');
+
+  if ('IntersectionObserver' in window && !reduceMotion.matches) {
+    const terminalObserver = new IntersectionObserver(entries => {
+      codeLab.classList.toggle('terminal-run', entries[0].isIntersecting);
+    }, { threshold: .32 });
+    terminalObserver.observe(codeLab);
+  } else {
+    codeLab.classList.add('terminal-run');
+  }
+
+  let laptopFrame = 0;
+  function setLaptopTransform(rx, ry, lift = 0) {
+    cancelAnimationFrame(laptopFrame);
+    laptopFrame = requestAnimationFrame(() => {
+      laptopTilt.style.setProperty('--rx', `${rx.toFixed(2)}deg`);
+      laptopTilt.style.setProperty('--ry', `${ry.toFixed(2)}deg`);
+      laptopTilt.style.setProperty('--lift', `${lift.toFixed(1)}px`);
+    });
+  }
+
+  function updateLaptopFromScroll() {
+    if (!mobileLaptop.matches || reduceMotion.matches) return;
+    const bounds = codeLab.getBoundingClientRect();
+    const range = window.innerHeight + bounds.height;
+    const progress = Math.min(1, Math.max(0, (window.innerHeight - bounds.top) / range));
+    setLaptopTransform(0 + progress * 1.5, 6 + (progress - .5) * 3, (progress - .5) * -12);
+  }
+
+  codeLab.addEventListener('pointermove', event => {
+    if (mobileLaptop.matches || reduceMotion.matches) return;
+    const bounds = codeLab.getBoundingClientRect();
+    const x = (event.clientX - bounds.left) / bounds.width - .5;
+    const y = (event.clientY - bounds.top) / bounds.height - .5;
+    setLaptopTransform(.5 - y * 2, 9 + x * 4);
+  }, { passive: true });
+
+  codeLab.addEventListener('pointerleave', () => {
+    if (!mobileLaptop.matches && !reduceMotion.matches) setLaptopTransform(.5, 9);
+  });
+
+  window.addEventListener('scroll', updateLaptopFromScroll, { passive: true });
+  window.addEventListener('resize', updateLaptopFromScroll, { passive: true });
+  updateLaptopFromScroll();
+}
+
+// Movimento 3D leve nos cartões e botões "magnéticos" — só no computador,
+// sem interferir em telas touch.
+if (window.matchMedia('(pointer: fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  document.addEventListener('pointermove', event => {
+    const card = event.target.closest('.project-card');
+    if (!card) return;
+    const bounds = card.getBoundingClientRect();
+    const x = (event.clientX - bounds.left) / bounds.width - .5;
+    const y = (event.clientY - bounds.top) / bounds.height - .5;
+    card.style.setProperty('--spot-x', `${(x + .5) * 100}%`);
+    card.style.setProperty('--spot-y', `${(y + .5) * 100}%`);
+    card.style.transform = `perspective(800px) rotateX(${-y * 5}deg) rotateY(${x * 5}deg) translateY(-7px)`;
+  });
+  document.addEventListener('pointerout', event => {
+    const card = event.target.closest('.project-card');
+    if (card && !card.contains(event.relatedTarget)) card.style.transform = '';
+  });
+
+  document.querySelectorAll('.button').forEach(button => {
+    button.addEventListener('pointermove', event => {
+      const bounds = button.getBoundingClientRect();
+      const x = (event.clientX - bounds.left - bounds.width / 2) * .25;
+      const y = (event.clientY - bounds.top - bounds.height / 2) * .3;
+      button.style.transform = `translate(${x}px, ${y - 4}px)`;
+    });
+    button.addEventListener('pointerleave', () => { button.style.transform = ''; });
+  });
+}
+
+// Em telas touch, os cartões respiram levemente conforme passam pelo centro.
+const mobileCardMotion = window.matchMedia('(max-width: 760px), (pointer: coarse)');
+let mobileCardFrame = 0;
+function updateMobileCards() {
+  if (!mobileCardMotion.matches || reduceMotion.matches) return;
+  cancelAnimationFrame(mobileCardFrame);
+  mobileCardFrame = requestAnimationFrame(() => {
+    document.querySelectorAll('.project-card.is-visible').forEach(card => {
+      const bounds = card.getBoundingClientRect();
+      const distance = (bounds.top + bounds.height / 2 - window.innerHeight / 2) / window.innerHeight;
+      const clamped = Math.max(-1, Math.min(1, distance));
+      card.style.setProperty('--card-drift', `${clamped * -8}px`);
+      card.style.setProperty('--card-scale', `${1 - Math.abs(clamped) * .018}`);
+    });
+    const pageProgress = window.scrollY / Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    document.documentElement.style.setProperty('--ambient-x', `${38 + pageProgress * 25}vw`);
+    document.documentElement.style.setProperty('--ambient-y', `${42 + Math.sin(pageProgress * Math.PI) * 18}vh`);
+  });
+}
+window.addEventListener('scroll', updateMobileCards, { passive: true });
+window.addEventListener('resize', updateMobileCards, { passive: true });
+
+// Sequência de telas presa à viewport: o scroll troca o código, não a posição.
+const codeStory = $('#codeStory');
+const codeScenes = codeStory ? [...codeStory.querySelectorAll('.code-scene')] : [];
+const codeStoryDots = codeStory ? [...codeStory.querySelectorAll('.code-story-dots i')] : [];
+const codeStoryCurrent = $('#codeStoryCurrent');
+let codeStoryFrame = 0;
+
+function updateCodeStory() {
+  if (!codeStory || !codeScenes.length || reduceMotion.matches) return;
+  cancelAnimationFrame(codeStoryFrame);
+  codeStoryFrame = requestAnimationFrame(() => {
+    const bounds = codeStory.getBoundingClientRect();
+    const range = Math.max(1, codeStory.offsetHeight - window.innerHeight);
+    const progress = Math.min(1, Math.max(0, -bounds.top / range));
+    const position = progress * (codeScenes.length - 1);
+    const activeIndex = Math.round(position);
+    const compact = window.matchMedia('(max-width: 760px)').matches;
+
+    codeStory.style.setProperty('--story-progress', progress.toFixed(3));
+    codeStory.style.setProperty('--story-x', `${24 + progress * 45}%`);
+    codeScenes.forEach((scene, index) => {
+      const relative = index - position;
+      const distance = Math.abs(relative);
+      const opacity = Math.max(0, 1 - distance);
+      const x = relative * (compact ? 34 : 92);
+      const y = relative * (compact ? 28 : 48);
+      const scale = Math.max(.86, 1 - distance * .075);
+      scene.style.opacity = opacity.toFixed(3);
+      scene.style.zIndex = String(10 - Math.round(distance * 2));
+      scene.style.transform = `translate3d(${x}px, ${y}px, ${-distance * 100}px) rotateY(${-relative * 5}deg) rotateZ(${relative * 1.2}deg) scale(${scale})`;
+      scene.setAttribute('aria-hidden', String(index !== activeIndex));
+    });
+
+    codeStoryDots.forEach((dot, index) => dot.classList.toggle('is-active', index === activeIndex));
+    if (codeStoryCurrent) codeStoryCurrent.textContent = String(activeIndex + 1).padStart(2, '0');
+  });
+}
+
+window.addEventListener('scroll', updateCodeStory, { passive: true });
+window.addEventListener('resize', updateCodeStory, { passive: true });
+
+// Universo de tecnologias: conexões, partículas e detalhes interativos.
+const techUniverse = $('#universo');
+const techSpace = $('#techSpace');
+const techCanvas = $('#techCanvas');
+const techCore = $('#techCore');
+const techNodes = techSpace ? [...techSpace.querySelectorAll('.tech-node')] : [];
+const techInfoNumber = $('#techInfoNumber');
+const techInfoName = $('#techInfoName');
+const techInfoCopy = $('#techInfoCopy');
+let techContext = techCanvas?.getContext('2d');
+let techParticles = [];
+let techUniverseFrame = 0;
+let techUniverseVisible = false;
+
+function selectTechnology(node) {
+  const index = techNodes.indexOf(node);
+  techNodes.forEach(item => item.classList.toggle('is-active', item === node));
+  if (techInfoNumber) techInfoNumber.textContent = String(index + 1).padStart(2, '0');
+  if (techInfoName) techInfoName.textContent = node.dataset.name || '';
+  if (techInfoCopy) techInfoCopy.textContent = node.dataset.copy || '';
+}
+
+techNodes.forEach(node => {
+  node.addEventListener('pointerenter', () => selectTechnology(node));
+  node.addEventListener('focus', () => selectTechnology(node));
+  node.addEventListener('click', () => selectTechnology(node));
+});
+
+function resizeTechCanvas() {
+  if (!techCanvas || !techSpace || !techContext) return;
+  const ratio = Math.min(2, window.devicePixelRatio || 1);
+  const width = techSpace.clientWidth;
+  const height = techSpace.clientHeight;
+  techCanvas.width = Math.round(width * ratio);
+  techCanvas.height = Math.round(height * ratio);
+  techCanvas.style.width = `${width}px`;
+  techCanvas.style.height = `${height}px`;
+  techContext.setTransform(ratio, 0, 0, ratio, 0, 0);
+  if (!techParticles.length) {
+    techParticles = Array.from({ length: width < 700 ? 28 : 48 }, (_, index) => ({
+      x: (index * 47 % 101) / 101,
+      y: (index * 73 % 97) / 97,
+      speed: .000035 + (index % 5) * .000012,
+      size: .7 + (index % 4) * .38,
+      tone: index % 3
+    }));
+  }
+}
+
+function drawTechUniverse(time = 0) {
+  if (!techContext || !techCanvas || !techSpace || !techCore) return;
+  const width = techSpace.clientWidth;
+  const height = techSpace.clientHeight;
+  techContext.clearRect(0, 0, width, height);
+
+  techParticles.forEach(particle => {
+    if (!reduceMotion.matches) particle.y = (particle.y + particle.speed * 16) % 1;
+    const colors = ['#c7ff00', '#8b6dff', '#ff668f'];
+    techContext.globalAlpha = .22;
+    techContext.fillStyle = colors[particle.tone];
+    techContext.beginPath();
+    techContext.arc(particle.x * width, particle.y * height, particle.size, 0, Math.PI * 2);
+    techContext.fill();
+  });
+
+  const centerX = techCore.offsetLeft;
+  const centerY = techCore.offsetTop;
+  techNodes.forEach((node, index) => {
+    const nodeX = node.offsetLeft;
+    const nodeY = node.offsetTop;
+    const active = node.classList.contains('is-active');
+    const gradient = techContext.createLinearGradient(centerX, centerY, nodeX, nodeY);
+    gradient.addColorStop(0, active ? '#c7ff0090' : '#c7ff0038');
+    gradient.addColorStop(1, active ? '#c7ff00d0' : '#ffffff22');
+    techContext.globalAlpha = 1;
+    techContext.strokeStyle = gradient;
+    techContext.lineWidth = active ? 1.5 : .75;
+    techContext.setLineDash(active ? [7, 7] : [3, 9]);
+    techContext.lineDashOffset = -time * (active ? .018 : .008);
+    techContext.beginPath();
+    techContext.moveTo(centerX, centerY);
+    techContext.lineTo(nodeX, nodeY);
+    techContext.stroke();
+
+    const travel = ((time / 1900) + index / techNodes.length) % 1;
+    const pulseX = centerX + (nodeX - centerX) * travel;
+    const pulseY = centerY + (nodeY - centerY) * travel;
+    techContext.setLineDash([]);
+    techContext.fillStyle = active ? '#c7ff00' : '#f5f4ed';
+    techContext.shadowColor = active ? '#c7ff00' : '#8b6dff';
+    techContext.shadowBlur = active ? 13 : 7;
+    techContext.beginPath();
+    techContext.arc(pulseX, pulseY, active ? 2.8 : 1.6, 0, Math.PI * 2);
+    techContext.fill();
+    techContext.shadowBlur = 0;
+  });
+
+  techContext.globalAlpha = 1;
+  techContext.setLineDash([]);
+}
+
+function runTechUniverse(time = 0) {
+  if (!techUniverseVisible) return;
+  drawTechUniverse(time);
+  if (!reduceMotion.matches) techUniverseFrame = requestAnimationFrame(runTechUniverse);
+}
+
+if (techUniverse && techSpace) {
+  resizeTechCanvas();
+  const universeObserver = new IntersectionObserver(entries => {
+    techUniverseVisible = entries[0].isIntersecting;
+    cancelAnimationFrame(techUniverseFrame);
+    if (techUniverseVisible) techUniverseFrame = requestAnimationFrame(runTechUniverse);
+  }, { threshold: .06 });
+  universeObserver.observe(techUniverse);
+
+  techUniverse.addEventListener('pointermove', event => {
+    if (mobileLaptop.matches || reduceMotion.matches) return;
+    const bounds = techUniverse.getBoundingClientRect();
+    const x = (event.clientX - bounds.left) / bounds.width - .5;
+    const y = (event.clientY - bounds.top) / bounds.height - .5;
+    techSpace.style.setProperty('--space-rx', `${-y * 2.8}deg`);
+    techSpace.style.setProperty('--space-ry', `${x * 4}deg`);
+  }, { passive: true });
+  techUniverse.addEventListener('pointerleave', () => {
+    techSpace.style.setProperty('--space-rx', '0deg');
+    techSpace.style.setProperty('--space-ry', '0deg');
+  });
+}
+
+function updateTechUniverseFromScroll() {
+  if (!techUniverse || !techSpace || !mobileLaptop.matches || reduceMotion.matches) return;
+  const bounds = techUniverse.getBoundingClientRect();
+  const progress = Math.min(1, Math.max(0, (window.innerHeight - bounds.top) / (window.innerHeight + bounds.height)));
+  techSpace.style.setProperty('--space-rx', `${(progress - .5) * 2.2}deg`);
+  techSpace.style.setProperty('--space-ry', `${(progress - .5) * -3}deg`);
+  techSpace.style.setProperty('--space-lift', `${(progress - .5) * -12}px`);
+}
+
+window.addEventListener('scroll', updateTechUniverseFromScroll, { passive: true });
+window.addEventListener('resize', () => {
+  resizeTechCanvas();
+  updateTechUniverseFromScroll();
+  if (techUniverseVisible) drawTechUniverse(performance.now());
+}, { passive: true });
+
+// Encerramento cinematográfico: cor e tipografia respondem ao scroll.
+const cinematicContact = $('#contato');
+let cinematicContactFrame = 0;
+
+function clampContact(value) {
+  return Math.min(1, Math.max(0, value));
+}
+
+function mixContactColor(start, end, progress) {
+  return start.map((value, index) => Math.round(value + (end[index] - value) * progress)).join(',');
+}
+
+function updateCinematicContact() {
+  if (!cinematicContact || reduceMotion.matches) return;
+  cancelAnimationFrame(cinematicContactFrame);
+  cinematicContactFrame = requestAnimationFrame(() => {
+    const bounds = cinematicContact.getBoundingClientRect();
+    const range = Math.max(1, cinematicContact.offsetHeight - window.innerHeight);
+    const progress = clampContact(-bounds.top / range);
+    const colorProgress = clampContact(progress / .78);
+    const reveal = clampContact((progress - .06) / .48);
+    const easedReveal = 1 - Math.pow(1 - reveal, 3);
+    const titleOpacity = clampContact((progress - .03) / .2);
+    const actionsOpacity = clampContact((progress - .48) / .24);
+
+    cinematicContact.style.setProperty('--contact-bg', mixContactColor([13, 17, 12], [199, 255, 0], colorProgress));
+    cinematicContact.style.setProperty('--contact-ink', mixContactColor([245, 244, 237], [32, 37, 27], colorProgress));
+    cinematicContact.style.setProperty('--contact-left', `${(1 - easedReveal) * -34}vw`);
+    cinematicContact.style.setProperty('--contact-right', `${(1 - easedReveal) * 34}vw`);
+    cinematicContact.style.setProperty('--contact-y-one', `${(1 - easedReveal) * 80}px`);
+    cinematicContact.style.setProperty('--contact-y-two', `${(1 - easedReveal) * 110}px`);
+    cinematicContact.style.setProperty('--contact-title-opacity', titleOpacity.toFixed(3));
+    cinematicContact.style.setProperty('--contact-actions-opacity', actionsOpacity.toFixed(3));
+    cinematicContact.style.setProperty('--contact-actions-y', `${(1 - actionsOpacity) * 28}px`);
+  });
+}
+
+window.addEventListener('scroll', updateCinematicContact, { passive: true });
+window.addEventListener('resize', updateCinematicContact, { passive: true });
+
+const copyEmailButton = $('#copyEmailButton');
+const copyEmailStatus = $('#copyEmailStatus');
+let copyEmailTimer = 0;
+
+async function copyPortfolioEmail() {
+  const email = copyEmailButton?.dataset.email || data.email;
+  try {
+    await navigator.clipboard.writeText(email);
+  } catch {
+    const helper = document.createElement('textarea');
+    helper.value = email;
+    helper.setAttribute('readonly', '');
+    helper.style.position = 'fixed';
+    helper.style.opacity = '0';
+    document.body.append(helper);
+    helper.select();
+    document.execCommand('copy');
+    helper.remove();
+  }
+
+  if (!copyEmailStatus || !copyEmailButton) return;
+  clearTimeout(copyEmailTimer);
+  copyEmailStatus.classList.add('is-visible');
+  copyEmailButton.textContent = 'COPIADO ✓';
+  copyEmailTimer = setTimeout(() => {
+    copyEmailStatus.classList.remove('is-visible');
+    copyEmailButton.textContent = 'COPIAR E-MAIL';
+  }, 2400);
+}
+
+copyEmailButton?.addEventListener('click', copyPortfolioEmail);
+
+// Carrega os dados do banco antes de mostrar a página.
+(async () => {
+  await loadData();
+  render();
+  updateScrollProgress();
+  updateActiveNavigation();
+  updateMobileCards();
+  updateCodeStory();
+  updateTechUniverseFromScroll();
+  updateCinematicContact();
+})();
