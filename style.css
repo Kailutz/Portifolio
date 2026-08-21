@@ -61,3 +61,54 @@ body:before{opacity:.28;background-image:radial-gradient(ellipse at 10% 20%,tran
 @keyframes laptopFloat{0%,100%{transform:translate3d(0,-7px,0)}50%{transform:translate3d(0,12px,0)}}@keyframes terminalLine{to{opacity:1;transform:none}}@keyframes terminalBlink{50%{opacity:0}}
 @media(max-width:760px){.code-lab{min-height:720px;padding:84px 0 54px}.lab-heading{display:block}.lab-heading h2{margin-top:22px;text-align:left;font-size:clamp(54px,16vw,82px);line-height:.96}.lab-background-type{inset:28% -4% auto;font-size:35vw;line-height:.75}.laptop-stage{width:100%;height:390px;margin-top:34px}.laptop-tilt{width:91vw}.laptop-screen{width:92%;border-width:6px;border-bottom-width:11px;border-radius:12px 12px 6px 6px}.terminal-bar{height:34px;padding:0 10px;font-size:8px}.terminal{padding:20px 17px;font-size:clamp(8px,2.55vw,11px);line-height:1.9}.laptop-base{height:25px}.lab-caption{margin-top:-18px;font-size:8px}}
 @media(prefers-reduced-motion:reduce){.laptop-float,.terminal-cursor{animation:none!important}.laptop-tilt{transform:none!important;transition:none!important}.terminal-ready .terminal-line{opacity:1;transform:none}.terminal-run .terminal-line{animation:none}}
+
+/* Notebook em três quartos: teclado visível e acabamento alinhado à identidade KP/ */
+.laptop-stage{height:clamp(560px,61vw,740px);perspective:1850px;perspective-origin:50% 42%}
+.laptop-tilt{--rx:1deg;--ry:13deg;width:min(820px,81vw)}
+.laptop{filter:drop-shadow(-28px 48px 40px #000a)}
+.laptop-screen{width:86%;border:8px solid #252a23;border-bottom-width:13px;border-radius:16px 16px 7px 7px;background:#090c08;box-shadow:inset 0 0 0 1px #ffffff1a,0 0 0 1px #c7ff0028,0 0 70px #c7ff0014;transform:translateZ(36px)}
+.laptop-screen:before{content:'';position:absolute;z-index:3;top:5px;left:50%;width:5px;height:5px;transform:translateX(-50%);border-radius:50%;background:#60665d;box-shadow:0 0 0 2px #11140f}
+.laptop-hinge{position:relative;z-index:4;width:83%;height:14px;margin:-7px auto 0;border-radius:4px;background:linear-gradient(90deg,#1a1e18 0 9%,#626a5d 18% 82%,#1a1e18 91%);transform:translateZ(21px);box-shadow:0 3px 8px #000}
+.laptop-deck{position:relative;width:102%;height:255px;margin:-2px -1% 0;padding:25px 7% 20px;border:1px solid #899185;border-radius:7px 7px 32px 32px;background:linear-gradient(155deg,#7b8378 0%,#4a5148 32%,#292f28 76%);transform-origin:50% 0;transform:rotateX(53deg) translateZ(18px);transform-style:preserve-3d;box-shadow:inset 0 1px #ffffff65,inset 0 -7px 13px #1118,0 31px 29px #0008}
+.laptop-deck:before{content:'';position:absolute;inset:8px 4.5% auto;height:2px;background:linear-gradient(90deg,transparent,var(--lab-lime),transparent);opacity:.55}
+.laptop-deck:after{content:'';position:absolute;left:50%;bottom:-7px;width:17%;height:9px;transform:translateX(-50%);border-radius:0 0 12px 12px;background:#171b16;box-shadow:inset 0 1px #ffffff1f}
+.keyboard{display:grid;grid-template-columns:repeat(12,1fr);gap:7px;width:100%;height:118px;transform:translateZ(7px)}
+.keyboard span{position:relative;min-width:0;border:1px solid #111510;border-radius:4px;background:linear-gradient(145deg,#111510,#262b24);box-shadow:inset 0 1px #ffffff18,0 3px 0 #0b0d0a}
+.keyboard span:after{content:'';position:absolute;top:27%;left:28%;width:23%;height:2px;border-radius:2px;background:#8d958933;box-shadow:0 5px #8d95891f}
+.keyboard span:nth-last-child(-n+11){transform:translateX(4%)}
+.trackpad{width:35%;height:72px;margin:15px auto 0;border:1px solid #92998f;border-radius:8px;background:#4a5148aa;box-shadow:inset 0 0 0 1px #30362e;transform:translateZ(4px)}
+.deck-mark{position:absolute;right:4.5%;bottom:22px;color:var(--lab-lime);font:700 13px var(--mono);letter-spacing:-.05em;transform:translateZ(5px)}
+.lab-caption{margin-top:-34px}
+@media(max-width:760px){.laptop-stage{height:480px;perspective:1200px;perspective-origin:50% 40%}.laptop-tilt{--rx:1deg;--ry:10deg;width:95vw}.laptop-screen{width:88%;border-width:5px;border-bottom-width:9px}.laptop-hinge{height:9px;margin-top:-5px}.laptop-deck{height:165px;padding:15px 6% 10px;border-radius:5px 5px 22px 22px;transform:rotateX(52deg) translateZ(13px)}.keyboard{height:76px;gap:4px}.keyboard span{border-radius:2px}.trackpad{height:43px;margin-top:9px}.deck-mark{right:4%;bottom:13px;font-size:9px}.lab-caption{margin-top:-28px}}
+@media(prefers-reduced-motion:reduce){.laptop-tilt{transform:rotateX(1deg) rotateY(13deg)!important}}
+
+/* Cena de produto: iluminação de estúdio, reflexo e teclado RGB sutil */
+.code-lab:before{background:radial-gradient(ellipse at 58% 48%,#ff624026 0 7%,#a72cff14 18%,transparent 43%),radial-gradient(ellipse at 35% 63%,#c7ff0014,transparent 36%),linear-gradient(115deg,transparent 0 48%,#ffffff08 48.15% 48.3%,transparent 48.45%)}
+.laptop-stage:before{content:'';position:absolute;z-index:-1;left:50%;bottom:6%;width:92%;height:42%;transform:translateX(-50%) perspective(900px) rotateX(67deg);transform-origin:bottom;border:1px solid #ffffff0d;border-radius:50%;background:linear-gradient(90deg,#c7ff0005,#ff4a8e13 45%,#704dff10 72%,transparent),linear-gradient(#31362e99,#10130f);box-shadow:inset 0 1px #ffffff17,0 42px 70px #000b}
+.laptop-stage:after{content:'';position:absolute;z-index:-1;left:50%;bottom:9%;width:66%;height:19%;transform:translateX(-46%) skewX(-8deg);border-radius:50%;background:radial-gradient(ellipse,#000c,transparent 68%);filter:blur(16px)}
+.laptop-screen{background:radial-gradient(circle at 74% 42%,#ff466a33,transparent 26%),radial-gradient(circle at 25% 72%,#694cff2b,transparent 30%),#080a07;animation:screenAtmosphere 8s ease-in-out infinite;box-shadow:inset 0 0 0 1px #ffffff20,0 0 0 1px #c7ff0033,18px 12px 65px #ff3e7d18,-14px -8px 50px #c7ff0012}
+.terminal{position:relative;isolation:isolate;height:calc(100% - 42px);background:linear-gradient(112deg,#080b08eb,#10130de6 54%,#240d22d4);text-shadow:0 0 18px #c7ff0042}
+.terminal:before{content:'KP/';position:absolute;z-index:-1;right:4%;bottom:-8%;font:400 clamp(90px,15vw,180px)/1 var(--display);letter-spacing:-.05em;color:#c7ff00;opacity:.035;transform:skewX(-7deg)}
+.terminal:after{content:'';position:absolute;z-index:-1;inset:0;background:linear-gradient(90deg,transparent 0 48%,#ffffff09 50%,transparent 52%);transform:translateX(-100%);animation:screenScan 5.5s ease-in-out infinite}
+.laptop-deck{background:linear-gradient(150deg,#70786d 0%,#363c34 39%,#171b16 83%);box-shadow:inset 0 1px #ffffff75,inset 0 -7px 13px #080a08b5,0 34px 34px #0009}
+.keyboard{position:relative}.keyboard span:nth-child(4n+1){box-shadow:inset 0 1px #ffffff18,0 3px 0 #0b0d0a,0 0 9px #c7ff0038}.keyboard span:nth-child(4n+2){box-shadow:inset 0 1px #ffffff18,0 3px 0 #0b0d0a,0 0 9px #7150ff38}.keyboard span:nth-child(4n+3){box-shadow:inset 0 1px #ffffff18,0 3px 0 #0b0d0a,0 0 9px #ff477e35}.keyboard span:nth-child(4n){box-shadow:inset 0 1px #ffffff18,0 3px 0 #0b0d0a,0 0 9px #4fcfff32}
+.keyboard:after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,#c7ff0010,#7150ff12,#ff477e14,#4fcfff0e);filter:blur(5px);animation:keyboardGlow 6s ease-in-out infinite}
+.trackpad{background:linear-gradient(135deg,#555d53aa,#2d332caa);box-shadow:inset 0 0 0 1px #20251f,0 0 20px #ff477e0c}
+@keyframes screenAtmosphere{0%,100%{filter:saturate(.85) brightness(.9)}50%{filter:saturate(1.2) brightness(1.08)}}@keyframes screenScan{0%,55%{transform:translateX(-110%)}82%,100%{transform:translateX(110%)}}@keyframes keyboardGlow{0%,100%{opacity:.45}50%{opacity:.95}}
+@media(max-width:760px){.terminal{height:calc(100% - 34px)}.laptop-stage:before{bottom:7%;width:108%;height:36%}.laptop-stage:after{bottom:10%;width:82%}}
+@media(prefers-reduced-motion:reduce){.laptop-screen,.terminal:after,.keyboard:after{animation:none!important}}
+
+/* Enquadramento final: vista diagonal, mais profundidade e materiais realistas */
+.laptop-stage{perspective:1180px;perspective-origin:47% 38%}
+.laptop-tilt{--rx:3.5deg;--ry:24deg;width:min(850px,82vw)}
+.laptop{filter:drop-shadow(-42px 54px 36px #000c) drop-shadow(18px 8px 30px #c7ff000c)}
+.laptop-screen{border-color:#20251f;border-left-color:#596057;border-bottom-color:#151914;box-shadow:inset 0 0 0 1px #ffffff2b,inset 12px 0 20px #ffffff08,0 0 0 1px #c7ff0038,22px 18px 70px #ff3e7d1a,-18px -10px 55px #c7ff0018}
+.laptop-screen:after{content:'';position:absolute;z-index:4;inset:0;pointer-events:none;background:linear-gradient(112deg,#ffffff16 0%,transparent 17% 68%,#ffffff08 69%,transparent 78%);mix-blend-mode:screen;opacity:.55}
+.laptop-hinge{background:linear-gradient(90deg,#10130f 0 8%,#7d8678 17%,#343a32 48%,#71796d 82%,#111410 92%);box-shadow:0 4px 9px #000b,inset 0 1px #ffffff38}
+.laptop-deck{transform:rotateX(57deg) translateZ(25px);background:linear-gradient(145deg,#838b80 0%,#4c544a 27%,#252b24 67%,#111510 100%);border-color:#9aa397;box-shadow:inset 0 2px #ffffff7d,inset 9px 0 18px #ffffff0b,inset 0 -10px 18px #070907c7,0 42px 38px #000b}
+.keyboard{transform:translateZ(11px) perspective(600px) rotateX(-2deg)}
+.keyboard span{border-color:#090c09;background:linear-gradient(145deg,#2d332c 0%,#121611 45%,#080a08 100%);box-shadow:inset 0 1px #ffffff25,inset 1px 0 #ffffff0c,0 4px 0 #050705,0 5px 7px #0009}
+.trackpad{border-color:#a5ada2;background:linear-gradient(135deg,#626a60aa,#252b25d9);box-shadow:inset 1px 1px #ffffff2e,inset -1px -1px #1117,0 7px 13px #0003;transform:translateZ(8px)}
+.laptop-stage:after{transform:translateX(-43%) skewX(-14deg);width:72%;filter:blur(20px)}
+@media(max-width:760px){.laptop-stage{perspective:900px;perspective-origin:44% 38%}.laptop-tilt{--rx:3deg;--ry:18deg;width:98vw}.laptop-deck{transform:rotateX(56deg) translateZ(18px)}.laptop-screen:after{opacity:.4}}
+@media(prefers-reduced-motion:reduce){.laptop-tilt{transform:rotateX(3.5deg) rotateY(24deg)!important}}
