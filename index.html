@@ -4,103 +4,321 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Portfólio acadêmico de Kaiqui" />
+
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="pt_BR" />
     <meta property="og:url" content="https://kailutz.github.io/Portifolio/" />
     <meta property="og:title" content="Portfólio acadêmico — Kaiqui" />
-    <meta property="og:description" content="Projetos, aprendizados e desafios da minha trajetória na programação." />
-    <meta property="og:image" content="https://kailutz.github.io/Portifolio/og-image.png" />
+    <meta
+      property="og:description"
+      content="Projetos, aprendizados e desafios da minha trajetória na programação."
+    />
+    <meta
+      property="og:image"
+      content="https://kailutz.github.io/Portifolio/og-image.png"
+    />
     <meta property="og:image:width" content="1730" />
     <meta property="og:image:height" content="909" />
-    <meta property="og:image:alt" content="KP/ — Portfólio acadêmico de Kaiqui" />
+    <meta
+      property="og:image:alt"
+      content="KP/ — Portfólio acadêmico de Kaiqui"
+    />
+
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Portfólio acadêmico — Kaiqui" />
-    <meta name="twitter:description" content="Projetos, aprendizados e desafios da minha trajetória na programação." />
-    <meta name="twitter:image" content="https://kailutz.github.io/Portifolio/og-image.png" />
+    <meta
+      name="twitter:description"
+      content="Projetos, aprendizados e desafios da minha trajetória na programação."
+    />
+    <meta
+      name="twitter:image"
+      content="https://kailutz.github.io/Portifolio/og-image.png"
+    />
+
     <title>Meu portfólio acadêmico</title>
+
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="style.css?v=20260821-finale1" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css?v=20260821-social1" />
   </head>
+
   <body>
     <header class="topbar">
-      <a class="brand" href="#inicio" aria-label="Página inicial">KP<span>/</span></a>
+      <a class="brand" href="#inicio" aria-label="Página inicial">
+        KP<span>/</span>
+      </a>
+
       <nav aria-label="Navegação principal">
         <a href="#projetos">Projetos</a>
         <a href="#sobre">Jornada</a>
         <a href="#contato">Contato</a>
       </nav>
-      <button id="adminButton" class="admin-link" type="button">Área do dono</button>
+
+      <button id="adminButton" class="admin-link" type="button">
+        Área do dono
+      </button>
     </header>
-    <div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
+
+    <div class="scroll-progress" aria-hidden="true">
+      <span id="scrollProgress"></span>
+    </div>
 
     <main id="inicio">
       <section class="hero wrap">
-        <div class="hero-rail" aria-hidden="true"><span>PORTFÓLIO ACADÊMICO</span><i></i><span>2026</span></div>
+        <div class="hero-rail" aria-hidden="true">
+          <span>PORTFÓLIO ACADÊMICO</span>
+          <i></i>
+          <span>2026</span>
+        </div>
+
         <div class="hero-content">
-          <p class="eyebrow">EM CONSTRUÇÃO DESDE O PRIMEIRO SEMESTRE</p>
-          <h1><span>IDEIAS</span><span class="outline">EM</span><span><em>CÓDIGO.</em></span></h1>
-          <p id="intro" class="hero-copy">Aqui registro os projetos, aprendizados e desafios da minha trajetória na faculdade.</p>
+          <p class="eyebrow">
+            EM CONSTRUÇÃO DESDE O PRIMEIRO SEMESTRE
+          </p>
+
+          <h1>
+            <span>IDEIAS</span>
+            <span class="outline">EM</span>
+            <span><em>CÓDIGO.</em></span>
+          </h1>
+
+          <p id="intro" class="hero-copy">
+            Aqui registro os projetos, aprendizados e desafios da minha
+            trajetória na faculdade.
+          </p>
+
           <div class="hero-actions">
-            <a class="button button-primary" href="#projetos">Explorar projetos <span>↓</span></a>
-            <a id="githubHero" class="button button-ghost" href="https://github.com/" target="_blank" rel="noreferrer">GitHub ↗︎</a>
+            <a class="button button-primary" href="#projetos">
+              Explorar projetos <span>↓</span>
+            </a>
+
+            <a
+              id="githubHero"
+              class="button button-ghost"
+              href="https://github.com/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              GitHub ↗︎
+            </a>
           </div>
         </div>
-        <aside class="hero-marker" aria-label="Resumo do portfólio"><span>STATUS</span><strong>APRENDENDO<br />SEM PARAR</strong><div class="marker-pulse"></div></aside>
+
+        <aside class="hero-marker" aria-label="Resumo do portfólio">
+          <span>STATUS</span>
+
+          <strong>
+            APRENDENDO
+            <br />
+            SEM PARAR
+          </strong>
+
+          <div class="marker-pulse"></div>
+        </aside>
+
         <div class="stats" aria-label="Resumo do portfólio">
-          <div><strong id="projectCount">0</strong><span>projetos lançados</span></div>
-          <div><strong id="techCount">0</strong><span>tecnologias</span></div>
-          <div><strong>∞</strong><span>próximas ideias</span></div>
+          <div>
+            <strong id="projectCount">0</strong>
+            <span>projetos lançados</span>
+          </div>
+
+          <div>
+            <strong id="techCount">0</strong>
+            <span>tecnologias</span>
+          </div>
+
+          <div>
+            <strong>∞</strong>
+            <span>próximas ideias</span>
+          </div>
         </div>
-        <a class="scroll-cue" href="#projetos"><span>ROLE PARA ACELERAR</span><b>↓</b></a>
+
+        <a class="scroll-cue" href="#projetos">
+          <span>ROLE PARA ACELERAR</span>
+          <b>↓</b>
+        </a>
       </section>
 
       <section id="projetos" class="projects wrap">
-        <div class="section-heading"><div><p class="eyebrow">01 / O QUE ESTOU CRIANDO</p><h2>Projetos em<br />destaque.</h2></div><span id="projectLabel">00 projetos</span></div>
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">01 / O QUE ESTOU CRIANDO</p>
+
+            <h2>
+              Projetos em
+              <br />
+              destaque.
+            </h2>
+          </div>
+
+          <span id="projectLabel">00 projetos</span>
+        </div>
+
         <div id="projectGrid" class="project-grid"></div>
       </section>
 
       <section id="sobre" class="about wrap">
         <p class="eyebrow">02 / SOBRE MIM</p>
-        <div><h2 id="aboutTitle">Um estudante curioso,<br />sempre em movimento.</h2><p id="aboutText">Este espaço é meu diário de construção. Cada projeto representa uma nova habilidade, uma ideia explorada ou um problema que aprendi a resolver.</p></div>
+
+        <div>
+          <h2 id="aboutTitle">
+            Um estudante curioso,
+            <br />
+            sempre em movimento.
+          </h2>
+
+          <p id="aboutText">
+            Este espaço é meu diário de construção. Cada projeto representa
+            uma nova habilidade, uma ideia explorada ou um problema que
+            aprendi a resolver.
+          </p>
+        </div>
       </section>
 
-      <section id="laboratorio" class="code-lab" aria-labelledby="labTitle">
-        <div class="lab-background-type" aria-hidden="true"><span>BUILD</span><span>LEARN</span><span>REPEAT</span></div>
+      <section
+        id="laboratorio"
+        class="code-lab"
+        aria-labelledby="labTitle"
+      >
+        <div class="lab-background-type" aria-hidden="true">
+          <span>BUILD</span>
+          <span>LEARN</span>
+          <span>REPEAT</span>
+        </div>
+
         <div class="lab-heading wrap">
           <p class="eyebrow">03 / MEU AMBIENTE</p>
-          <h2 id="labTitle">Onde ideias<br />viram código.</h2>
+
+          <h2 id="labTitle">
+            Onde ideias
+            <br />
+            viram código.
+          </h2>
         </div>
 
         <div class="laptop-stage" id="laptopStage">
           <div class="laptop-tilt" id="laptopTilt">
             <div class="laptop-float">
-              <div class="laptop" aria-label="Notebook exibindo um terminal de programação animado">
+              <div
+                class="laptop"
+                aria-label="Notebook exibindo um terminal de programação animado"
+              >
                 <div class="laptop-screen">
                   <div class="terminal-bar" aria-hidden="true">
-                    <span class="terminal-dots"><i></i><i></i><i></i></span>
+                    <span class="terminal-dots">
+                      <i></i>
+                      <i></i>
+                      <i></i>
+                    </span>
+
                     <span>main.py — kaiqui@portfolio</span>
                     <b>KP/</b>
                   </div>
+
                   <div class="terminal" aria-hidden="true">
-                    <p class="terminal-line line-1"><span class="py-keyword">from</span> portfolio <span class="py-keyword">import</span> Project</p>
-                    <p class="terminal-line line-2">app = Project(owner=<span class="py-string">"Kaiqui"</span>)</p>
-                    <p class="terminal-line line-3">app.add(skill=<span class="py-string">"Python"</span>, level=<span class="py-number">1</span>)</p>
-                    <p class="terminal-line line-4"><span class="py-comment"># transformando ideias em código</span></p>
-                    <p class="terminal-line line-5">app.build(mode=<span class="py-string">"always_learning"</span>) <span class="terminal-cursor"></span></p>
+                    <p class="terminal-line line-1">
+                      <span class="py-keyword">from</span>
+                      portfolio
+                      <span class="py-keyword">import</span>
+                      Project
+                    </p>
+
+                    <p class="terminal-line line-2">
+                      app = Project(owner=<span class="py-string">"Kaiqui"</span>)
+                    </p>
+
+                    <p class="terminal-line line-3">
+                      app.add(skill=<span class="py-string">"Python"</span>,
+                      level=<span class="py-number">1</span>)
+                    </p>
+
+                    <p class="terminal-line line-4">
+                      <span class="py-comment">
+                        # transformando ideias em código
+                      </span>
+                    </p>
+
+                    <p class="terminal-line line-5">
+                      app.build(mode=<span class="py-string">"always_learning"</span>)
+                      <span class="terminal-cursor"></span>
+                    </p>
                   </div>
                 </div>
+
                 <div class="laptop-hinge" aria-hidden="true"></div>
+
                 <div class="laptop-deck" aria-hidden="true">
                   <div class="keyboard">
-                    <span data-key="esc"></span><span data-key="1"></span><span data-key="2"></span><span data-key="3"></span><span data-key="4"></span><span data-key="5"></span><span data-key="6"></span><span data-key="7"></span><span data-key="8"></span><span data-key="9"></span><span data-key="0"></span><span data-key="⌫"></span>
-                    <span data-key="tab"></span><span data-key="Q"></span><span data-key="W"></span><span data-key="E"></span><span data-key="R"></span><span data-key="T"></span><span data-key="Y"></span><span data-key="U"></span><span data-key="I"></span><span data-key="O"></span><span data-key="P"></span><span data-key="["></span>
-                    <span data-key="caps"></span><span data-key="A"></span><span data-key="S"></span><span data-key="D"></span><span data-key="F"></span><span data-key="G"></span><span data-key="H"></span><span data-key="J"></span><span data-key="K"></span><span data-key="L"></span><span data-key=";"></span><span data-key="enter"></span>
-                    <span data-key="shift"></span><span data-key="Z"></span><span data-key="X"></span><span data-key="C"></span><span data-key="V"></span><span data-key="B"></span><span data-key="N"></span><span data-key="M"></span><span data-key=", "></span><span data-key="."></span><span data-key="/"></span><span data-key="shift"></span>
-                    <span data-key="ctrl"></span><span data-key="fn"></span><span data-key="alt"></span><span data-key="cmd"></span><span class="space-key"></span><span data-key="cmd"></span><span data-key="alt"></span><span data-key="←"></span><span data-key="→"></span>
+                    <span data-key="esc"></span>
+                    <span data-key="1"></span>
+                    <span data-key="2"></span>
+                    <span data-key="3"></span>
+                    <span data-key="4"></span>
+                    <span data-key="5"></span>
+                    <span data-key="6"></span>
+                    <span data-key="7"></span>
+                    <span data-key="8"></span>
+                    <span data-key="9"></span>
+                    <span data-key="0"></span>
+                    <span data-key="⌫"></span>
+
+                    <span data-key="tab"></span>
+                    <span data-key="Q"></span>
+                    <span data-key="W"></span>
+                    <span data-key="E"></span>
+                    <span data-key="R"></span>
+                    <span data-key="T"></span>
+                    <span data-key="Y"></span>
+                    <span data-key="U"></span>
+                    <span data-key="I"></span>
+                    <span data-key="O"></span>
+                    <span data-key="P"></span>
+                    <span data-key="["></span>
+
+                    <span data-key="caps"></span>
+                    <span data-key="A"></span>
+                    <span data-key="S"></span>
+                    <span data-key="D"></span>
+                    <span data-key="F"></span>
+                    <span data-key="G"></span>
+                    <span data-key="H"></span>
+                    <span data-key="J"></span>
+                    <span data-key="K"></span>
+                    <span data-key="L"></span>
+                    <span data-key=";"></span>
+                    <span data-key="enter"></span>
+
+                    <span data-key="shift"></span>
+                    <span data-key="Z"></span>
+                    <span data-key="X"></span>
+                    <span data-key="C"></span>
+                    <span data-key="V"></span>
+                    <span data-key="B"></span>
+                    <span data-key="N"></span>
+                    <span data-key="M"></span>
+                    <span data-key=", "></span>
+                    <span data-key="."></span>
+                    <span data-key="/"></span>
+                    <span data-key="shift"></span>
+
+                    <span data-key="ctrl"></span>
+                    <span data-key="fn"></span>
+                    <span data-key="alt"></span>
+                    <span data-key="cmd"></span>
+                    <span class="space-key"></span>
+                    <span data-key="cmd"></span>
+                    <span data-key="alt"></span>
+                    <span data-key="←"></span>
+                    <span data-key="→"></span>
                   </div>
+
                   <div class="trackpad"></div>
                   <div class="deck-mark">KP/</div>
                 </div>
@@ -109,19 +327,35 @@
           </div>
         </div>
 
-        <p class="lab-caption">DESIGN / CÓDIGO / MOVIMENTO <span>↗︎</span></p>
+        <p class="lab-caption">
+          DESIGN / CÓDIGO / MOVIMENTO <span>↗︎</span>
+        </p>
       </section>
 
-      <section id="codeStory" class="code-story" aria-labelledby="codeStoryTitle">
+      <section
+        id="codeStory"
+        class="code-story"
+        aria-labelledby="codeStoryTitle"
+      >
         <div class="code-story-sticky">
           <div class="code-story-heading">
             <p class="eyebrow">04 / POR TRÁS DOS PROJETOS</p>
-            <h2 id="codeStoryTitle">Código em<br />movimento.</h2>
+
+            <h2 id="codeStoryTitle">
+              Código em
+              <br />
+              movimento.
+            </h2>
           </div>
 
           <div class="code-story-stage">
             <article class="code-scene scene-python">
-              <div class="code-window-bar"><span><i></i><i></i><i></i></span><b>portfolio_engine.py</b><em>PYTHON</em></div>
+              <div class="code-window-bar">
+                <span><i></i><i></i><i></i></span>
+                <b>portfolio_engine.py</b>
+                <em>PYTHON</em>
+              </div>
+
               <pre><code><span class="code-row"><i>01</i><span><b class="tok-key">class</b> <b class="tok-fn">Portfolio</b>:</span></span>
 <span class="code-row"><i>02</i><span>    <b class="tok-key">def</b> <b class="tok-fn">__init__</b>(self, owner):</span></span>
 <span class="code-row"><i>03</i><span>        self.owner = owner</span></span>
@@ -133,7 +367,12 @@
             </article>
 
             <article class="code-scene scene-javascript">
-              <div class="code-window-bar"><span><i></i><i></i><i></i></span><b>motion.js</b><em>JAVASCRIPT</em></div>
+              <div class="code-window-bar">
+                <span><i></i><i></i><i></i></span>
+                <b>motion.js</b>
+                <em>JAVASCRIPT</em>
+              </div>
+
               <pre><code><span class="code-row"><i>01</i><span><b class="tok-key">const</b> sections = document.<b class="tok-fn">querySelectorAll</b>(<b class="tok-str">'section'</b>);</span></span>
 <span class="code-row"><i>02</i><span></span></span>
 <span class="code-row"><i>03</i><span><b class="tok-key">const</b> observer = <b class="tok-key">new</b> <b class="tok-fn">IntersectionObserver</b>(entries =&gt; {</span></span>
@@ -146,7 +385,12 @@
             </article>
 
             <article class="code-scene scene-sql">
-              <div class="code-window-bar"><span><i></i><i></i><i></i></span><b>projects.sql</b><em>DATABASE</em></div>
+              <div class="code-window-bar">
+                <span><i></i><i></i><i></i></span>
+                <b>projects.sql</b>
+                <em>DATABASE</em>
+              </div>
+
               <pre><code><span class="code-row"><i>01</i><span><b class="tok-key">SELECT</b></span></span>
 <span class="code-row"><i>02</i><span>  title,</span></span>
 <span class="code-row"><i>03</i><span>  technologies,</span></span>
@@ -159,7 +403,12 @@
             </article>
 
             <article class="code-scene scene-css">
-              <div class="code-window-bar"><span><i></i><i></i><i></i></span><b>identity.css</b><em>CSS</em></div>
+              <div class="code-window-bar">
+                <span><i></i><i></i><i></i></span>
+                <b>identity.css</b>
+                <em>CSS</em>
+              </div>
+
               <pre><code><span class="code-row"><i>01</i><span><b class="tok-fn">:root</b> {</span></span>
 <span class="code-row"><i>02</i><span>  --energy: <b class="tok-str">#c7ff00</b>;</span></span>
 <span class="code-row"><i>03</i><span>  --focus: <b class="tok-str">curiosity</b>;</span></span>
@@ -175,65 +424,166 @@
 
           <div class="code-story-status" aria-hidden="true">
             <span><b id="codeStoryCurrent">01</b> / 04</span>
-            <div class="code-story-dots"><i class="is-active"></i><i></i><i></i><i></i></div>
+
+            <div class="code-story-dots">
+              <i class="is-active"></i>
+              <i></i>
+              <i></i>
+              <i></i>
+            </div>
+
             <small>ROLE PARA TROCAR A TELA</small>
           </div>
         </div>
       </section>
 
-      <section id="universo" class="tech-universe" aria-labelledby="universeTitle">
+      <section
+        id="universo"
+        class="tech-universe"
+        aria-labelledby="universeTitle"
+      >
         <div class="tech-universe-heading">
           <p class="eyebrow">05 / UNIVERSO DE TECNOLOGIAS</p>
-          <h2 id="universeTitle">Tudo se<br />conecta.</h2>
-          <p>Cada tecnologia é uma peça do que estou construindo. Passe o mouse ou toque para explorar.</p>
+
+          <h2 id="universeTitle">
+            Tudo se
+            <br />
+            conecta.
+          </h2>
+
+          <p>
+            Cada tecnologia é uma peça do que estou construindo. Passe o mouse
+            ou toque para explorar.
+          </p>
         </div>
 
         <div id="techSpace" class="tech-space">
           <canvas id="techCanvas" aria-hidden="true"></canvas>
+
           <div class="tech-orbit orbit-one" aria-hidden="true"></div>
           <div class="tech-orbit orbit-two" aria-hidden="true"></div>
 
-          <div id="techCore" class="tech-core" aria-label="Núcleo do universo de tecnologias">
+          <div
+            id="techCore"
+            class="tech-core"
+            aria-label="Núcleo do universo de tecnologias"
+          >
             <span>KP<em>/</em></span>
             <small>EM EVOLUÇÃO</small>
           </div>
 
-          <button class="tech-node is-active" type="button" style="--x:18%;--y:25%;--delay:-1s" data-name="Python" data-copy="Lógica, automação e construção de soluções que transformam ideias em projetos funcionais.">
-            <span>PY</span><b>Python</b><small>Lógica</small>
+          <button
+            class="tech-node is-active"
+            type="button"
+            style="--x: 18%; --y: 25%; --delay: -1s"
+            data-name="Python"
+            data-copy="Lógica, automação e construção de soluções que transformam ideias em projetos funcionais."
+          >
+            <span>PY</span>
+            <b>Python</b>
+            <small>Lógica</small>
           </button>
-          <button class="tech-node" type="button" style="--x:80%;--y:23%;--delay:-3.2s" data-name="HTML" data-copy="Estruturas claras, acessíveis e preparadas para funcionar bem em diferentes telas.">
-            <span>&lt;/&gt;</span><b>HTML</b><small>Estrutura</small>
+
+          <button
+            class="tech-node"
+            type="button"
+            style="--x: 80%; --y: 23%; --delay: -3.2s"
+            data-name="HTML"
+            data-copy="Estruturas claras, acessíveis e preparadas para funcionar bem em diferentes telas."
+          >
+            <span>&lt;/&gt;</span>
+            <b>HTML</b>
+            <small>Estrutura</small>
           </button>
-          <button class="tech-node" type="button" style="--x:89%;--y:55%;--delay:-5.1s" data-name="CSS" data-copy="Identidade visual, responsividade, animações e experiências que dão personalidade à interface.">
-            <span>CSS</span><b>CSS</b><small>Visual</small>
+
+          <button
+            class="tech-node"
+            type="button"
+            style="--x: 89%; --y: 55%; --delay: -5.1s"
+            data-name="CSS"
+            data-copy="Identidade visual, responsividade, animações e experiências que dão personalidade à interface."
+          >
+            <span>CSS</span>
+            <b>CSS</b>
+            <small>Visual</small>
           </button>
-          <button class="tech-node" type="button" style="--x:72%;--y:81%;--delay:-2.3s" data-name="JavaScript" data-copy="Interações, comportamento e movimento para transformar páginas estáticas em experiências vivas.">
-            <span>JS</span><b>JavaScript</b><small>Interação</small>
+
+          <button
+            class="tech-node"
+            type="button"
+            style="--x: 72%; --y: 81%; --delay: -2.3s"
+            data-name="JavaScript"
+            data-copy="Interações, comportamento e movimento para transformar páginas estáticas em experiências vivas."
+          >
+            <span>JS</span>
+            <b>JavaScript</b>
+            <small>Interação</small>
           </button>
-          <button class="tech-node" type="button" style="--x:29%;--y:83%;--delay:-4.4s" data-name="Banco de dados" data-copy="Organização e persistência das informações que mantêm os projetos conectados aos dados.">
-            <span>DB</span><b>Database</b><small>Dados</small>
+
+          <button
+            class="tech-node"
+            type="button"
+            style="--x: 29%; --y: 83%; --delay: -4.4s"
+            data-name="Banco de dados"
+            data-copy="Organização e persistência das informações que mantêm os projetos conectados aos dados."
+          >
+            <span>DB</span>
+            <b>Database</b>
+            <small>Dados</small>
           </button>
-          <button class="tech-node" type="button" style="--x:10%;--y:57%;--delay:-6.2s" data-name="Git e GitHub" data-copy="Versionamento, evolução constante e um histórico real de cada etapa da minha jornada.">
-            <span>GIT</span><b>GitHub</b><small>Versões</small>
+
+          <button
+            class="tech-node"
+            type="button"
+            style="--x: 10%; --y: 57%; --delay: -6.2s"
+            data-name="Git e GitHub"
+            data-copy="Versionamento, evolução constante e um histórico real de cada etapa da minha jornada."
+          >
+            <span>GIT</span>
+            <b>GitHub</b>
+            <small>Versões</small>
           </button>
         </div>
 
         <aside class="tech-info" aria-live="polite">
-          <span><b id="techInfoNumber">01</b> / 06</span>
-          <div><p id="techInfoName">Python</p><small id="techInfoCopy">Lógica, automação e construção de soluções que transformam ideias em projetos funcionais.</small></div>
+          <span>
+            <b id="techInfoNumber">01</b> / 06
+          </span>
+
+          <div>
+            <p id="techInfoName">Python</p>
+
+            <small id="techInfoCopy">
+              Lógica, automação e construção de soluções que transformam
+              ideias em projetos funcionais.
+            </small>
+          </div>
+
           <i>SELECIONADO</i>
         </aside>
       </section>
 
-      <section id="contato" class="cinematic-contact" aria-labelledby="contactTitle">
+      <section
+        id="contato"
+        class="cinematic-contact"
+        aria-labelledby="contactTitle"
+      >
         <div class="contact-sticky">
           <div class="contact-grid" aria-hidden="true"></div>
           <div class="contact-logo" aria-hidden="true">KP/</div>
-          <span class="contact-tech tech-left" aria-hidden="true">END_SEQUENCE / 06</span>
-          <span class="contact-tech tech-right" aria-hidden="true">STATUS: READY_TO_CONNECT</span>
+
+          <span class="contact-tech tech-left" aria-hidden="true">
+            END_SEQUENCE / 06
+          </span>
+
+          <span class="contact-tech tech-right" aria-hidden="true">
+            STATUS: READY_TO_CONNECT
+          </span>
 
           <div class="contact-content">
-            <p class="contact-intro">CHEGAMOS AO FINAL. MAS PODE SER O COMEÇO DE ALGO NOVO.</p>
+            <p class="contact-intro">
+              CHEGAMOS AO FINAL. MAS PODE SER O COMEÇO DE ALGO NOVO.
+            </p>
 
             <h2 id="contactTitle" class="contact-title">
               <span class="contact-line-one">O PRÓXIMO PROJETO</span>
@@ -241,16 +591,66 @@
             </h2>
 
             <div class="contact-actions">
-              <a id="emailLink" class="button contact-main-button" data-fixed-label="true" href="mailto:seuemail@exemplo.com">VAMOS CONVERSAR ↗</a>
+              <a
+                id="emailLink"
+                class="button contact-main-button"
+                data-fixed-label="true"
+                href="mailto:seuemail@exemplo.com"
+              >
+                VAMOS CONVERSAR
+                <span class="external-arrow" aria-hidden="true"></span>
+              </a>
 
               <div class="contact-links">
-                <button id="copyEmailButton" type="button" data-email="seuemail@exemplo.com">COPIAR E-MAIL</button>
-                <a id="contactGithub" href="https://github.com/" target="_blank" rel="noreferrer">GITHUB ↗</a>
-                <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LINKEDIN ↗</a>
-                <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">INSTAGRAM ↗</a>
+                <button
+                  id="copyEmailButton"
+                  type="button"
+                  data-email="seuemail@exemplo.com"
+                >
+                  COPIAR E-MAIL
+                </button>
+
+                <a
+                  id="contactGithub"
+                  href="https://github.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  GITHUB
+                  <span class="external-arrow" aria-hidden="true"></span>
+                </a>
+
+                <a
+                  id="contactLinkedin"
+                  href="https://www.linkedin.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                  hidden
+                >
+                  LINKEDIN
+                  <span class="external-arrow" aria-hidden="true"></span>
+                </a>
+
+                <a
+                  id="contactInstagram"
+                  href="https://www.instagram.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                  hidden
+                >
+                  INSTAGRAM
+                  <span class="external-arrow" aria-hidden="true"></span>
+                </a>
               </div>
 
-              <p id="copyEmailStatus" class="copy-email-status" role="status" aria-live="polite">E-MAIL COPIADO ✓</p>
+              <p
+                id="copyEmailStatus"
+                class="copy-email-status"
+                role="status"
+                aria-live="polite"
+              >
+                E-MAIL COPIADO ✓
+              </p>
             </div>
           </div>
 
@@ -263,19 +663,194 @@
     </main>
 
     <dialog id="loginDialog" class="dialog">
-      <form id="loginForm" method="dialog"><button class="close" value="cancel" aria-label="Fechar">×</button><p class="eyebrow">ACESSO RESTRITO</p><h2>Área de edição</h2><p>Digite seu email e senha para atualizar o seu portfólio.</p><label>Email<input id="emailInput" type="email" autocomplete="username" required /></label><label>Senha<input id="passwordInput" type="password" autocomplete="current-password" required /></label><small id="loginError"></small><button class="button button-primary" value="default">Entrar</button></form>
+      <form id="loginForm" method="dialog">
+        <button class="close" value="cancel" aria-label="Fechar">×</button>
+
+        <p class="eyebrow">ACESSO RESTRITO</p>
+        <h2>Área de edição</h2>
+
+        <p>
+          Digite seu email e senha para atualizar o seu portfólio.
+        </p>
+
+        <label>
+          Email
+          <input
+            id="emailInput"
+            type="email"
+            autocomplete="username"
+            required
+          />
+        </label>
+
+        <label>
+          Senha
+          <input
+            id="passwordInput"
+            type="password"
+            autocomplete="current-password"
+            required
+          />
+        </label>
+
+        <small id="loginError"></small>
+
+        <button class="button button-primary" value="default">
+          Entrar
+        </button>
+      </form>
     </dialog>
 
     <dialog id="adminDialog" class="dialog admin-dialog">
-      <form id="settingsForm" method="dialog"><button id="closeAdmin" class="close" value="cancel" aria-label="Fechar">×</button><div class="admin-head"><div><p class="eyebrow">PAINEL PESSOAL</p><h2>Editar portfólio</h2></div><button id="logoutButton" class="text-button" type="button">Sair</button></div>
-        <div class="form-grid"><label>Texto de apresentação<textarea name="intro" rows="3"></textarea></label><label>Link do GitHub<input name="github" type="url" /></label><label>Título sobre você<input name="aboutTitle" type="text" /></label><label>Texto sobre você<textarea name="aboutText" rows="4"></textarea></label><label>E-mail de contato<input name="email" type="email" /></label></div>
-        <div class="admin-projects"><div class="admin-project-header"><h3>Projetos</h3><button id="addProject" type="button" class="text-button">+ Adicionar projeto</button></div><div id="projectEditor"></div></div>
-        <div class="save-row"><button id="resetButton" type="button" class="text-button">Restaurar exemplo</button><button class="button button-primary" value="default">Salvar alterações</button></div>
+      <form id="settingsForm" method="dialog">
+        <button
+          id="closeAdmin"
+          class="close"
+          value="cancel"
+          aria-label="Fechar"
+        >
+          ×
+        </button>
+
+        <div class="admin-head">
+          <div>
+            <p class="eyebrow">PAINEL PESSOAL</p>
+            <h2>Editar portfólio</h2>
+          </div>
+
+          <button id="logoutButton" class="text-button" type="button">
+            Sair
+          </button>
+        </div>
+
+        <div class="form-grid">
+          <label class="field-wide">
+            Texto de apresentação
+            <textarea name="intro" rows="3"></textarea>
+          </label>
+
+          <label class="field-wide">
+            Título sobre você
+            <input name="aboutTitle" type="text" />
+          </label>
+
+          <label class="field-wide">
+            Texto sobre você
+            <textarea name="aboutText" rows="4"></textarea>
+          </label>
+
+          <p class="admin-form-title">LINKS E CONTATO</p>
+
+          <label>
+            Link do GitHub
+            <input
+              name="github"
+              type="url"
+              placeholder="https://github.com/seuusuario"
+            />
+          </label>
+
+          <label>
+            Link do LinkedIn
+            <input
+              name="linkedin"
+              type="url"
+              placeholder="https://linkedin.com/in/seuusuario"
+            />
+          </label>
+
+          <label>
+            Link do Instagram
+            <input
+              name="instagram"
+              type="url"
+              placeholder="https://instagram.com/seuusuario"
+            />
+          </label>
+
+          <label>
+            E-mail de contato
+            <input
+              name="email"
+              type="email"
+              placeholder="seuemail@exemplo.com"
+            />
+          </label>
+        </div>
+
+        <div class="admin-projects">
+          <div class="admin-project-header">
+            <h3>Projetos</h3>
+
+            <button
+              id="addProject"
+              type="button"
+              class="text-button"
+            >
+              + Adicionar projeto
+            </button>
+          </div>
+
+          <div id="projectEditor"></div>
+        </div>
+
+        <div class="save-row">
+          <button id="resetButton" type="button" class="text-button">
+            Restaurar exemplo
+          </button>
+
+          <button class="button button-primary" value="default">
+            Salvar alterações
+          </button>
+        </div>
       </form>
     </dialog>
-    <template id="projectTemplate"><article class="project-editor-card"><button class="remove-project" type="button" aria-label="Excluir projeto">×</button><label>Nome<input data-field="title" type="text" required /></label><label>Descrição<textarea data-field="description" rows="2" required></textarea></label><div class="form-grid compact"><label>Tecnologias (separe por vírgula)<input data-field="tags" type="text" /></label><label>Link do projeto<input data-field="link" type="url" /></label><label>Cor do cartão<input data-field="color" type="color" /></label></div></article></template>
+
+    <template id="projectTemplate">
+      <article class="project-editor-card">
+        <button
+          class="remove-project"
+          type="button"
+          aria-label="Excluir projeto"
+        >
+          ×
+        </button>
+
+        <label>
+          Nome
+          <input data-field="title" type="text" required />
+        </label>
+
+        <label>
+          Descrição
+          <textarea
+            data-field="description"
+            rows="2"
+            required
+          ></textarea>
+        </label>
+
+        <div class="form-grid compact">
+          <label>
+            Tecnologias (separe por vírgula)
+            <input data-field="tags" type="text" />
+          </label>
+
+          <label>
+            Link do projeto
+            <input data-field="link" type="url" />
+          </label>
+
+          <label>
+            Cor do cartão
+            <input data-field="color" type="color" />
+          </label>
+        </div>
+      </article>
+    </template>
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="supabase-config.js"></script>
-    <script src="app.js?v=20260821-finale1"></script>
+    <script src="app.js?v=20260821-social1"></script>
   </body>
 </html>
