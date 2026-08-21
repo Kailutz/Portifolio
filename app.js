@@ -91,6 +91,7 @@ function render() {
     const link = project.link && project.link !== '#' ? project.link : '#projetos';
     return `<a class="project-card" href="${escapeHTML(link)}" ${link !== '#projetos' ? 'target="_blank" rel="noreferrer"' : ''} style="background:${escapeHTML(project.color)}"><div class="card-top"><span class="number">${String(index + 1).padStart(2, '0')} / PROJETO</span><span class="arrow">↗︎</span></div><div><h3>${escapeHTML(project.title)}</h3><p>${escapeHTML(project.description)}</p><div class="tags">${project.tags.map(tag => `<span>${escapeHTML(tag)}</span>`).join('')}</div></div></a>`;
   }).join('');
+  setupKineticTitles();
   setupScrollAnimations();
 }
 
@@ -169,6 +170,38 @@ $('#resetButton').addEventListener('click', async () => {
 });
 
 let scrollObserver;
+let titleObserver;
+
+function setupKineticTitles() {
+  const titles = [...document.querySelectorAll('.section-heading h2, .about h2, .lab-heading h2')];
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  titles.forEach(title => {
+    if (!title.querySelector('.title-line')) {
+      const lines = title.innerHTML.split(/<br\s*\/?\s*>/i);
+      title.innerHTML = lines.map(line => `<span class="title-line"><span>${line}</span></span>`).join('');
+      title.classList.add('kinetic-title');
+    }
+
+    if (reducedMotion || !('IntersectionObserver' in window)) {
+      title.classList.add('title-visible');
+      return;
+    }
+
+    if (!titleObserver) {
+      titleObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('title-visible');
+          titleObserver.unobserve(entry.target);
+        });
+      }, { threshold: .28, rootMargin: '0px 0px -8%' });
+    }
+
+    titleObserver.observe(title);
+  });
+}
+
 function setupScrollAnimations() {
   // O rodapé fica sempre visível, sem animação — como ele é o último elemento
   // da página, o efeito de revelar "perto do centro" podia nunca disparar.
@@ -232,6 +265,37 @@ const marqueeText = 'PROJETOS • APRENDIZADO • CÓDIGO • CRIATIVIDADE • '
 marquee.innerHTML = `<div class="marquee-track"><span>${marqueeText.repeat(4)}</span><span>${marqueeText.repeat(4)}</span></div>`;
 $('#projetos').before(marquee);
 
+// Luz ambiente discreta que atravessa as seções e acompanha a navegação.
+const ambientGlow = document.createElement('div');
+ambientGlow.className = 'ambient-glow';
+ambientGlow.setAttribute('aria-hidden', 'true');
+document.body.append(ambientGlow);
+
+// O menu mostra em qual parte do portfólio a pessoa está.
+const sectionLinks = [...document.querySelectorAll('.topbar nav a[href^="#"]')];
+const sectionTargets = sectionLinks
+  .map(link => ({ link, section: document.querySelector(link.getAttribute('href')) }))
+  .filter(item => item.section);
+
+function updateActiveNavigation() {
+  document.querySelector('.topbar')?.classList.toggle('is-scrolled', window.scrollY > 40);
+  const marker = window.scrollY + window.innerHeight * .38;
+  let active = null;
+  sectionTargets.forEach(item => {
+    if (item.section.offsetTop <= marker) active = item;
+  });
+  sectionLinks.forEach(link => {
+    const selected = active?.link === link;
+    link.classList.toggle('is-active', selected);
+    if (selected) link.setAttribute('aria-current', 'page');
+    else link.removeAttribute('aria-current');
+  });
+}
+
+window.addEventListener('scroll', updateActiveNavigation, { passive: true });
+window.addEventListener('resize', updateActiveNavigation, { passive: true });
+updateActiveNavigation();
+
 // Cursor editorial e movimento sutil de profundidade para dispositivos com mouse.
 if (window.matchMedia('(pointer: fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   const cursor = document.createElement('div');
@@ -243,6 +307,8 @@ if (window.matchMedia('(pointer: fine)').matches && !window.matchMedia('(prefers
     cursorY = event.clientY;
     cursor.style.opacity = '1';
     cursor.classList.toggle('active', !!event.target.closest('a, button, .project-card'));
+    document.documentElement.style.setProperty('--ambient-x', `${event.clientX}px`);
+    document.documentElement.style.setProperty('--ambient-y', `${event.clientY}px`);
   }, { passive: true });
   function moveCursor() {
     currentX += (cursorX - currentX) * .16;
@@ -334,6 +400,8 @@ if (window.matchMedia('(pointer: fine)').matches && !window.matchMedia('(prefers
     const bounds = card.getBoundingClientRect();
     const x = (event.clientX - bounds.left) / bounds.width - .5;
     const y = (event.clientY - bounds.top) / bounds.height - .5;
+    card.style.setProperty('--spot-x', `${(x + .5) * 100}%`);
+    card.style.setProperty('--spot-y', `${(y + .5) * 100}%`);
     card.style.transform = `perspective(800px) rotateX(${-y * 5}deg) rotateY(${x * 5}deg) translateY(-7px)`;
   });
   document.addEventListener('pointerout', event => {
@@ -352,9 +420,33 @@ if (window.matchMedia('(pointer: fine)').matches && !window.matchMedia('(prefers
   });
 }
 
+// Em telas touch, os cartões respiram levemente conforme passam pelo centro.
+const mobileCardMotion = window.matchMedia('(max-width: 760px), (pointer: coarse)');
+let mobileCardFrame = 0;
+function updateMobileCards() {
+  if (!mobileCardMotion.matches || reduceMotion.matches) return;
+  cancelAnimationFrame(mobileCardFrame);
+  mobileCardFrame = requestAnimationFrame(() => {
+    document.querySelectorAll('.project-card.is-visible').forEach(card => {
+      const bounds = card.getBoundingClientRect();
+      const distance = (bounds.top + bounds.height / 2 - window.innerHeight / 2) / window.innerHeight;
+      const clamped = Math.max(-1, Math.min(1, distance));
+      card.style.setProperty('--card-drift', `${clamped * -8}px`);
+      card.style.setProperty('--card-scale', `${1 - Math.abs(clamped) * .018}`);
+    });
+    const pageProgress = window.scrollY / Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    document.documentElement.style.setProperty('--ambient-x', `${38 + pageProgress * 25}vw`);
+    document.documentElement.style.setProperty('--ambient-y', `${42 + Math.sin(pageProgress * Math.PI) * 18}vh`);
+  });
+}
+window.addEventListener('scroll', updateMobileCards, { passive: true });
+window.addEventListener('resize', updateMobileCards, { passive: true });
+
 // Carrega os dados do banco antes de mostrar a página.
 (async () => {
   await loadData();
   render();
   updateScrollProgress();
+  updateActiveNavigation();
+  updateMobileCards();
 })();
