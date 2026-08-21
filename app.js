@@ -191,9 +191,7 @@ function setupKineticTitles() {
     if (!titleObserver) {
       titleObserver = new IntersectionObserver(entries => {
         entries.forEach(entry => {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add('title-visible');
-          titleObserver.unobserve(entry.target);
+          entry.target.classList.toggle('title-visible', entry.isIntersecting);
         });
       }, { threshold: .28, rootMargin: '0px 0px -8%' });
     }
@@ -229,9 +227,7 @@ function setupScrollAnimations() {
     const rootMargin = isWideScreen ? '0px 0px -12%' : '0px 0px -45px';
     scrollObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('is-visible');
-        scrollObserver.unobserve(entry.target);
+        entry.target.classList.toggle('is-visible', entry.isIntersecting);
       });
     }, { threshold: .14, rootMargin });
   }
@@ -347,9 +343,7 @@ if (codeLab && laptopTilt) {
 
   if ('IntersectionObserver' in window && !reduceMotion.matches) {
     const terminalObserver = new IntersectionObserver(entries => {
-      if (!entries[0].isIntersecting) return;
-      codeLab.classList.add('terminal-run');
-      terminalObserver.disconnect();
+      codeLab.classList.toggle('terminal-run', entries[0].isIntersecting);
     }, { threshold: .32 });
     terminalObserver.observe(codeLab);
   } else {
