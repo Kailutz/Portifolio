@@ -142,3 +142,26 @@ body:before{opacity:.28;background-image:radial-gradient(ellipse at 10% 20%,tran
 .lab-caption{margin-top:-38px}
 @media(max-width:760px){.code-lab{min-height:780px}.laptop-stage{height:510px;perspective:850px;perspective-origin:45% 40%}.laptop-tilt{--rx:1deg;--ry:10deg;width:96vw}.laptop{transform:rotateZ(-.5deg)}.laptop-screen{width:84%;border-width:6px;border-bottom-width:10px}.terminal{height:calc(100% - 34px);padding:18px 14px;font-size:clamp(7px,2.25vw,10px);line-height:1.9}.laptop-hinge{height:9px;margin-top:-5px}.laptop-deck{width:105%;height:166px;margin-left:-2.5%;padding:14px 5.5% 10px;border-bottom-width:6px;border-radius:5px 5px 20px 20px;transform:perspective(520px) rotateX(55deg)}.keyboard{height:82px;gap:3px}.keyboard span{border-radius:2px;font-size:4px;box-shadow:inset 0 1px #ffffff20,0 2px 0 #050705,0 3px 4px #0008!important}.trackpad{height:40px;margin-top:8px}.deck-mark{right:4%;bottom:13px;font-size:8px}.lab-caption{margin-top:-30px}}
 @media(prefers-reduced-motion:reduce){.laptop-tilt{transform:rotateX(1deg) rotateY(14deg)!important}}
+
+/* Notebook 3D v4: proporções e perspectiva baseadas na referência real */
+.code-lab{min-height:clamp(860px,104svh,1100px)}
+.laptop-stage{height:clamp(620px,60vw,735px);perspective:1500px;perspective-origin:48% 46%}
+.laptop-tilt{--rx:.5deg;--ry:9deg;width:min(860px,82vw)}
+.laptop{transform:none;filter:drop-shadow(-24px 45px 34px #000b) drop-shadow(12px 8px 26px #c7ff000b)}
+.laptop-screen{width:88%;aspect-ratio:16/9;border:9px solid #202421;border-left-color:#303630;border-bottom:18px solid #181c18;border-radius:13px 13px 5px 5px;background:#050705;box-shadow:inset 0 0 0 1px #ffffff1d,inset 8px 0 16px #ffffff07,0 0 0 1px #c7ff002b,12px 10px 40px #0008}
+.laptop-screen:after{background:linear-gradient(112deg,#ffffff14 0%,transparent 18% 67%,#ffffff08 69%,transparent 78%);opacity:.4}
+.terminal{background:radial-gradient(circle at 73% 66%,#35132b26,transparent 43%),linear-gradient(116deg,#060806f5,#0b0f0bf0 64%,#130b12ef)}
+.laptop-hinge{width:87%;height:12px;margin:-6px auto 0;border-color:#0b0d0b;background:linear-gradient(90deg,#111411 0 8%,#858b84 16%,#363c36 49%,#818780 84%,#101310 92%)}
+.laptop-deck{width:98%;height:248px;margin:-1px auto 0;padding:22px 6.2% 17px;border:1px solid #aeb4ad;border-bottom:8px solid #343934;border-radius:5px 5px 24px 24px;transform:perspective(1050px) rotateX(62deg);background:linear-gradient(150deg,#a6aca5 0%,#858c84 26%,#656d65 58%,#484f49 100%);box-shadow:inset 0 2px #ffffffa3,inset 9px 0 15px #ffffff13,inset -10px 0 18px #22282255,inset 0 -11px 15px #222722a8,0 28px 27px #0009}
+.laptop-deck:before{inset:7px 4.5% auto;background:linear-gradient(90deg,transparent,#ffffff8a 24%,#ffffffaa 55%,#ffffff45 78%,transparent);opacity:.7}
+.laptop-deck:after{bottom:-8px;height:9px;background:linear-gradient(#565d56,#252a25);box-shadow:inset 0 1px #ffffff47}
+.keyboard{height:126px;gap:5px}
+.keyboard span:nth-child(n){border-color:#121612;background:linear-gradient(145deg,#353a35 0%,#1b1f1b 48%,#0d100d 100%);color:#c2c8c0;text-shadow:none;box-shadow:inset 0 1px #ffffff2e,inset 1px 0 #ffffff0b,0 3px 0 #0a0d0a,0 4px 6px #0007}
+.keyboard:after{display:none}
+.trackpad{width:38%;height:68px;margin-top:15px;border-color:#b9beba;background:linear-gradient(145deg,#858c85b8,#6a716bd1);box-shadow:inset 1px 1px #ffffff45,inset -1px -1px #393f39aa,0 5px 10px #30353040}
+.deck-mark{color:#1d241d;right:4.2%;bottom:23px;text-shadow:none;opacity:.72}
+.laptop-stage:before{bottom:5%;width:82%;height:32%;background:linear-gradient(90deg,#c7ff0003,#ffffff0b 48%,#ff4a8e08 72%,transparent),linear-gradient(#30352f8a,#10130f);box-shadow:inset 0 1px #ffffff12,0 34px 55px #000a}
+.laptop-stage:after{bottom:9%;width:62%;transform:translateX(-47%) skewX(-7deg);filter:blur(19px)}
+.lab-caption{margin-top:-24px}
+@media(max-width:760px){.code-lab{min-height:750px}.laptop-stage{height:470px;perspective:1050px;perspective-origin:47% 43%}.laptop-tilt{--rx:.5deg;--ry:6deg;width:96vw}.laptop-screen{width:89%;border-width:6px;border-bottom-width:12px}.laptop-deck{width:99%;height:156px;padding:13px 5.5% 9px;border-bottom-width:5px;border-radius:4px 4px 16px 16px;transform:perspective(720px) rotateX(60deg)}.keyboard{height:75px;gap:3px}.trackpad{height:37px;margin-top:8px}.deck-mark{bottom:11px}.lab-caption{margin-top:-20px}}
+@media(prefers-reduced-motion:reduce){.laptop-tilt{transform:rotateX(.5deg) rotateY(9deg)!important}}
