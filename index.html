@@ -46,7 +46,7 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="style.css?v=20260821-story1" />
+    <link rel="stylesheet" href="style.css?v=20260821-universe1" />
   </head>
 
   <body>
@@ -148,7 +148,9 @@
       <section id="projetos" class="projects wrap">
         <div class="section-heading">
           <div>
-            <p class="eyebrow">01 / O QUE ESTOU CRIANDO</p>
+            <p class="eyebrow">
+              01 / O QUE ESTOU CRIANDO
+            </p>
 
             <h2>
               Projetos em<br />
@@ -458,6 +460,143 @@
           </div>
         </div>
       </section>
+
+      <section
+        id="universo"
+        class="tech-universe"
+        aria-labelledby="universeTitle"
+      >
+        <div class="tech-universe-heading">
+          <p class="eyebrow">
+            05 / UNIVERSO DE TECNOLOGIAS
+          </p>
+
+          <h2 id="universeTitle">
+            Tudo se<br />
+            conecta.
+          </h2>
+
+          <p>
+            Cada tecnologia é uma peça do que estou construindo.
+            Passe o mouse ou toque para explorar.
+          </p>
+        </div>
+
+        <div id="techSpace" class="tech-space">
+          <canvas
+            id="techCanvas"
+            aria-hidden="true"
+          ></canvas>
+
+          <div
+            class="tech-orbit orbit-one"
+            aria-hidden="true"
+          ></div>
+
+          <div
+            class="tech-orbit orbit-two"
+            aria-hidden="true"
+          ></div>
+
+          <div
+            id="techCore"
+            class="tech-core"
+            aria-label="Núcleo do universo de tecnologias"
+          >
+            <span>KP<em>/</em></span>
+            <small>EM EVOLUÇÃO</small>
+          </div>
+
+          <button
+            class="tech-node is-active"
+            type="button"
+            style="--x:18%;--y:25%;--delay:-1s"
+            data-name="Python"
+            data-copy="Lógica, automação e construção de soluções que transformam ideias em projetos funcionais."
+          >
+            <span>PY</span>
+            <b>Python</b>
+            <small>Lógica</small>
+          </button>
+
+          <button
+            class="tech-node"
+            type="button"
+            style="--x:80%;--y:23%;--delay:-3.2s"
+            data-name="HTML"
+            data-copy="Estruturas claras, acessíveis e preparadas para funcionar bem em diferentes telas."
+          >
+            <span>&lt;/&gt;</span>
+            <b>HTML</b>
+            <small>Estrutura</small>
+          </button>
+
+          <button
+            class="tech-node"
+            type="button"
+            style="--x:89%;--y:55%;--delay:-5.1s"
+            data-name="CSS"
+            data-copy="Identidade visual, responsividade, animações e experiências que dão personalidade à interface."
+          >
+            <span>CSS</span>
+            <b>CSS</b>
+            <small>Visual</small>
+          </button>
+
+          <button
+            class="tech-node"
+            type="button"
+            style="--x:72%;--y:81%;--delay:-2.3s"
+            data-name="JavaScript"
+            data-copy="Interações, comportamento e movimento para transformar páginas estáticas em experiências vivas."
+          >
+            <span>JS</span>
+            <b>JavaScript</b>
+            <small>Interação</small>
+          </button>
+
+          <button
+            class="tech-node"
+            type="button"
+            style="--x:29%;--y:83%;--delay:-4.4s"
+            data-name="Banco de dados"
+            data-copy="Organização e persistência das informações que mantêm os projetos conectados aos dados."
+          >
+            <span>DB</span>
+            <b>Database</b>
+            <small>Dados</small>
+          </button>
+
+          <button
+            class="tech-node"
+            type="button"
+            style="--x:10%;--y:57%;--delay:-6.2s"
+            data-name="Git e GitHub"
+            data-copy="Versionamento, evolução constante e um histórico real de cada etapa da minha jornada."
+          >
+            <span>GIT</span>
+            <b>GitHub</b>
+            <small>Versões</small>
+          </button>
+        </div>
+
+        <aside class="tech-info" aria-live="polite">
+          <span>
+            <b id="techInfoNumber">01</b> / 06
+          </span>
+
+          <div>
+            <p id="techInfoName">Python</p>
+
+            <small id="techInfoCopy">
+              Lógica, automação e construção de soluções que
+              transformam ideias em projetos funcionais.
+            </small>
+          </div>
+
+          <i>SELECIONADO</i>
+        </aside>
+      </section>
     </main>
 
     <footer id="contato" class="footer wrap">
@@ -492,6 +631,7 @@
 
         <label>
           Email
+
           <input
             id="emailInput"
             type="email"
@@ -502,6 +642,7 @@
 
         <label>
           Senha
+
           <input
             id="passwordInput"
             type="password"
@@ -550,27 +691,47 @@
         <div class="form-grid">
           <label>
             Texto de apresentação
-            <textarea name="intro" rows="3"></textarea>
+
+            <textarea
+              name="intro"
+              rows="3"
+            ></textarea>
           </label>
 
           <label>
             Link do GitHub
-            <input name="github" type="url" />
+
+            <input
+              name="github"
+              type="url"
+            />
           </label>
 
           <label>
             Título sobre você
-            <input name="aboutTitle" type="text" />
+
+            <input
+              name="aboutTitle"
+              type="text"
+            />
           </label>
 
           <label>
             Texto sobre você
-            <textarea name="aboutText" rows="4"></textarea>
+
+            <textarea
+              name="aboutText"
+              rows="4"
+            ></textarea>
           </label>
 
           <label>
             E-mail de contato
-            <input name="email" type="email" />
+
+            <input
+              name="email"
+              type="email"
+            />
           </label>
         </div>
 
@@ -621,6 +782,7 @@
 
         <label>
           Nome
+
           <input
             data-field="title"
             type="text"
@@ -630,6 +792,7 @@
 
         <label>
           Descrição
+
           <textarea
             data-field="description"
             rows="2"
@@ -640,17 +803,29 @@
         <div class="form-grid compact">
           <label>
             Tecnologias (separe por vírgula)
-            <input data-field="tags" type="text" />
+
+            <input
+              data-field="tags"
+              type="text"
+            />
           </label>
 
           <label>
             Link do projeto
-            <input data-field="link" type="url" />
+
+            <input
+              data-field="link"
+              type="url"
+            />
           </label>
 
           <label>
             Cor do cartão
-            <input data-field="color" type="color" />
+
+            <input
+              data-field="color"
+              type="color"
+            />
           </label>
         </div>
       </article>
@@ -658,6 +833,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="supabase-config.js"></script>
-    <script src="app.js?v=20260821-story1"></script>
+    <script src="app.js?v=20260821-universe1"></script>
   </body>
 </html>
