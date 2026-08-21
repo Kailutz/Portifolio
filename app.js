@@ -51,6 +51,45 @@ async function saveData() {
   return true;
 }
 
+// Anima um número subindo de 0 até o valor final (contador nas estatísticas).
+function animateNumber(el, target) {
+  if (!el) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { el.textContent = target; return; }
+  const start = performance.now();
+  const duration = 900;
+  function tick(now) {
+    const progress = Math.min(1, (now - start) / duration);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.round(eased * target);
+    if (progress < 1) requestAnimationFrame(tick);
+    else el.textContent = target;
+  }
+  requestAnimationFrame(tick);
+}
+
+// Revela o título principal letra por letra, uma vez, ao carregar a página.
+function typewriterTitle() {
+  const h1 = document.querySelector('.hero h1');
+  if (!h1 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const lines = h1.querySelectorAll(':scope > span');
+  let cumulativeDelay = 0;
+  lines.forEach(line => {
+    const host = line.querySelector('em') || line;
+    const text = host.textContent;
+    host.textContent = '';
+    [...text].forEach((char, i) => {
+      const charSpan = document.createElement('span');
+      charSpan.textContent = char === ' ' ? '\u00A0' : char;
+      charSpan.style.display = 'inline-block';
+      charSpan.style.opacity = '0';
+      charSpan.style.animation = 'charIn .35s ease forwards';
+      charSpan.style.animationDelay = `${cumulativeDelay + i * 28}ms`;
+      host.appendChild(charSpan);
+    });
+    cumulativeDelay += text.length * 28 + 120;
+  });
+}
+
 function render() {
   $('#intro').textContent = data.intro;
   $('#aboutTitle').innerHTML = escapeHTML(data.aboutTitle).replace(/\n/g, '<br>');
@@ -59,8 +98,8 @@ function render() {
   $('#emailLink').href = `mailto:${data.email}`;
   $('#emailLink').textContent = data.email === defaults.email ? 'Vamos conversar ↗' : `${data.email} ↗`;
   const technologies = new Set(data.projects.flatMap(project => project.tags));
-  $('#projectCount').textContent = data.projects.length;
-  $('#techCount').textContent = technologies.size;
+  animateNumber($('#projectCount'), data.projects.length);
+  animateNumber($('#techCount'), technologies.size);
   $('#projectLabel').textContent = `${String(data.projects.length).padStart(2, '0')} projetos`;
   $('#projectGrid').innerHTML = data.projects.map((project, index) => {
     const link = project.link && project.link !== '#' ? project.link : '#projetos';
@@ -152,7 +191,7 @@ function setupScrollAnimations() {
     if (element.dataset.scrollAnimation) return;
     element.dataset.scrollAnimation = 'true';
     element.classList.add('scroll-reveal');
-    const delay = element.classList.contains('project-card') ? (index % 3) * 110 : 0;
+    const delay = element.classList.contains('project-card') ? (index % 3) * 130 : 0;
     element.style.setProperty('--reveal-delay', `${delay}ms`);
   });
 
@@ -162,13 +201,18 @@ function setupScrollAnimations() {
   }
 
   if (!scrollObserver) {
+    // Em telas grandes, espera o elemento chegar mais perto do centro antes
+    // de revelar — assim o efeito fica visível também no computador, em vez
+    // de disparar tudo de uma vez já no carregamento da página.
+    const isWideScreen = window.matchMedia('(min-width: 900px)').matches;
+    const rootMargin = isWideScreen ? '0px 0px -22%' : '0px 0px -45px';
     scrollObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
         entry.target.classList.add('is-visible');
         scrollObserver.unobserve(entry.target);
       });
-    }, { threshold: .14, rootMargin: '0px 0px -45px' });
+    }, { threshold: .14, rootMargin });
   }
   targets.forEach(element => {
     if (!element.classList.contains('is-visible')) scrollObserver.observe(element);
@@ -184,7 +228,8 @@ function updateScrollProgress() {
 window.addEventListener('scroll', updateScrollProgress, { passive: true });
 window.addEventListener('resize', updateScrollProgress);
 
-// Movimento 3D leve nos cartões, sem interferir em telas touch.
+// Movimento 3D leve nos cartões, brilho que segue o mouse e botões
+// "magnéticos" — tudo só no computador, sem interferir em telas touch.
 if (window.matchMedia('(pointer: fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   document.addEventListener('pointermove', event => {
     const card = event.target.closest('.project-card');
@@ -198,11 +243,29 @@ if (window.matchMedia('(pointer: fine)').matches && !window.matchMedia('(prefers
     const card = event.target.closest('.project-card');
     if (card && !card.contains(event.relatedTarget)) card.style.transform = '';
   });
+
+  const glow = document.createElement('div');
+  glow.className = 'cursor-glow';
+  document.body.appendChild(glow);
+  window.addEventListener('pointermove', event => {
+    glow.style.transform = `translate(${event.clientX}px, ${event.clientY}px)`;
+  });
+
+  document.querySelectorAll('.button').forEach(button => {
+    button.addEventListener('pointermove', event => {
+      const bounds = button.getBoundingClientRect();
+      const x = (event.clientX - bounds.left - bounds.width / 2) * .25;
+      const y = (event.clientY - bounds.top - bounds.height / 2) * .3;
+      button.style.transform = `translate(${x}px, ${y - 4}px)`;
+    });
+    button.addEventListener('pointerleave', () => { button.style.transform = ''; });
+  });
 }
 
 // Carrega os dados do banco antes de mostrar a página.
 (async () => {
   await loadData();
   render();
+  typewriterTitle();
   updateScrollProgress();
 })();
