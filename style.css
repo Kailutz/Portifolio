@@ -36,3 +36,7 @@ body:before{opacity:.28;background-image:radial-gradient(ellipse at 10% 20%,tran
 .about h2{line-height:.96;word-break:normal;overflow-wrap:normal;hyphens:none}
 @media(max-width:760px){.section-heading h2{font-size:clamp(52px,16vw,76px);line-height:1}.about h2{font-size:clamp(49px,14.5vw,72px);line-height:1.02;letter-spacing:-.012em;word-break:normal;overflow-wrap:normal;hyphens:none}}
 @media(max-width:390px){.section-heading h2{font-size:clamp(48px,15vw,60px);line-height:1.02}.about h2{font-size:clamp(45px,13.8vw,56px);line-height:1.04}}
+
+/* Mantém a seta como símbolo tipográfico no iOS, sem o emoji azul. */
+.arrow,.button,.footer a{font-variant-emoji:text}
+.arrow{font-family:Arial,Manrope,sans-serif;font-weight:400;line-height:1}
