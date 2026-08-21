@@ -30,3 +30,9 @@ body:before{opacity:.28;background-image:radial-gradient(ellipse at 10% 20%,tran
 @keyframes wipeOut{0%{transform:translateY(0)}55%{transform:translateY(0)}100%{transform:translateY(-100%)}}@keyframes marquee{to{transform:translateX(-50%)}}
 @media(max-width:760px){html,body{width:100%;max-width:100%;overflow-x:clip}.topbar{height:72px;padding:0 18px}.brand{font-size:30px}.admin-link{padding:10px 11px}.hero{padding-top:105px;grid-template-columns:minmax(0,1fr)}.hero h1{font-size:clamp(72px,22vw,112px)}.hero-marker{width:170px}.stats{justify-content:space-between}.projects{width:100%;max-width:100%;border-radius:20px 20px 0 0}.section-heading{align-items:flex-start}.project-card,.project-card:nth-child(2n),.project-card:nth-child(3n){min-height:440px;border-radius:12px}.project-card h3{font-size:64px}.about{width:100%;max-width:100%;grid-template-columns:minmax(0,1fr);overflow:hidden}.about>div{min-width:0;width:100%}.about h2{width:100%;max-width:100%;font-size:clamp(54px,16.5vw,82px);line-height:.98;letter-spacing:-.018em;overflow-wrap:break-word}.about #aboutText{font-size:16px;line-height:1.7}.footer{width:100%;max-width:100%}.cursor-orbit{display:none}}
 @media(max-width:390px){.about h2{font-size:clamp(49px,15.5vw,62px);line-height:1}.about{padding-left:18px;padding-right:18px}}
+
+/* Respiração dos títulos e quebra apenas entre palavras */
+.section-heading h2{line-height:.96}
+.about h2{line-height:.96;word-break:normal;overflow-wrap:normal;hyphens:none}
+@media(max-width:760px){.section-heading h2{font-size:clamp(52px,16vw,76px);line-height:1}.about h2{font-size:clamp(49px,14.5vw,72px);line-height:1.02;letter-spacing:-.012em;word-break:normal;overflow-wrap:normal;hyphens:none}}
+@media(max-width:390px){.section-heading h2{font-size:clamp(48px,15vw,60px);line-height:1.02}.about h2{font-size:clamp(45px,13.8vw,56px);line-height:1.04}}
