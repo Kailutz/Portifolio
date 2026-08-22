@@ -717,6 +717,9 @@ function updateCinematicContact() {
     const easedReveal = 1 - Math.pow(1 - reveal, 3);
     const titleOpacity = clampContact((progress - .03) / .2);
     const actionsOpacity = clampContact((progress - .48) / .24);
+    const pagesIn = clampContact((progress - .28) / .18);
+    const pagesOpacity = pagesIn;
+    const pagesX = (1 - pagesIn) * -34;
 
     cinematicContact.style.setProperty('--contact-bg', mixContactColor([13, 17, 12], [199, 255, 0], colorProgress));
     cinematicContact.style.setProperty('--contact-ink', mixContactColor([245, 244, 237], [32, 37, 27], colorProgress));
@@ -727,6 +730,8 @@ function updateCinematicContact() {
     cinematicContact.style.setProperty('--contact-title-opacity', titleOpacity.toFixed(3));
     cinematicContact.style.setProperty('--contact-actions-opacity', actionsOpacity.toFixed(3));
     cinematicContact.style.setProperty('--contact-actions-y', `${(1 - actionsOpacity) * 28}px`);
+    cinematicContact.style.setProperty('--contact-pages-opacity', pagesOpacity.toFixed(3));
+    cinematicContact.style.setProperty('--contact-pages-x', `${pagesX.toFixed(2)}px`);
   });
 }
 
@@ -764,6 +769,118 @@ async function copyPortfolioEmail() {
 }
 
 copyEmailButton?.addEventListener('click', copyPortfolioEmail);
+
+// Auto tour: rolagem constante que cede o controle assim que a pessoa interage.
+const autoScrollButton = $('#autoScrollButton');
+const autoScrollIcon = $('#autoScrollIcon');
+const autoScrollLabel = $('#autoScrollLabel');
+const autoScrollNotice = $('#autoScrollNotice');
+let autoScrollActive = false;
+let autoScrollFrame = 0;
+let autoScrollLastTime = 0;
+let autoScrollPosition = 0;
+let autoScrollNoticeTimer = 0;
+let autoScrollKeyboardStopAt = -Infinity;
+
+function showAutoScrollNotice(message, duration = 2200) {
+  if (!autoScrollNotice) return;
+  clearTimeout(autoScrollNoticeTimer);
+  autoScrollNotice.textContent = message;
+  autoScrollNotice.classList.toggle('is-visible', Boolean(message));
+  if (!message) return;
+  autoScrollNoticeTimer = setTimeout(() => {
+    autoScrollNotice.classList.remove('is-visible');
+  }, duration);
+}
+
+function updateAutoScrollButton() {
+  if (!autoScrollButton || !autoScrollIcon || !autoScrollLabel) return;
+  autoScrollButton.classList.toggle('is-active', autoScrollActive);
+  autoScrollButton.setAttribute('aria-pressed', String(autoScrollActive));
+  autoScrollButton.setAttribute(
+    'aria-label',
+    autoScrollActive ? 'Parar rolagem automática' : 'Ativar rolagem automática'
+  );
+  autoScrollButton.title = autoScrollActive
+    ? 'Parar — também funciona com a roda do mouse ou qualquer tecla'
+    : 'Ativar rolagem automática';
+  autoScrollIcon.textContent = autoScrollActive ? '■' : '▶';
+  autoScrollLabel.textContent = autoScrollActive ? 'Parar tour' : 'Auto tour';
+}
+
+function stopAutoScroll(reason = 'manual') {
+  if (!autoScrollActive) return;
+  autoScrollActive = false;
+  cancelAnimationFrame(autoScrollFrame);
+  autoScrollFrame = 0;
+  autoScrollLastTime = 0;
+  document.documentElement.classList.remove('is-auto-scrolling');
+  updateAutoScrollButton();
+
+  if (reason === 'finished') showAutoScrollNotice('FIM DO AUTO TOUR', 1800);
+  else if (reason !== 'hidden') showAutoScrollNotice('AUTO TOUR PAUSADO', 1400);
+}
+
+function runAutoScroll(timestamp) {
+  if (!autoScrollActive) return;
+  if (Math.abs(window.scrollY - autoScrollPosition) > 4) {
+    stopAutoScroll('manual-scroll');
+    return;
+  }
+  if (!autoScrollLastTime) autoScrollLastTime = timestamp;
+  const elapsed = Math.min(timestamp - autoScrollLastTime, 64);
+  autoScrollLastTime = timestamp;
+  const speed = window.matchMedia('(max-width: 760px)').matches ? 375 : 450;
+  const maximum = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+
+  autoScrollPosition = Math.min(maximum, autoScrollPosition + speed * elapsed / 1000);
+  window.scrollTo(0, autoScrollPosition);
+
+  if (autoScrollPosition >= maximum - 1) {
+    stopAutoScroll('finished');
+    return;
+  }
+  autoScrollFrame = requestAnimationFrame(runAutoScroll);
+}
+
+function startAutoScroll() {
+  if (autoScrollActive) return;
+  const maximum = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+  if (!maximum) return;
+
+  document.documentElement.classList.add('is-auto-scrolling');
+  if (window.scrollY >= maximum - 2) window.scrollTo(0, 0);
+  autoScrollPosition = window.scrollY;
+  autoScrollActive = true;
+  autoScrollLastTime = 0;
+  updateAutoScrollButton();
+  showAutoScrollNotice('RODA DO MOUSE OU QUALQUER TECLA PARA PARAR', 4200);
+  autoScrollFrame = requestAnimationFrame(runAutoScroll);
+}
+
+autoScrollButton?.addEventListener('click', () => {
+  if (performance.now() - autoScrollKeyboardStopAt < 260) return;
+  if (autoScrollActive) stopAutoScroll('button');
+  else startAutoScroll();
+});
+
+window.addEventListener('wheel', () => stopAutoScroll('wheel'), {
+  passive: true,
+  capture: true
+});
+window.addEventListener('touchstart', () => stopAutoScroll('touch'), {
+  passive: true,
+  capture: true
+});
+document.addEventListener('keydown', () => {
+  if (!autoScrollActive) return;
+  autoScrollKeyboardStopAt = performance.now();
+  stopAutoScroll('keyboard');
+}, { capture: true });
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) stopAutoScroll('hidden');
+});
+updateAutoScrollButton();
 
 // Carrega os dados do banco antes de mostrar a página.
 (async () => {
