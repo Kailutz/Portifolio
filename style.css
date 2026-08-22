@@ -809,3 +809,322 @@ html.is-auto-scrolling{
 @media(prefers-reduced-motion:reduce){
   .contact-pages{opacity:1;transform:none}
 }
+
+/* Notebook reconstruído como um único objeto CSS 3D, leve e interativo. */
+.laptop-stage{
+  height:clamp(650px,62vw,760px);
+  perspective:1450px;
+  perspective-origin:50% 42%;
+}
+.laptop-tilt{
+  --rx:1deg;
+  --ry:10deg;
+  --lift:0px;
+  --light-x:50%;
+  --light-y:32%;
+  width:min(880px,84vw);
+  transform:translate3d(0,var(--lift),0) rotateX(var(--rx)) rotateY(var(--ry));
+  transform-style:preserve-3d;
+  transition:none;
+  will-change:transform;
+}
+.laptop-float{
+  transform-style:preserve-3d;
+}
+.laptop{
+  --lid-depth:18px;
+  --lid-half:9px;
+  --deck-depth:18px;
+  --deck-half:9px;
+  position:relative;
+  width:100%;
+  transform:none;
+  transform-style:preserve-3d;
+  filter:none;
+}
+.laptop-lid{
+  position:relative;
+  z-index:5;
+  width:88%;
+  aspect-ratio:16/9;
+  margin:0 auto;
+  transform:translateZ(46px) rotateX(-12deg);
+  transform-origin:50% 100%;
+  transform-style:preserve-3d;
+  transition:transform 1.15s cubic-bezier(.16,1,.3,1);
+}
+.terminal-run .laptop-lid{
+  transform:translateZ(46px) rotateX(-2deg);
+}
+.laptop-screen,
+.laptop-lid-back{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  margin:0;
+  backface-visibility:hidden;
+}
+.laptop-screen{
+  z-index:4;
+  aspect-ratio:auto;
+  overflow:hidden;
+  border:10px solid #202521;
+  border-left-color:#343b35;
+  border-bottom:18px solid #151916;
+  border-radius:15px 15px 6px 6px;
+  background:#050705;
+  transform:translateZ(var(--lid-half));
+  box-shadow:inset 0 0 0 1px #ffffff24,inset 10px 0 20px #ffffff08,0 0 34px #c7ff0018;
+}
+.laptop-screen:after{
+  z-index:5;
+  background:
+    radial-gradient(300px circle at var(--light-x) var(--light-y),#ffffff22,transparent 46%),
+    linear-gradient(112deg,#ffffff12,transparent 21% 70%,#ffffff08 72%,transparent 80%);
+  opacity:.66;
+}
+.laptop-lid-back{
+  z-index:1;
+  display:grid;
+  place-items:center;
+  border:1px solid #8b948b;
+  border-radius:15px 15px 6px 6px;
+  background:linear-gradient(145deg,#747c74,#323833 48%,#101411);
+  color:#c7ff00;
+  transform:translateZ(calc(0px - var(--lid-half))) rotateY(180deg);
+  box-shadow:inset 0 1px #ffffff55,inset 0 -18px 30px #070a0799;
+}
+.laptop-lid-back span{
+  font:400 clamp(74px,10vw,130px)/1 var(--display);
+  letter-spacing:-.08em;
+  opacity:.8;
+}
+.laptop-lid-edge{
+  position:absolute;
+  z-index:2;
+  display:block;
+  background:linear-gradient(90deg,#111511,#555e56 48%,#171b18);
+  backface-visibility:hidden;
+}
+.lid-edge-left,
+.lid-edge-right{
+  top:0;
+  bottom:0;
+  width:var(--lid-depth);
+}
+.lid-edge-left{
+  left:calc(0px - var(--lid-half));
+  transform:rotateY(90deg);
+}
+.lid-edge-right{
+  right:calc(0px - var(--lid-half));
+  transform:rotateY(90deg);
+}
+.lid-edge-top,
+.lid-edge-bottom{
+  left:0;
+  right:0;
+  height:var(--lid-depth);
+  background:linear-gradient(#6f786f,#171b18);
+}
+.lid-edge-top{
+  top:calc(0px - var(--lid-half));
+  transform:rotateX(90deg);
+}
+.lid-edge-bottom{
+  bottom:calc(0px - var(--lid-half));
+  transform:rotateX(90deg);
+}
+.laptop-hinge{
+  z-index:8;
+  width:88%;
+  height:14px;
+  margin:-7px auto 0;
+  transform:translateZ(40px);
+  border:1px solid #080b08;
+  background:linear-gradient(90deg,#0b0e0c 0 8%,#8a9389 17%,#2b312c 49%,#838b82 83%,#0a0d0b 92%);
+  box-shadow:0 5px 9px #000b,inset 0 1px #ffffff4f;
+}
+.laptop-deck{
+  z-index:4;
+  width:100%;
+  height:250px;
+  margin:-1px auto 0;
+  padding:22px 6.2% 17px;
+  border:1px solid #aab2aa;
+  border-bottom:0;
+  border-radius:6px 6px 24px 24px;
+  background:linear-gradient(150deg,#a8aea8 0%,#838a83 27%,#5d655e 60%,#343a35 100%);
+  transform:translateZ(26px) rotateX(62deg);
+  transform-origin:50% 0;
+  transform-style:preserve-3d;
+  box-shadow:inset 0 2px #ffffff9e,inset 10px 0 16px #ffffff14,inset -12px 0 20px #242b255e,0 30px 26px #0007;
+}
+.laptop-deck:before{
+  inset:0;
+  height:auto;
+  border-radius:inherit;
+  background:radial-gradient(330px circle at var(--light-x) 4%,#ffffff55,transparent 72%);
+  opacity:.6;
+  transform:translateZ(1px);
+  pointer-events:none;
+}
+.laptop-deck:after{
+  z-index:4;
+  bottom:-5px;
+  width:17%;
+  height:7px;
+  border-radius:0 0 10px 10px;
+  background:linear-gradient(#5a625b,#252a26);
+  box-shadow:inset 0 1px #ffffff42;
+  transform:translateX(-50%) translateZ(2px);
+}
+.laptop-deck-edge{
+  position:absolute;
+  z-index:0;
+  display:block;
+  background:linear-gradient(#626a63,#1c211d);
+  backface-visibility:hidden;
+}
+.deck-edge-front{
+  left:0;
+  right:0;
+  bottom:calc(0px - var(--deck-half));
+  height:var(--deck-depth);
+  border-radius:0 0 22px 22px;
+  transform:rotateX(90deg);
+}
+.deck-edge-left,
+.deck-edge-right{
+  top:0;
+  bottom:0;
+  width:var(--deck-depth);
+  background:linear-gradient(90deg,#202620,#777f78);
+  transform:rotateY(90deg);
+}
+.deck-edge-left{left:calc(0px - var(--deck-half))}
+.deck-edge-right{right:calc(0px - var(--deck-half))}
+.deck-edge-left:after{
+  content:'';
+  position:absolute;
+  left:4px;
+  top:28%;
+  width:3px;
+  height:24%;
+  border-radius:3px;
+  background:#070a08;
+  box-shadow:0 36px 0 #070a08;
+}
+.keyboard{
+  z-index:3;
+  transform:translateZ(11px);
+  transform-style:preserve-3d;
+}
+.keyboard span{
+  transform:translateZ(1px);
+}
+.trackpad{
+  position:relative;
+  z-index:3;
+  transform:translateZ(8px);
+}
+.deck-mark{
+  z-index:3;
+  transform:translateZ(9px);
+}
+
+@media(max-width:760px){
+  .laptop-stage{
+    height:500px;
+    perspective:930px;
+    perspective-origin:48% 42%;
+  }
+  .laptop-tilt{
+    --rx:2deg;
+    --ry:6deg;
+    width:97vw;
+  }
+  .laptop{
+    --lid-depth:10px;
+    --lid-half:5px;
+    --deck-depth:12px;
+    --deck-half:6px;
+  }
+  .laptop-lid{
+    width:90%;
+    transform:translateZ(30px) rotateX(-9deg);
+  }
+  .terminal-run .laptop-lid{
+    transform:translateZ(30px) rotateX(-1deg);
+  }
+  .laptop-screen{
+    border-width:6px;
+    border-bottom-width:11px;
+    border-radius:10px 10px 4px 4px;
+  }
+  .laptop-lid-back{border-radius:10px 10px 4px 4px}
+  .laptop-hinge{
+    height:9px;
+    margin-top:-5px;
+    transform:translateZ(26px);
+  }
+  .laptop-deck{
+    width:100%;
+    height:158px;
+    padding:13px 5.5% 9px;
+    border-radius:4px 4px 16px 16px;
+    transform:translateZ(17px) rotateX(60deg);
+  }
+  .deck-edge-front{border-radius:0 0 14px 14px}
+  .keyboard{height:75px;gap:3px;transform:translateZ(7px)}
+  .trackpad{height:37px;margin-top:8px;transform:translateZ(5px)}
+  .deck-mark{bottom:11px;transform:translateZ(6px)}
+}
+@media(prefers-reduced-motion:reduce){
+  .laptop-tilt{
+    transform:rotateX(1deg) rotateY(8deg)!important;
+    transition:none!important;
+  }
+  .laptop-lid,
+  .terminal-run .laptop-lid{
+    transform:translateZ(46px) rotateX(-2deg)!important;
+    transition:none!important;
+  }
+}
+
+/* Notebook WebGL: modelo tridimensional principal com alternativa CSS automática. */
+.laptop-webgl{
+  position:absolute;
+  z-index:8;
+  inset:-2% -5% 0;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .45s ease;
+}
+.laptop-webgl canvas{
+  display:block;
+  width:100%;
+  height:100%;
+  touch-action:pan-y;
+}
+.code-lab.webgl-ready .laptop-webgl{
+  opacity:1;
+  pointer-events:auto;
+}
+.code-lab.webgl-ready .laptop-tilt{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:opacity .3s ease,visibility 0s linear .3s;
+}
+.code-lab.webgl-ready .laptop-stage:before{
+  opacity:.35;
+}
+
+@media(max-width:760px){
+  .laptop-webgl{inset:-1% -4% 0}
+}
+@media(prefers-reduced-motion:reduce){
+  .laptop-webgl{transition:none}
+}

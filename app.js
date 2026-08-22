@@ -362,50 +362,91 @@ window.addEventListener('scroll', updateHeroMotion, { passive: true });
 
 // Notebook 3D: tilt pelo mouse no desktop e perspectiva guiada pelo scroll no mobile.
 const codeLab = $('#laboratorio');
+const laptopStage = $('#laptopStage');
 const laptopTilt = $('#laptopTilt');
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const mobileLaptop = window.matchMedia('(max-width: 760px), (pointer: coarse)');
 
-if (codeLab && laptopTilt) {
+if (codeLab && laptopStage && laptopTilt) {
   codeLab.classList.add('terminal-ready');
 
+  let laptopFrame = 0;
+  let laptopVisible = !('IntersectionObserver' in window);
+  const laptopCurrent = { rx: 1, ry: 10, lift: 0, lightX: 50, lightY: 32 };
+  const laptopTarget = { ...laptopCurrent };
+
+  function renderLaptopTransform() {
+    laptopFrame = 0;
+    let moving = false;
+
+    Object.keys(laptopCurrent).forEach(key => {
+      const distance = laptopTarget[key] - laptopCurrent[key];
+      laptopCurrent[key] += distance * (key.startsWith('light') ? .16 : .11);
+      if (Math.abs(distance) > (key.startsWith('light') ? .08 : .015)) moving = true;
+    });
+
+    laptopTilt.style.setProperty('--rx', `${laptopCurrent.rx.toFixed(2)}deg`);
+    laptopTilt.style.setProperty('--ry', `${laptopCurrent.ry.toFixed(2)}deg`);
+    laptopTilt.style.setProperty('--lift', `${laptopCurrent.lift.toFixed(1)}px`);
+    laptopTilt.style.setProperty('--light-x', `${laptopCurrent.lightX.toFixed(1)}%`);
+    laptopTilt.style.setProperty('--light-y', `${laptopCurrent.lightY.toFixed(1)}%`);
+
+    if (moving && laptopVisible) laptopFrame = requestAnimationFrame(renderLaptopTransform);
+  }
+
+  function requestLaptopTransform() {
+    if (!laptopFrame && laptopVisible && !reduceMotion.matches) {
+      laptopFrame = requestAnimationFrame(renderLaptopTransform);
+    }
+  }
+
+  function setLaptopTransform(rx, ry, lift = 0, lightX = 50, lightY = 32) {
+    Object.assign(laptopTarget, { rx, ry, lift, lightX, lightY });
+    requestLaptopTransform();
+  }
+
   if ('IntersectionObserver' in window && !reduceMotion.matches) {
-    const terminalObserver = new IntersectionObserver(entries => {
-      codeLab.classList.toggle('terminal-run', entries[0].isIntersecting);
-    }, { threshold: .32 });
-    terminalObserver.observe(codeLab);
+    const terminalObserver = new IntersectionObserver(([entry]) => {
+      laptopVisible = entry.isIntersecting;
+      codeLab.classList.toggle('terminal-run', laptopVisible);
+      if (laptopVisible) requestLaptopTransform();
+      else {
+        cancelAnimationFrame(laptopFrame);
+        laptopFrame = 0;
+      }
+    }, { threshold: .24 });
+    terminalObserver.observe(laptopStage);
   } else {
+    laptopVisible = true;
     codeLab.classList.add('terminal-run');
   }
 
-  let laptopFrame = 0;
-  function setLaptopTransform(rx, ry, lift = 0) {
-    cancelAnimationFrame(laptopFrame);
-    laptopFrame = requestAnimationFrame(() => {
-      laptopTilt.style.setProperty('--rx', `${rx.toFixed(2)}deg`);
-      laptopTilt.style.setProperty('--ry', `${ry.toFixed(2)}deg`);
-      laptopTilt.style.setProperty('--lift', `${lift.toFixed(1)}px`);
-    });
-  }
-
   function updateLaptopFromScroll() {
-    if (!mobileLaptop.matches || reduceMotion.matches) return;
+    if (codeLab.classList.contains('webgl-ready') || !mobileLaptop.matches || reduceMotion.matches) return;
     const bounds = codeLab.getBoundingClientRect();
     const range = window.innerHeight + bounds.height;
     const progress = Math.min(1, Math.max(0, (window.innerHeight - bounds.top) / range));
-    setLaptopTransform(0 + progress * 1.5, 6 + (progress - .5) * 3, (progress - .5) * -12);
+    setLaptopTransform(
+      1 + progress * 2,
+      6 + (progress - .5) * 7,
+      (progress - .5) * -12,
+      38 + progress * 24,
+      28 + progress * 12
+    );
   }
 
-  codeLab.addEventListener('pointermove', event => {
-    if (mobileLaptop.matches || reduceMotion.matches) return;
-    const bounds = codeLab.getBoundingClientRect();
+  laptopStage.addEventListener('pointermove', event => {
+    if (codeLab.classList.contains('webgl-ready') || mobileLaptop.matches || reduceMotion.matches) return;
+    const bounds = laptopStage.getBoundingClientRect();
     const x = (event.clientX - bounds.left) / bounds.width - .5;
     const y = (event.clientY - bounds.top) / bounds.height - .5;
-    setLaptopTransform(.5 - y * 2, 9 + x * 4);
+    setLaptopTransform(1 - y * 7, 10 + x * 14, y * -4, 50 + x * 70, 32 + y * 55);
   }, { passive: true });
 
-  codeLab.addEventListener('pointerleave', () => {
-    if (!mobileLaptop.matches && !reduceMotion.matches) setLaptopTransform(.5, 9);
+  laptopStage.addEventListener('pointerleave', () => {
+    if (!codeLab.classList.contains('webgl-ready') && !mobileLaptop.matches && !reduceMotion.matches) {
+      setLaptopTransform(1, 10, 0, 50, 32);
+    }
   });
 
   window.addEventListener('scroll', updateLaptopFromScroll, { passive: true });

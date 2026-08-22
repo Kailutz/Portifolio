@@ -46,7 +46,7 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="style.css?v=20260822-contact-final1" />
+    <link rel="stylesheet" href="style.css?v=20260822-webgl1" />
   </head>
 
   <body>
@@ -220,58 +220,84 @@
           </h2>
         </div>
 
-        <div class="laptop-stage" id="laptopStage">
+        <div
+          class="laptop-stage"
+          id="laptopStage"
+          role="img"
+          aria-label="Notebook 3D exibindo um terminal de programação animado"
+        >
+          <div
+            class="laptop-webgl"
+            id="laptop3D"
+            aria-hidden="true"
+          ></div>
+
           <div class="laptop-tilt" id="laptopTilt">
             <div class="laptop-float">
               <div
                 class="laptop"
                 aria-label="Notebook exibindo um terminal de programação animado"
               >
-                <div class="laptop-screen">
-                  <div class="terminal-bar" aria-hidden="true">
-                    <span class="terminal-dots">
-                      <i></i>
-                      <i></i>
-                      <i></i>
-                    </span>
-
-                    <span>main.py — kaiqui@portfolio</span>
-                    <b>KP/</b>
+                <div class="laptop-lid">
+                  <div class="laptop-lid-back" aria-hidden="true">
+                    <span>KP/</span>
                   </div>
 
-                  <div class="terminal" aria-hidden="true">
-                    <p class="terminal-line line-1">
-                      <span class="py-keyword">from</span>
-                      portfolio
-                      <span class="py-keyword">import</span>
-                      Project
-                    </p>
+                  <i class="laptop-lid-edge lid-edge-left" aria-hidden="true"></i>
+                  <i class="laptop-lid-edge lid-edge-right" aria-hidden="true"></i>
+                  <i class="laptop-lid-edge lid-edge-top" aria-hidden="true"></i>
+                  <i class="laptop-lid-edge lid-edge-bottom" aria-hidden="true"></i>
 
-                    <p class="terminal-line line-2">
-                      app = Project(owner=<span class="py-string">"Kaiqui"</span>)
-                    </p>
-
-                    <p class="terminal-line line-3">
-                      app.add(skill=<span class="py-string">"Python"</span>,
-                      level=<span class="py-number">1</span>)
-                    </p>
-
-                    <p class="terminal-line line-4">
-                      <span class="py-comment">
-                        # transformando ideias em código
+                  <div class="laptop-screen">
+                    <div class="terminal-bar" aria-hidden="true">
+                      <span class="terminal-dots">
+                        <i></i>
+                        <i></i>
+                        <i></i>
                       </span>
-                    </p>
 
-                    <p class="terminal-line line-5">
-                      app.build(mode=<span class="py-string">"always_learning"</span>)
-                      <span class="terminal-cursor"></span>
-                    </p>
+                      <span>main.py — kaiqui@portfolio</span>
+                      <b>KP/</b>
+                    </div>
+
+                    <div class="terminal" aria-hidden="true">
+                      <p class="terminal-line line-1">
+                        <span class="py-keyword">from</span>
+                        portfolio
+                        <span class="py-keyword">import</span>
+                        Project
+                      </p>
+
+                      <p class="terminal-line line-2">
+                        app = Project(owner=<span class="py-string">"Kaiqui"</span>)
+                      </p>
+
+                      <p class="terminal-line line-3">
+                        app.add(skill=<span class="py-string">"Python"</span>,
+                        level=<span class="py-number">1</span>)
+                      </p>
+
+                      <p class="terminal-line line-4">
+                        <span class="py-comment">
+                          # transformando ideias em código
+                        </span>
+                      </p>
+
+                      <p class="terminal-line line-5">
+                        app.build(mode=<span class="py-string">"always_learning"</span>)
+                        <span class="terminal-cursor"></span>
+                      </p>
+                    </div>
                   </div>
                 </div>
 
                 <div class="laptop-hinge" aria-hidden="true"></div>
 
                 <div class="laptop-deck" aria-hidden="true">
+                  <i class="laptop-deck-edge deck-edge-front"></i>
+                  <i class="laptop-deck-edge deck-edge-left"></i>
+                  <i class="laptop-deck-edge deck-edge-right"></i>
+
                   <div class="keyboard">
                     <span data-key="esc"></span>
                     <span data-key="1"></span>
@@ -1063,6 +1089,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="supabase-config.js"></script>
-    <script src="app.js?v=20260822-contact-nav2"></script>
+    <script src="app.js?v=20260822-webgl1"></script>
+    <script type="module" src="laptop-3d.js?v=20260822-webgl2"></script>
   </body>
 </html>
