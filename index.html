@@ -46,7 +46,7 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="style.css?v=20260822-cosmic-cinematic2" />
+    <link rel="stylesheet" href="style.css?v=20260822-contact-final1" />
   </head>
 
   <body>
@@ -61,14 +61,30 @@
         <a href="#contato">Contato</a>
       </nav>
 
-      <button id="adminButton" class="admin-link" type="button">
-        Área do dono
-      </button>
+      <div class="topbar-actions">
+        <button
+          id="autoScrollButton"
+          class="auto-scroll-button"
+          type="button"
+          aria-pressed="false"
+          aria-label="Ativar rolagem automática"
+          title="Ativar rolagem automática"
+        >
+          <span id="autoScrollIcon" class="auto-scroll-icon" aria-hidden="true">▶</span>
+          <span id="autoScrollLabel" class="auto-scroll-label">Auto tour</span>
+        </button>
+
+        <button id="adminButton" class="admin-link" type="button">
+          Área do dono
+        </button>
+      </div>
     </header>
 
     <div class="scroll-progress" aria-hidden="true">
       <span id="scrollProgress"></span>
     </div>
+
+    <p id="autoScrollNotice" class="auto-scroll-notice" role="status" aria-live="polite"></p>
 
     <main id="inicio">
       <section class="hero wrap">
@@ -719,8 +735,6 @@
       >
         <div class="contact-sticky">
           <div class="contact-grid" aria-hidden="true"></div>
-          <div class="contact-logo" aria-hidden="true">KP/</div>
-
           <span class="contact-tech tech-left" aria-hidden="true">
             END_SEQUENCE / 07
           </span>
@@ -730,14 +744,6 @@
           </span>
 
           <div class="contact-signature" aria-hidden="true">KP/</div>
-
-          <img
-            class="contact-traveler"
-            src="cosmic-traveler.png"
-            alt="Viajante espacial futurista em tons de verde-limão"
-            loading="lazy"
-            decoding="async"
-          />
 
           <nav class="contact-pages" aria-label="Atalhos do portfólio">
             <span>NAVEGAÇÃO</span>
@@ -758,16 +764,6 @@
             </h2>
 
             <div class="contact-actions">
-              <a
-                id="emailLink"
-                class="button contact-main-button"
-                data-fixed-label="true"
-                href="mailto:seuemail@exemplo.com"
-              >
-                VAMOS CONVERSAR
-                <span class="external-arrow" aria-hidden="true"></span>
-              </a>
-
               <div class="contact-links">
                 <button
                   id="copyEmailButton"
@@ -1067,6 +1063,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="supabase-config.js"></script>
-    <script src="app.js?v=20260822-title-motion1"></script>
+    <script src="app.js?v=20260822-contact-nav2"></script>
   </body>
 </html>
