@@ -328,7 +328,7 @@ window.addEventListener('scroll', updateActiveNavigation, { passive: true });
 window.addEventListener('resize', updateActiveNavigation, { passive: true });
 updateActiveNavigation();
 
-// Cursor editorial e movimento sutil de profundidade para dispositivos com mouse.
+// Cursor editorial para dispositivos com mouse.
 if (window.matchMedia('(pointer: fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   const cursor = document.createElement('div');
   cursor.className = 'cursor-orbit';
@@ -349,14 +349,6 @@ if (window.matchMedia('(pointer: fine)').matches && !window.matchMedia('(prefers
     requestAnimationFrame(moveCursor);
   }
   moveCursor();
-
-  const heroTitle = $('.hero h1');
-  document.addEventListener('pointermove', event => {
-    if (window.scrollY > window.innerHeight) return;
-    const x = (event.clientX / window.innerWidth - .5) * 12;
-    const y = (event.clientY / window.innerHeight - .5) * 8;
-    heroTitle.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-  }, { passive: true });
 }
 
 // Pequeno efeito de velocidade no título durante a rolagem.
@@ -659,6 +651,48 @@ window.addEventListener('resize', () => {
   if (techUniverseVisible) drawTechUniverse(performance.now());
 }, { passive: true });
 
+// Viagem horizontal: a rolagem vertical atravessa os marcos da trajetória.
+const cosmicJourney = $('#rota');
+const journeyTrack = $('#journeyTrack');
+const journeyPanels = journeyTrack ? [...journeyTrack.querySelectorAll('.journey-panel')] : [];
+const journeyProgressFill = $('#journeyProgressFill');
+const journeyStage = $('#journeyStage');
+const journeyVelocity = $('#journeyVelocity');
+const journeyDistance = $('#journeyDistance');
+let journeyFrame = 0;
+
+function updateCosmicJourney() {
+  if (!cosmicJourney || !journeyTrack || !journeyPanels.length || reduceMotion.matches) return;
+  cancelAnimationFrame(journeyFrame);
+  journeyFrame = requestAnimationFrame(() => {
+    const bounds = cosmicJourney.getBoundingClientRect();
+    const range = Math.max(1, cosmicJourney.offsetHeight - window.innerHeight);
+    const progress = Math.min(1, Math.max(0, -bounds.top / range));
+    const travel = Math.max(0, journeyTrack.scrollWidth - window.innerWidth);
+    const activeIndex = Math.min(journeyPanels.length - 1, Math.round(progress * (journeyPanels.length - 1)));
+    const velocity = .12 + Math.sin(progress * Math.PI) * .78;
+
+    journeyTrack.style.transform = `translate3d(${-travel * progress}px,0,0)`;
+    cosmicJourney.style.setProperty('--journey-progress', progress.toFixed(3));
+    const starTravel = -progress * Math.max(520, window.innerWidth * .72);
+    cosmicJourney.style.setProperty('--star-shift', `${starTravel}px`);
+    cosmicJourney.style.setProperty('--star-shift-slow', `${starTravel * .45}px`);
+    cosmicJourney.style.setProperty('--star-shift-deep', `${starTravel * .2}px`);
+    cosmicJourney.style.setProperty('--journey-velocity', velocity.toFixed(3));
+    cosmicJourney.style.setProperty('--craft-y', `${Math.sin(progress * Math.PI * 7) * 9}px`);
+    cosmicJourney.style.setProperty('--craft-tilt', `${-4 + Math.sin(progress * Math.PI * 5) * 4}deg`);
+
+    journeyPanels.forEach((panel, index) => panel.classList.toggle('is-active', index === activeIndex));
+    if (journeyProgressFill) journeyProgressFill.style.transform = `scaleX(${progress})`;
+    if (journeyStage) journeyStage.textContent = String(activeIndex + 1).padStart(2, '0');
+    if (journeyVelocity) journeyVelocity.textContent = String(Math.round(velocity * 780)).padStart(3, '0');
+    if (journeyDistance) journeyDistance.textContent = `${String(Math.round(progress * 100)).padStart(3, '0')}%`;
+  });
+}
+
+window.addEventListener('scroll', updateCosmicJourney, { passive: true });
+window.addEventListener('resize', updateCosmicJourney, { passive: true });
+
 // Encerramento cinematográfico: cor e tipografia respondem ao scroll.
 const cinematicContact = $('#contato');
 let cinematicContactFrame = 0;
@@ -740,5 +774,6 @@ copyEmailButton?.addEventListener('click', copyPortfolioEmail);
   updateMobileCards();
   updateCodeStory();
   updateTechUniverseFromScroll();
+  updateCosmicJourney();
   updateCinematicContact();
 })();
